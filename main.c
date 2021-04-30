@@ -11,7 +11,7 @@
 extern FILE*fp;
 
 
-
+pthread_mutex_t  mutex_file = PTHREAD_MUTEX_INITIALIZER;
 
 
 
@@ -58,8 +58,9 @@ void *thread_write_uart(void*arg)
 	char c='a';
 	uint32_t m=0;
 
-	while(m < 10)
+	while(m < 100)
 	{
+		pthread_mutex_lock(&mutex_file);
 		//for(cnt=0;cnt<TEST_CNT;cnt++)
 		for(cnt=0;cnt<26;cnt++)
 		{
@@ -68,6 +69,7 @@ void *thread_write_uart(void*arg)
 			fputc(c+cnt,fp);
 		}
 
+		pthread_mutex_unlock(&mutex_file);
 		m++;
 	}
 
@@ -83,8 +85,9 @@ void *thread_write_console(void*arg)
 
 	char c='1';
 	uint32_t m=0;
-	while(m<10)
+	while(m<100)
 	{
+		pthread_mutex_lock(&mutex_file);
 		//for(cnt=0;cnt<TEST_CNT;cnt++)
 		for(cnt=0;cnt<9;cnt++)
 		{
@@ -93,6 +96,7 @@ void *thread_write_console(void*arg)
 			fputc(c+cnt,fp);
 		}
 
+		pthread_mutex_unlock(&mutex_file);
 		m++;
 	}
 	pthread_exit("pthread_write_console,Thank you for the CPU time\n");
