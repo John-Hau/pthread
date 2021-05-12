@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <mqueue.h>
+#include "com_uart_port.h"
+
 #define TEST_CNT    100
 
 #define MSG_IPC_BUF_SIZE  8192
@@ -14,7 +16,7 @@
 
 
 extern FILE*fp;
-
+int fdSerial; 
 
 pthread_mutex_t  mutex_file = PTHREAD_MUTEX_INITIALIZER;
 
@@ -111,28 +113,41 @@ void *thread_get_message_from_uart_port(void*arg)
 
 
 
+void *thread_read_uart(void*arg)
+{
+	uint8_t uart_rcv_buf[256]={0};
+	while(1)
+	{
+		//com_recv(fdSerial, rcv_buf, 128, 1000);
+		com_recv(fdSerial, uart_rcv_buf, 128, -1);
+		printf("uart receiving and string is %s\n",uart_rcv_buf);
+		memset(uart_rcv_buf,0,sizeof(uart_rcv_buf));
+	}
+
+	pthread_exit("pthread_read_uart,Thank you for the CPU time\n");
+
+}
+
+
 
 
 void *thread_write_uart(void*arg)
 {
+	uint8_t uart_send_buf[128]={0};
+	strcpy(uart_send_buf,"1 uart hello\n");
 
-	uint32_t cnt=0;
-	char c='a';
-	uint32_t m=0;
-
-	while(m < 10)
+	while(1)
 	{
-		pthread_mutex_lock(&mutex_file);
-		//for(cnt=0;cnt<TEST_CNT;cnt++)
-		for(cnt=0;cnt<26;cnt++)
-		{
-			//printf("pthread_write_uart %d\n",cnt+1);
-			//printf("1234567890");
-			fputc(c+cnt,fp);
-		}
+		com_send(fdSerial, uart_send_buf, strlen(uart_send_buf));
+		sleep(2);
+		printf("uart sending\n");
 
-		pthread_mutex_unlock(&mutex_file);
-		m++;
+
+		uart_send_buf[0]++;
+		if(uart_send_buf[0] > '9') 
+		{
+			uart_send_buf[0] = '1';
+		}
 	}
 
 	pthread_exit("pthread_write_uart,Thank you for the CPU time\n");
@@ -177,14 +192,19 @@ int main(int argc ,char* argv[])
 
 	pthread_t a_thread;
 	pthread_t thread_read_id;
+	pthread_t thread_read_uart_id;
 	pthread_t thread_write_uart_id;
 	pthread_t thread_write_console_id;
 
 	void* thread_result;
 	void* thread_read_result;
 	void* thread_write_uart_result;
+	void* thread_read_uart_result;
 	void* thread_write_console_result;
 
+	fdSerial = init_com_port(USER_COM0,115200);
+
+#if 0
 	attr.mq_maxmsg=16;
 	attr.mq_msgsize=MSG_IPC_BUF_SIZE;
 	attr.mq_flags=0;
@@ -210,7 +230,7 @@ int main(int argc ,char* argv[])
 	mq_close(mqfd);
 	//mq_unlink("./myipc");
 	printf("end\n");
-	return 0;
+//	return 0;
 
 
 	fp = fopen("test.log","wt");
@@ -221,6 +241,21 @@ int main(int argc ,char* argv[])
 		exit(EXIT_FAILURE);
 
 	}
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -266,10 +301,22 @@ int main(int argc ,char* argv[])
 
 #endif
 
-
-
-
 #if 1
+	res = pthread_create(&thread_read_uart_id,NULL,thread_read_uart,NULL);
+	if(res != 0)
+	{
+		perror("thread_read_uare creation failed\n");
+		exit(EXIT_FAILURE);
+
+	}
+
+#endif
+
+
+
+
+
+#if 0
 	res = pthread_create(&thread_write_console_id,NULL,thread_write_console,NULL);
 	if(res != 0)
 	{
@@ -281,7 +328,6 @@ int main(int argc ,char* argv[])
 #endif
 
 
-	printf("Waiting for thread to finish ... \n");
 
 #if 0
 	res = pthread_join(a_thread,&thread_result);
@@ -307,8 +353,16 @@ int main(int argc ,char* argv[])
 
 	}
 
+	res = pthread_join(thread_read_uart_id,&thread_read_uart_result);
+	if(res !=0)
+	{
+		perror("thread_read_uart join failed\n");
+		exit(EXIT_FAILURE);
+
+	}
 
 
+#if 0
 	res = pthread_join(thread_write_console_id,&thread_write_console_result);
 	if(res !=0)
 	{
@@ -317,13 +371,13 @@ int main(int argc ,char* argv[])
 
 	}
 
+#endif
 
 
 
 
 
-
-
+	printf("Waiting for thread to finish ... \n");
 
 
 
@@ -334,7 +388,7 @@ int main(int argc ,char* argv[])
 
 	//printf("Thread joined.  it returned %s\n",(char*)thread_result);
 	//printf("message is now %s\n",message);
-	fclose(fp);
+	//fclose(fp);
 	printf("main thread exit\n");
 
 	exit(EXIT_SUCCESS);

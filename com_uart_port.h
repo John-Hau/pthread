@@ -38,3 +38,5 @@ enum COM_PORT {
 #define DEV_NAME    "/dev/ttyS25"    ///< 串口设备
 
 extern int32_t init_com_port(enum COM_PORT port,uint32_t baudrate);
+extern int com_recv(int fd, char *rcv_buf, int data_len, int timeout);
+extern int com_send(int fd, char *send_buf, int data_len);
