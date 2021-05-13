@@ -119,8 +119,10 @@ void *thread_read_uart(void*arg)
 	while(1)
 	{
 		//com_recv(fdSerial, rcv_buf, 128, 1000);
-		com_recv(fdSerial, uart_rcv_buf, 128, -1);
-		printf("uart receiving and string is %s\n",uart_rcv_buf);
+		//uint32_t nr = com_recv(fdSerial, uart_rcv_buf, 128, -1);
+		uint32_t nr = com_recv(fdSerial, uart_rcv_buf, 1, -1);
+		//printf("uart receiving and nr is %d and string is %s\n",nr,uart_rcv_buf);
+		printf("uart receiving and nr is %d and ch is %c\n",nr,uart_rcv_buf[0]);
 		memset(uart_rcv_buf,0,sizeof(uart_rcv_buf));
 	}
 
