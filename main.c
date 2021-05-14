@@ -8,7 +8,9 @@
 #include <mqueue.h>
 #include "com_uart_port.h"
 
+
 #define TEST_CNT    100
+#define FILE_WRITE2UART  "file_write2uart.log"
 
 #define MSG_IPC_BUF_SIZE  8192
 
@@ -136,14 +138,50 @@ void *thread_read_uart(void*arg)
 void *thread_write_uart(void*arg)
 {
 	uint8_t uart_send_buf[128]={0};
+
+
+	FILE *fp_w=NULL;
+
+	fp_w = fopen(FILE_WRITE2UART,"rt");
+	if(fp_w == NULL)
+	{
+		perror("failed to open file_write2uart");
+		pthread_exit("pthread_write_uart,Thank you for the CPU time\n");
+	}
+
+
+
 	strcpy(uart_send_buf,"1 uart hello\n");
 
+	sleep(3);
+#if 1
+	int c;
+	while((c=fgetc(fp_w))!= EOF)
+	{
+		//com_send(fdSerial, uart_send_buf, strlen(uart_send_buf));
+		com_send(fdSerial, (char*)&c, 1);
+
+	}
+	fclose(fp_w);
+
+	printf("file transferring done\n");
+#endif
 	while(1)
 	{
-		com_send(fdSerial, uart_send_buf, strlen(uart_send_buf));
+#if 0	
+		int c;
+		while((c=fgetc(fp))!= EOF)
+		{
+			//com_send(fdSerial, uart_send_buf, strlen(uart_send_buf));
+			com_send(fdSerial, c, 1);
+		}
+#endif
+
+
+
+//		com_send(fdSerial, uart_send_buf, strlen(uart_send_buf));
 		sleep(2);
 		printf("uart sending\n");
-
 
 		uart_send_buf[0]++;
 		if(uart_send_buf[0] > '9') 
