@@ -18,7 +18,7 @@
 #include <unistd.h>
 #endif
 
-#include <config.h>
+//#include <config.h>
 
 #include "modbus.h"
 #include "modbus-private.h"
@@ -169,7 +169,7 @@ static int send_msg(modbus_t *ctx, uint8_t *msg, int msg_length)
     int i;
 
     msg_length = ctx->backend->send_msg_pre(msg, msg_length);
-
+    
     if (ctx->debug) {
         for (i = 0; i < msg_length; i++)
             printf("[%.2X]", msg[i]);

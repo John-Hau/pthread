@@ -1,0 +1,747 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CJSON_CDECL	cJSON/cJSON.h	55;"	d
+CJSON_CDECL	cJSON/cJSON.h	71;"	d
+CJSON_EXPORT_SYMBOLS	cJSON/cJSON.h	60;"	d
+CJSON_NESTING_LIMIT	cJSON/cJSON.h	137;"	d
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_AddItemReferenceToArray(cJSON *array, cJSON *item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_AddItemReferenceToObject(cJSON *object, const char *string, cJSON *item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_AddItemToArray(cJSON *array, cJSON *item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_AddItemToObject(cJSON *object, const char *string, cJSON *item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_AddItemToObjectCS(cJSON *object, const char *string, cJSON *item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_Compare(const cJSON * const a, const cJSON * const b, const cJSON_bool case_sensitive)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_HasObjectItem(const cJSON *object, const char *string)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_InsertItemInArray(cJSON *array, int which, cJSON *newitem)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsArray(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsBool(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsFalse(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsInvalid(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNull(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNumber(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsObject(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsRaw(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsString(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsTrue(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_PrintPreallocated(cJSON *item, char *buffer, const int length, const cJSON_bool format)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_ReplaceItemInArray(cJSON *array, int which, cJSON *newitem)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_ReplaceItemInObject(cJSON *object, const char *string, cJSON *newitem)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_ReplaceItemInObjectCaseSensitive(cJSON *object, const char *string, cJSON *newitem)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_ReplaceItemViaPointer(cJSON * const parent, cJSON * const item, cJSON * replacement)$/;"	f
+CJSON_PUBLIC	cJSON/cJSON.h	64;"	d
+CJSON_PUBLIC	cJSON/cJSON.h	66;"	d
+CJSON_PUBLIC	cJSON/cJSON.h	68;"	d
+CJSON_PUBLIC	cJSON/cJSON.h	75;"	d
+CJSON_PUBLIC	cJSON/cJSON.h	77;"	d
+CJSON_STDCALL	cJSON/cJSON.h	56;"	d
+CJSON_STDCALL	cJSON/cJSON.h	72;"	d
+CJSON_VERSION_MAJOR	cJSON/cJSON.h	82;"	d
+CJSON_VERSION_MINOR	cJSON/cJSON.h	83;"	d
+CJSON_VERSION_PATCH	cJSON/cJSON.h	84;"	d
+COM_PORT	com_uart/com_uart_port.h	/^enum COM_PORT {$/;"	g
+DEV_NAME	com_uart/com_uart_port.h	39;"	d
+ECONNREFUSED	modbus/modbus-tcp.h	21;"	d
+ECONNRESET	modbus/modbus-tcp.h	18;"	d
+EINPROGRESS	modbus/modbus-tcp.h	30;"	d
+EMBBADCRC	modbus/modbus.h	144;"	d
+EMBBADDATA	modbus/modbus.h	145;"	d
+EMBBADEXC	modbus/modbus.h	146;"	d
+EMBBADSLAVE	modbus/modbus.h	149;"	d
+EMBMDATA	modbus/modbus.h	148;"	d
+EMBUNKEXC	modbus/modbus.h	147;"	d
+EMBXACK	modbus/modbus.h	136;"	d
+EMBXGPATH	modbus/modbus.h	140;"	d
+EMBXGTAR	modbus/modbus.h	141;"	d
+EMBXILADD	modbus/modbus.h	133;"	d
+EMBXILFUN	modbus/modbus.h	132;"	d
+EMBXILVAL	modbus/modbus.h	134;"	d
+EMBXMEMPAR	modbus/modbus.h	139;"	d
+EMBXNACK	modbus/modbus.h	138;"	d
+EMBXSBUSY	modbus/modbus.h	137;"	d
+EMBXSFAIL	modbus/modbus.h	135;"	d
+ENOPROTOOPT	modbus/modbus-tcp.h	27;"	d
+ENOTSUP	modbus/modbus-rtu-private.h	30;"	d
+ETIMEDOUT	modbus/modbus-tcp.h	24;"	d
+FALSE	modbus/modbus.h	45;"	d
+FILE_WRITE2UART	main.c	14;"	d	file:
+GCC_VERSION	modbus/modbus-data.c	41;"	d	file:
+HAVE_ACCEPT4	modbus/config.h	5;"	d
+HAVE_ARPA_INET_H	modbus/config.h	8;"	d
+HAVE_BYTESWAP_H	modbus/config.h	11;"	d
+HAVE_DECL_TIOCM_RTS	modbus/config.h	15;"	d
+HAVE_DECL_TIOCSRS485	modbus/config.h	19;"	d
+HAVE_DECL___CYGWIN__	modbus/config.h	23;"	d
+HAVE_DLFCN_H	modbus/config.h	26;"	d
+HAVE_ERRNO_H	modbus/config.h	29;"	d
+HAVE_FCNTL_H	modbus/config.h	32;"	d
+HAVE_GETADDRINFO	modbus/config.h	35;"	d
+HAVE_GETTIMEOFDAY	modbus/config.h	38;"	d
+HAVE_INET_NTOA	modbus/config.h	41;"	d
+HAVE_INTTYPES_H	modbus/config.h	44;"	d
+HAVE_LIMITS_H	modbus/config.h	47;"	d
+HAVE_MEMORY_H	modbus/config.h	53;"	d
+HAVE_NETDB_H	modbus/config.h	56;"	d
+HAVE_NETINET_IN_H	modbus/config.h	59;"	d
+HAVE_NETINET_TCP_H	modbus/config.h	62;"	d
+HAVE_SELECT	modbus/config.h	65;"	d
+HAVE_SOCKET	modbus/config.h	68;"	d
+HAVE_STDINT_H	modbus/config.h	71;"	d
+HAVE_STDLIB_H	modbus/config.h	74;"	d
+HAVE_STRERROR	modbus/config.h	77;"	d
+HAVE_STRINGS_H	modbus/config.h	80;"	d
+HAVE_STRING_H	modbus/config.h	83;"	d
+HAVE_STRLCPY	modbus/config.h	86;"	d
+HAVE_SYS_IOCTL_H	modbus/config.h	89;"	d
+HAVE_SYS_SOCKET_H	modbus/config.h	95;"	d
+HAVE_SYS_STAT_H	modbus/config.h	98;"	d
+HAVE_SYS_TIME_H	modbus/config.h	101;"	d
+HAVE_SYS_TYPES_H	modbus/config.h	104;"	d
+HAVE_TERMIOS_H	modbus/config.h	107;"	d
+HAVE_TIME_H	modbus/config.h	110;"	d
+HAVE_UNISTD_H	modbus/config.h	113;"	d
+LIBMODBUS_VERSION	modbus/modbus-version.h	32;"	d
+LIBMODBUS_VERSION_CHECK	modbus/modbus-version.h	45;"	d
+LIBMODBUS_VERSION_HEX	modbus/modbus-version.h	39;"	d
+LIBMODBUS_VERSION_MAJOR	modbus/modbus-version.h	23;"	d
+LIBMODBUS_VERSION_MICRO	modbus/modbus-version.h	29;"	d
+LIBMODBUS_VERSION_MINOR	modbus/modbus-version.h	26;"	d
+LIBMODBUS_VERSION_STRING	modbus/modbus-version.h	36;"	d
+LT_OBJDIR	modbus/config.h	119;"	d
+MAX_MESSAGE_LENGTH	modbus/modbus.c	35;"	d	file:
+MODBUS_API	modbus/modbus.h	26;"	d
+MODBUS_API	modbus/modbus.h	28;"	d
+MODBUS_API	modbus/modbus.h	31;"	d
+MODBUS_BEGIN_DECLS	modbus/modbus.h	35;"	d
+MODBUS_BEGIN_DECLS	modbus/modbus.h	38;"	d
+MODBUS_BROADCAST_ADDRESS	modbus/modbus.h	74;"	d
+MODBUS_END_DECLS	modbus/modbus.h	36;"	d
+MODBUS_END_DECLS	modbus/modbus.h	39;"	d
+MODBUS_ENOBASE	modbus/modbus.h	114;"	d
+MODBUS_ERROR_RECOVERY_LINK	modbus/modbus.h	/^    MODBUS_ERROR_RECOVERY_LINK          = (1<<1),$/;"	e	enum:__anon16
+MODBUS_ERROR_RECOVERY_LINK	modbus/modbus.h	/^    MODBUS_ERROR_RECOVERY_LINK          = (1<<1),$/;"	e	enum:__anon8
+MODBUS_ERROR_RECOVERY_NONE	modbus/modbus.h	/^    MODBUS_ERROR_RECOVERY_NONE          = 0,$/;"	e	enum:__anon16
+MODBUS_ERROR_RECOVERY_NONE	modbus/modbus.h	/^    MODBUS_ERROR_RECOVERY_NONE          = 0,$/;"	e	enum:__anon8
+MODBUS_ERROR_RECOVERY_PROTOCOL	modbus/modbus.h	/^    MODBUS_ERROR_RECOVERY_PROTOCOL      = (1<<2)$/;"	e	enum:__anon16
+MODBUS_ERROR_RECOVERY_PROTOCOL	modbus/modbus.h	/^    MODBUS_ERROR_RECOVERY_PROTOCOL      = (1<<2)$/;"	e	enum:__anon8
+MODBUS_EXCEPTION_ACKNOWLEDGE	modbus/modbus.h	/^    MODBUS_EXCEPTION_ACKNOWLEDGE,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_ACKNOWLEDGE	modbus/modbus.h	/^    MODBUS_EXCEPTION_ACKNOWLEDGE,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_GATEWAY_PATH	modbus/modbus.h	/^    MODBUS_EXCEPTION_GATEWAY_PATH,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_GATEWAY_PATH	modbus/modbus.h	/^    MODBUS_EXCEPTION_GATEWAY_PATH,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_GATEWAY_TARGET	modbus/modbus.h	/^    MODBUS_EXCEPTION_GATEWAY_TARGET,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_GATEWAY_TARGET	modbus/modbus.h	/^    MODBUS_EXCEPTION_GATEWAY_TARGET,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS	modbus/modbus.h	/^    MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS	modbus/modbus.h	/^    MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_ILLEGAL_DATA_VALUE	modbus/modbus.h	/^    MODBUS_EXCEPTION_ILLEGAL_DATA_VALUE,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_ILLEGAL_DATA_VALUE	modbus/modbus.h	/^    MODBUS_EXCEPTION_ILLEGAL_DATA_VALUE,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_ILLEGAL_FUNCTION	modbus/modbus.h	/^    MODBUS_EXCEPTION_ILLEGAL_FUNCTION = 0x01,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_ILLEGAL_FUNCTION	modbus/modbus.h	/^    MODBUS_EXCEPTION_ILLEGAL_FUNCTION = 0x01,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_MAX	modbus/modbus.h	/^    MODBUS_EXCEPTION_MAX$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_MAX	modbus/modbus.h	/^    MODBUS_EXCEPTION_MAX$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_MEMORY_PARITY	modbus/modbus.h	/^    MODBUS_EXCEPTION_MEMORY_PARITY,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_MEMORY_PARITY	modbus/modbus.h	/^    MODBUS_EXCEPTION_MEMORY_PARITY,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_NEGATIVE_ACKNOWLEDGE	modbus/modbus.h	/^    MODBUS_EXCEPTION_NEGATIVE_ACKNOWLEDGE,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_NEGATIVE_ACKNOWLEDGE	modbus/modbus.h	/^    MODBUS_EXCEPTION_NEGATIVE_ACKNOWLEDGE,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_NOT_DEFINED	modbus/modbus.h	/^    MODBUS_EXCEPTION_NOT_DEFINED,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_NOT_DEFINED	modbus/modbus.h	/^    MODBUS_EXCEPTION_NOT_DEFINED,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY	modbus/modbus.h	/^    MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY	modbus/modbus.h	/^    MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY,$/;"	e	enum:__anon7
+MODBUS_EXCEPTION_SLAVE_OR_SERVER_FAILURE	modbus/modbus.h	/^    MODBUS_EXCEPTION_SLAVE_OR_SERVER_FAILURE,$/;"	e	enum:__anon15
+MODBUS_EXCEPTION_SLAVE_OR_SERVER_FAILURE	modbus/modbus.h	/^    MODBUS_EXCEPTION_SLAVE_OR_SERVER_FAILURE,$/;"	e	enum:__anon7
+MODBUS_FC_MASK_WRITE_REGISTER	modbus/modbus.h	71;"	d
+MODBUS_FC_READ_COILS	modbus/modbus.h	61;"	d
+MODBUS_FC_READ_DISCRETE_INPUTS	modbus/modbus.h	62;"	d
+MODBUS_FC_READ_EXCEPTION_STATUS	modbus/modbus.h	67;"	d
+MODBUS_FC_READ_HOLDING_REGISTERS	modbus/modbus.h	63;"	d
+MODBUS_FC_READ_INPUT_REGISTERS	modbus/modbus.h	64;"	d
+MODBUS_FC_REPORT_SLAVE_ID	modbus/modbus.h	70;"	d
+MODBUS_FC_WRITE_AND_READ_REGISTERS	modbus/modbus.h	72;"	d
+MODBUS_FC_WRITE_MULTIPLE_COILS	modbus/modbus.h	68;"	d
+MODBUS_FC_WRITE_MULTIPLE_REGISTERS	modbus/modbus.h	69;"	d
+MODBUS_FC_WRITE_SINGLE_COIL	modbus/modbus.h	65;"	d
+MODBUS_FC_WRITE_SINGLE_REGISTER	modbus/modbus.h	66;"	d
+MODBUS_GET_HIGH_BYTE	modbus/modbus.h	245;"	d
+MODBUS_GET_INT16_FROM_INT8	modbus/modbus.h	255;"	d
+MODBUS_GET_INT32_FROM_INT16	modbus/modbus.h	252;"	d
+MODBUS_GET_INT64_FROM_INT16	modbus/modbus.h	247;"	d
+MODBUS_GET_LOW_BYTE	modbus/modbus.h	246;"	d
+MODBUS_H	modbus/modbus.h	8;"	d
+MODBUS_MAX_ADU_LENGTH	modbus/modbus.h	111;"	d
+MODBUS_MAX_PDU_LENGTH	modbus/modbus.h	101;"	d
+MODBUS_MAX_READ_BITS	modbus/modbus.h	81;"	d
+MODBUS_MAX_READ_REGISTERS	modbus/modbus.h	91;"	d
+MODBUS_MAX_WRITE_BITS	modbus/modbus.h	82;"	d
+MODBUS_MAX_WRITE_REGISTERS	modbus/modbus.h	92;"	d
+MODBUS_MAX_WR_READ_REGISTERS	modbus/modbus.h	94;"	d
+MODBUS_MAX_WR_WRITE_REGISTERS	modbus/modbus.h	93;"	d
+MODBUS_PRIVATE_H	modbus/modbus-private.h	8;"	d
+MODBUS_RTU_H	modbus/modbus-rtu.h	8;"	d
+MODBUS_RTU_MAX_ADU_LENGTH	modbus/modbus-rtu.h	17;"	d
+MODBUS_RTU_PRIVATE_H	modbus/modbus-rtu-private.h	8;"	d
+MODBUS_RTU_RS232	modbus/modbus-rtu.h	22;"	d
+MODBUS_RTU_RS485	modbus/modbus-rtu.h	23;"	d
+MODBUS_RTU_RTS_DOWN	modbus/modbus-rtu.h	30;"	d
+MODBUS_RTU_RTS_NONE	modbus/modbus-rtu.h	28;"	d
+MODBUS_RTU_RTS_UP	modbus/modbus-rtu.h	29;"	d
+MODBUS_SET_INT16_TO_INT8	modbus/modbus.h	258;"	d
+MODBUS_SET_INT32_TO_INT16	modbus/modbus.h	263;"	d
+MODBUS_SET_INT64_TO_INT16	modbus/modbus.h	268;"	d
+MODBUS_TCP_DEFAULT_PORT	modbus/modbus-tcp.h	34;"	d
+MODBUS_TCP_H	modbus/modbus-tcp.h	8;"	d
+MODBUS_TCP_MAX_ADU_LENGTH	modbus/modbus-tcp.h	40;"	d
+MODBUS_TCP_PRIVATE_H	modbus/modbus-tcp-private.h	8;"	d
+MODBUS_TCP_SLAVE	modbus/modbus-tcp.h	35;"	d
+MODBUS_VERSION_H	modbus/modbus-version.h	20;"	d
+MSG_CONFIRMATION	modbus/modbus-private.h	/^    MSG_CONFIRMATION$/;"	e	enum:__anon13
+MSG_CONFIRMATION	modbus/modbus-private.h	/^    MSG_CONFIRMATION$/;"	e	enum:__anon5
+MSG_DONTWAIT	modbus/modbus-tcp.c	53;"	d	file:
+MSG_INDICATION	modbus/modbus-private.h	/^    MSG_INDICATION,$/;"	e	enum:__anon13
+MSG_INDICATION	modbus/modbus-private.h	/^    MSG_INDICATION,$/;"	e	enum:__anon5
+MSG_IPC_BUF_SIZE	main.c	16;"	d	file:
+MSG_LEN	main.c	30;"	d	file:
+MSG_LENGTH_UNDEFINED	modbus/modbus.c	27;"	d	file:
+MSG_NOSIGNAL	modbus/modbus-tcp.c	49;"	d	file:
+NAN	cJSON/cJSON.c	81;"	d	file:
+OFF	modbus/modbus.h	53;"	d
+ON	modbus/modbus.h	57;"	d
+OS_BSD	modbus/modbus-tcp.c	37;"	d	file:
+OS_WIN32	modbus/modbus-tcp.c	8;"	d	file:
+PACKAGE	modbus/config.h	122;"	d
+PACKAGE_BUGREPORT	modbus/config.h	125;"	d
+PACKAGE_NAME	modbus/config.h	128;"	d
+PACKAGE_STRING	modbus/config.h	131;"	d
+PACKAGE_TARNAME	modbus/config.h	134;"	d
+PACKAGE_URL	modbus/config.h	137;"	d
+PACKAGE_VERSION	modbus/config.h	140;"	d
+PY_BUF_SIZE	modbus/modbus-rtu-private.h	34;"	d
+SERVER_ID	main.c	19;"	d	file:
+SHUT_RDWR	modbus/modbus-tcp.c	30;"	d	file:
+STDC_HEADERS	modbus/config.h	143;"	d
+TEST_CNT	main.c	13;"	d	file:
+TRUE	modbus/modbus.h	49;"	d
+USER_COM0	com_uart/com_uart_port.h	/^	USER_COM0,$/;"	e	enum:COM_PORT
+USER_COM1	com_uart/com_uart_port.h	/^	USER_COM1,$/;"	e	enum:COM_PORT
+USER_COM10	com_uart/com_uart_port.h	/^	USER_COM10,$/;"	e	enum:COM_PORT
+USER_COM11	com_uart/com_uart_port.h	/^	USER_COM11,$/;"	e	enum:COM_PORT
+USER_COM12	com_uart/com_uart_port.h	/^	USER_COM12,$/;"	e	enum:COM_PORT
+USER_COM13	com_uart/com_uart_port.h	/^	USER_COM13,$/;"	e	enum:COM_PORT
+USER_COM14	com_uart/com_uart_port.h	/^	USER_COM14,$/;"	e	enum:COM_PORT
+USER_COM15	com_uart/com_uart_port.h	/^	USER_COM15,$/;"	e	enum:COM_PORT
+USER_COM16	com_uart/com_uart_port.h	/^	USER_COM16,$/;"	e	enum:COM_PORT
+USER_COM17	com_uart/com_uart_port.h	/^	USER_COM17,$/;"	e	enum:COM_PORT
+USER_COM18	com_uart/com_uart_port.h	/^	USER_COM18,$/;"	e	enum:COM_PORT
+USER_COM19	com_uart/com_uart_port.h	/^	USER_COM19,$/;"	e	enum:COM_PORT
+USER_COM2	com_uart/com_uart_port.h	/^	USER_COM2,$/;"	e	enum:COM_PORT
+USER_COM20	com_uart/com_uart_port.h	/^	USER_COM20,$/;"	e	enum:COM_PORT
+USER_COM21	com_uart/com_uart_port.h	/^	USER_COM21,$/;"	e	enum:COM_PORT
+USER_COM22	com_uart/com_uart_port.h	/^	USER_COM22,$/;"	e	enum:COM_PORT
+USER_COM23	com_uart/com_uart_port.h	/^	USER_COM23,$/;"	e	enum:COM_PORT
+USER_COM24	com_uart/com_uart_port.h	/^	USER_COM24,$/;"	e	enum:COM_PORT
+USER_COM25	com_uart/com_uart_port.h	/^	USER_COM25,$/;"	e	enum:COM_PORT
+USER_COM26	com_uart/com_uart_port.h	/^	USER_COM26,$/;"	e	enum:COM_PORT
+USER_COM27	com_uart/com_uart_port.h	/^	USER_COM27,$/;"	e	enum:COM_PORT
+USER_COM28	com_uart/com_uart_port.h	/^	USER_COM28,$/;"	e	enum:COM_PORT
+USER_COM29	com_uart/com_uart_port.h	/^	USER_COM29,$/;"	e	enum:COM_PORT
+USER_COM3	com_uart/com_uart_port.h	/^	USER_COM3,$/;"	e	enum:COM_PORT
+USER_COM30	com_uart/com_uart_port.h	/^	USER_COM30$/;"	e	enum:COM_PORT
+USER_COM4	com_uart/com_uart_port.h	/^	USER_COM4,$/;"	e	enum:COM_PORT
+USER_COM5	com_uart/com_uart_port.h	/^	USER_COM5,$/;"	e	enum:COM_PORT
+USER_COM6	com_uart/com_uart_port.h	/^	USER_COM6,$/;"	e	enum:COM_PORT
+USER_COM7	com_uart/com_uart_port.h	/^	USER_COM7,$/;"	e	enum:COM_PORT
+USER_COM8	com_uart/com_uart_port.h	/^	USER_COM8,$/;"	e	enum:COM_PORT
+USER_COM9	com_uart/com_uart_port.h	/^	USER_COM9,$/;"	e	enum:COM_PORT
+UT_BITS_ADDRESS	main.c	/^const uint16_t UT_BITS_ADDRESS = 0x130;$/;"	v
+UT_REGISTERS_ADDRESS	main.c	/^const uint16_t UT_REGISTERS_ADDRESS = 0x160;$/;"	v
+VERSION	modbus/config.h	168;"	d
+WINVER	modbus/config.h	171;"	d
+WINVER	modbus/modbus-tcp.c	12;"	d	file:
+_ALL_SOURCE	modbus/config.h	147;"	d
+_BYTE_TIMEOUT	modbus/modbus-private.h	41;"	d
+_CRT_SECURE_NO_DEPRECATE	cJSON/cJSON.c	28;"	d	file:
+_DARWIN_USE_64_BIT_INODE	modbus/config.h	175;"	d
+_GNU_SOURCE	modbus/config.h	151;"	d
+_MIN_REQ_LENGTH	modbus/modbus-private.h	33;"	d
+_MODBUS_BACKEND_TYPE_RTU	modbus/modbus-private.h	/^    _MODBUS_BACKEND_TYPE_RTU=0,$/;"	e	enum:__anon12
+_MODBUS_BACKEND_TYPE_RTU	modbus/modbus-private.h	/^    _MODBUS_BACKEND_TYPE_RTU=0,$/;"	e	enum:__anon4
+_MODBUS_BACKEND_TYPE_TCP	modbus/modbus-private.h	/^    _MODBUS_BACKEND_TYPE_TCP$/;"	e	enum:__anon12
+_MODBUS_BACKEND_TYPE_TCP	modbus/modbus-private.h	/^    _MODBUS_BACKEND_TYPE_TCP$/;"	e	enum:__anon4
+_MODBUS_EXCEPTION_RSP_LENGTH	modbus/modbus-private.h	37;"	d
+_MODBUS_RTU_CHECKSUM_LENGTH	modbus/modbus-rtu-private.h	26;"	d
+_MODBUS_RTU_HEADER_LENGTH	modbus/modbus-rtu-private.h	22;"	d
+_MODBUS_RTU_PRESET_REQ_LENGTH	modbus/modbus-rtu-private.h	23;"	d
+_MODBUS_RTU_PRESET_RSP_LENGTH	modbus/modbus-rtu-private.h	24;"	d
+_MODBUS_TCP_CHECKSUM_LENGTH	modbus/modbus-tcp-private.h	14;"	d
+_MODBUS_TCP_HEADER_LENGTH	modbus/modbus-tcp-private.h	10;"	d
+_MODBUS_TCP_PI_NODE_LENGTH	modbus/modbus-tcp-private.h	30;"	d
+_MODBUS_TCP_PI_SERVICE_LENGTH	modbus/modbus-tcp-private.h	31;"	d
+_MODBUS_TCP_PRESET_REQ_LENGTH	modbus/modbus-tcp-private.h	11;"	d
+_MODBUS_TCP_PRESET_RSP_LENGTH	modbus/modbus-tcp-private.h	12;"	d
+_POSIX_PTHREAD_SEMANTICS	modbus/config.h	155;"	d
+_REPORT_SLAVE_ID	modbus/modbus-private.h	35;"	d
+_RESPONSE_TIMEOUT	modbus/modbus-private.h	40;"	d
+_STEP_DATA	modbus/modbus.c	/^    _STEP_DATA$/;"	e	enum:__anon14	file:
+_STEP_DATA	modbus/modbus.c	/^    _STEP_DATA$/;"	e	enum:__anon6	file:
+_STEP_FUNCTION	modbus/modbus.c	/^    _STEP_FUNCTION,$/;"	e	enum:__anon14	file:
+_STEP_FUNCTION	modbus/modbus.c	/^    _STEP_FUNCTION,$/;"	e	enum:__anon6	file:
+_STEP_META	modbus/modbus.c	/^    _STEP_META,$/;"	e	enum:__anon14	file:
+_STEP_META	modbus/modbus.c	/^    _STEP_META,$/;"	e	enum:__anon6	file:
+_TANDEM_SOURCE	modbus/config.h	159;"	d
+__EXTENSIONS__	modbus/config.h	163;"	d
+__WINDOWS__	cJSON/cJSON.h	32;"	d
+_connect	modbus/modbus-tcp.c	/^static int _connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen,$/;"	f	file:
+_error_print	modbus/modbus.c	/^void _error_print(modbus_t *ctx, const char *context)$/;"	f
+_modbus	modbus/modbus-private.h	/^struct _modbus {$/;"	s
+_modbus_backend	modbus/modbus-private.h	/^typedef struct _modbus_backend {$/;"	s
+_modbus_init_common	modbus/modbus.c	/^void _modbus_init_common(modbus_t *ctx)$/;"	f
+_modbus_mapping_t	modbus/modbus.h	/^typedef struct _modbus_mapping_t {$/;"	s
+_modbus_receive_msg	modbus/modbus.c	/^int _modbus_receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)$/;"	f
+_modbus_rtu	modbus/modbus-rtu-private.h	/^typedef struct _modbus_rtu {$/;"	s
+_modbus_rtu_backend	modbus/modbus-rtu.c	/^const modbus_backend_t _modbus_rtu_backend = {$/;"	v
+_modbus_rtu_build_request_basis	modbus/modbus-rtu.c	/^static int _modbus_rtu_build_request_basis(modbus_t *ctx, int function,$/;"	f	file:
+_modbus_rtu_build_response_basis	modbus/modbus-rtu.c	/^static int _modbus_rtu_build_response_basis(sft_t *sft, uint8_t *rsp)$/;"	f	file:
+_modbus_rtu_check_integrity	modbus/modbus-rtu.c	/^static int _modbus_rtu_check_integrity(modbus_t *ctx, uint8_t *msg,$/;"	f	file:
+_modbus_rtu_close	modbus/modbus-rtu.c	/^static void _modbus_rtu_close(modbus_t *ctx)$/;"	f	file:
+_modbus_rtu_connect	modbus/modbus-rtu.c	/^static int _modbus_rtu_connect(modbus_t *ctx)$/;"	f	file:
+_modbus_rtu_flush	modbus/modbus-rtu.c	/^static int _modbus_rtu_flush(modbus_t *ctx)$/;"	f	file:
+_modbus_rtu_free	modbus/modbus-rtu.c	/^static void _modbus_rtu_free(modbus_t *ctx) {$/;"	f	file:
+_modbus_rtu_ioctl_rts	modbus/modbus-rtu.c	/^static void _modbus_rtu_ioctl_rts(modbus_t *ctx, int on)$/;"	f	file:
+_modbus_rtu_pre_check_confirmation	modbus/modbus-rtu.c	/^static int _modbus_rtu_pre_check_confirmation(modbus_t *ctx, const uint8_t *req,$/;"	f	file:
+_modbus_rtu_prepare_response_tid	modbus/modbus-rtu.c	/^static int _modbus_rtu_prepare_response_tid(const uint8_t *req, int *req_length)$/;"	f	file:
+_modbus_rtu_receive	modbus/modbus-rtu.c	/^static int _modbus_rtu_receive(modbus_t *ctx, uint8_t *req)$/;"	f	file:
+_modbus_rtu_recv	modbus/modbus-rtu.c	/^static ssize_t _modbus_rtu_recv(modbus_t *ctx, uint8_t *rsp, int rsp_length)$/;"	f	file:
+_modbus_rtu_select	modbus/modbus-rtu.c	/^static int _modbus_rtu_select(modbus_t *ctx, fd_set *rset,$/;"	f	file:
+_modbus_rtu_send	modbus/modbus-rtu.c	/^static ssize_t _modbus_rtu_send(modbus_t *ctx, const uint8_t *req, int req_length)$/;"	f	file:
+_modbus_rtu_send_msg_pre	modbus/modbus-rtu.c	/^static int _modbus_rtu_send_msg_pre(uint8_t *req, int req_length)$/;"	f	file:
+_modbus_set_slave	modbus/modbus-rtu.c	/^static int _modbus_set_slave(modbus_t *ctx, int slave)$/;"	f	file:
+_modbus_set_slave	modbus/modbus-tcp.c	/^static int _modbus_set_slave(modbus_t *ctx, int slave)$/;"	f	file:
+_modbus_tcp	modbus/modbus-tcp-private.h	/^typedef struct _modbus_tcp {$/;"	s
+_modbus_tcp_backend	modbus/modbus-tcp.c	/^const modbus_backend_t _modbus_tcp_backend = {$/;"	v
+_modbus_tcp_build_request_basis	modbus/modbus-tcp.c	/^static int _modbus_tcp_build_request_basis(modbus_t *ctx, int function,$/;"	f	file:
+_modbus_tcp_build_response_basis	modbus/modbus-tcp.c	/^static int _modbus_tcp_build_response_basis(sft_t *sft, uint8_t *rsp)$/;"	f	file:
+_modbus_tcp_check_integrity	modbus/modbus-tcp.c	/^static int _modbus_tcp_check_integrity(modbus_t *ctx, uint8_t *msg, const int msg_length)$/;"	f	file:
+_modbus_tcp_close	modbus/modbus-tcp.c	/^static void _modbus_tcp_close(modbus_t *ctx)$/;"	f	file:
+_modbus_tcp_connect	modbus/modbus-tcp.c	/^static int _modbus_tcp_connect(modbus_t *ctx)$/;"	f	file:
+_modbus_tcp_flush	modbus/modbus-tcp.c	/^static int _modbus_tcp_flush(modbus_t *ctx)$/;"	f	file:
+_modbus_tcp_free	modbus/modbus-tcp.c	/^static void _modbus_tcp_free(modbus_t *ctx) {$/;"	f	file:
+_modbus_tcp_init_win32	modbus/modbus-tcp.c	/^static int _modbus_tcp_init_win32(void)$/;"	f	file:
+_modbus_tcp_pi	modbus/modbus-tcp-private.h	/^typedef struct _modbus_tcp_pi {$/;"	s
+_modbus_tcp_pi_backend	modbus/modbus-tcp.c	/^const modbus_backend_t _modbus_tcp_pi_backend = {$/;"	v
+_modbus_tcp_pi_connect	modbus/modbus-tcp.c	/^static int _modbus_tcp_pi_connect(modbus_t *ctx)$/;"	f	file:
+_modbus_tcp_pre_check_confirmation	modbus/modbus-tcp.c	/^static int _modbus_tcp_pre_check_confirmation(modbus_t *ctx, const uint8_t *req,$/;"	f	file:
+_modbus_tcp_prepare_response_tid	modbus/modbus-tcp.c	/^static int _modbus_tcp_prepare_response_tid(const uint8_t *req, int *req_length)$/;"	f	file:
+_modbus_tcp_receive	modbus/modbus-tcp.c	/^static int _modbus_tcp_receive(modbus_t *ctx, uint8_t *req) {$/;"	f	file:
+_modbus_tcp_recv	modbus/modbus-tcp.c	/^static ssize_t _modbus_tcp_recv(modbus_t *ctx, uint8_t *rsp, int rsp_length) {$/;"	f	file:
+_modbus_tcp_select	modbus/modbus-tcp.c	/^static int _modbus_tcp_select(modbus_t *ctx, fd_set *rset, struct timeval *tv, int length_to_read)$/;"	f	file:
+_modbus_tcp_send	modbus/modbus-tcp.c	/^static ssize_t _modbus_tcp_send(modbus_t *ctx, const uint8_t *req, int req_length)$/;"	f	file:
+_modbus_tcp_send_msg_pre	modbus/modbus-tcp.c	/^static int _modbus_tcp_send_msg_pre(uint8_t *req, int req_length)$/;"	f	file:
+_modbus_tcp_set_ipv4_options	modbus/modbus-tcp.c	/^static int _modbus_tcp_set_ipv4_options(int s)$/;"	f	file:
+_sft	modbus/modbus-private.h	/^typedef struct _sft {$/;"	s
+_sleep_response_timeout	modbus/modbus.c	/^static void _sleep_response_timeout(modbus_t *ctx)$/;"	f	file:
+_step_t	modbus/modbus.c	/^} _step_t;$/;"	t	typeref:enum:__anon14	file:
+_step_t	modbus/modbus.c	/^} _step_t;$/;"	t	typeref:enum:__anon6	file:
+add_item_to_array	cJSON/cJSON.c	/^static cJSON_bool add_item_to_array(cJSON *array, cJSON *item)$/;"	f	file:
+add_item_to_object	cJSON/cJSON.c	/^static cJSON_bool add_item_to_object(cJSON * const object, const char * const string, cJSON * const item, const internal_hooks * const hooks, const cJSON_bool constant_key)$/;"	f	file:
+allocate	cJSON/cJSON.c	/^    void *(CJSON_CDECL *allocate)(size_t size);$/;"	m	struct:internal_hooks	file:
+array	cJSON/cJSON.h	/^CJSON_PUBLIC(int) cJSON_GetArraySize(const cJSON *array);$/;"	v
+attr	main.c	/^struct mq_attr attr;$/;"	v	typeref:struct:mq_attr
+backend	modbus/modbus-private.h	/^    const modbus_backend_t *backend;$/;"	m	struct:_modbus
+backend_data	modbus/modbus-private.h	/^    void *backend_data;$/;"	m	struct:_modbus
+backend_type	modbus/modbus-private.h	/^    unsigned int backend_type;$/;"	m	struct:_modbus_backend
+baud	modbus/modbus-rtu-private.h	/^    int baud;$/;"	m	struct:_modbus_rtu
+boolean	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateBool(cJSON_bool boolean);$/;"	v
+bswap_16	modbus/modbus-data.c	/^static inline uint16_t bswap_16(uint16_t x)$/;"	f	file:
+bswap_16	modbus/modbus-data.c	35;"	d	file:
+bswap_16	modbus/modbus-data.c	48;"	d	file:
+bswap_16	modbus/modbus-data.c	49;"	d	file:
+bswap_16	modbus/modbus-data.c	55;"	d	file:
+bswap_32	modbus/modbus-data.c	/^static inline uint32_t bswap_32(uint32_t x)$/;"	f	file:
+bswap_32	modbus/modbus-data.c	36;"	d	file:
+bswap_32	modbus/modbus-data.c	44;"	d	file:
+bswap_32	modbus/modbus-data.c	45;"	d	file:
+bswap_32	modbus/modbus-data.c	54;"	d	file:
+bswap_64	modbus/modbus-data.c	37;"	d	file:
+buf	modbus/modbus-rtu-private.h	/^    uint8_t buf[PY_BUF_SIZE];$/;"	m	struct:win32_ser
+buffer	cJSON/cJSON.c	/^    unsigned char *buffer;$/;"	m	struct:__anon11	file:
+buffer	cJSON/cJSON.c	/^    unsigned char *buffer;$/;"	m	struct:__anon3	file:
+buffer_at_offset	cJSON/cJSON.c	298;"	d	file:
+buffer_skip_whitespace	cJSON/cJSON.c	/^static parse_buffer *buffer_skip_whitespace(parse_buffer * const buffer)$/;"	f	file:
+build_request_basis	modbus/modbus-private.h	/^    int (*build_request_basis) (modbus_t *ctx, int function, int addr,$/;"	m	struct:_modbus_backend
+build_response_basis	modbus/modbus-private.h	/^    int (*build_response_basis) (sft_t *sft, uint8_t *rsp);$/;"	m	struct:_modbus_backend
+byte_timeout	modbus/modbus-private.h	/^    struct timeval byte_timeout;$/;"	m	struct:_modbus	typeref:struct:_modbus::timeval
+cJSON	cJSON/cJSON.h	/^typedef struct cJSON$/;"	s
+cJSON	cJSON/cJSON.h	/^} cJSON;$/;"	t	typeref:struct:cJSON
+cJSON_AddArrayToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddArrayToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddBoolToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddBoolToObject(cJSON * const object, const char * const name, const cJSON_bool boolean)$/;"	f
+cJSON_AddFalseToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddFalseToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddNullToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddNullToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddNumberToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddNumberToObject(cJSON * const object, const char * const name, const double number)$/;"	f
+cJSON_AddObjectToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddObjectToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddRawToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddRawToObject(cJSON * const object, const char * const name, const char * const raw)$/;"	f
+cJSON_AddStringToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddStringToObject(cJSON * const object, const char * const name, const char * const string)$/;"	f
+cJSON_AddTrueToObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddTrueToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_Array	cJSON/cJSON.h	95;"	d
+cJSON_ArrayForEach	cJSON/cJSON.h	283;"	d
+cJSON_CreateArray	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArray(void)$/;"	f
+cJSON_CreateArrayReference	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArrayReference(const cJSON *child) {$/;"	f
+cJSON_CreateBool	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateBool(cJSON_bool boolean)$/;"	f
+cJSON_CreateDoubleArray	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateDoubleArray(const double *numbers, int count)$/;"	f
+cJSON_CreateFalse	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateFalse(void)$/;"	f
+cJSON_CreateFloatArray	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateFloatArray(const float *numbers, int count)$/;"	f
+cJSON_CreateIntArray	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateIntArray(const int *numbers, int count)$/;"	f
+cJSON_CreateNull	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateNull(void)$/;"	f
+cJSON_CreateNumber	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateNumber(double num)$/;"	f
+cJSON_CreateObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObject(void)$/;"	f
+cJSON_CreateObjectReference	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObjectReference(const cJSON *child)$/;"	f
+cJSON_CreateRaw	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateRaw(const char *raw)$/;"	f
+cJSON_CreateString	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateString(const char *string)$/;"	f
+cJSON_CreateStringArray	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateStringArray(const char *const *strings, int count)$/;"	f
+cJSON_CreateStringReference	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateStringReference(const char *string)$/;"	f
+cJSON_CreateTrue	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateTrue(void)$/;"	f
+cJSON_Delete	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_Delete(cJSON *item)$/;"	f
+cJSON_DeleteItemFromArray	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_DeleteItemFromArray(cJSON *array, int which)$/;"	f
+cJSON_DeleteItemFromObject	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_DeleteItemFromObject(cJSON *object, const char *string)$/;"	f
+cJSON_DeleteItemFromObjectCaseSensitive	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_DeleteItemFromObjectCaseSensitive(cJSON *object, const char *string)$/;"	f
+cJSON_DetachItemFromArray	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromArray(cJSON *array, int which)$/;"	f
+cJSON_DetachItemFromObject	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromObject(cJSON *object, const char *string)$/;"	f
+cJSON_DetachItemFromObjectCaseSensitive	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromObjectCaseSensitive(cJSON *object, const char *string)$/;"	f
+cJSON_DetachItemViaPointer	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemViaPointer(cJSON *parent, cJSON * const item)$/;"	f
+cJSON_Duplicate	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_Duplicate(const cJSON *item, cJSON_bool recurse)$/;"	f
+cJSON_False	cJSON/cJSON.h	90;"	d
+cJSON_GetArrayItem	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_GetArrayItem(const cJSON *array, int index)$/;"	f
+cJSON_GetArraySize	cJSON/cJSON.c	/^CJSON_PUBLIC(int) cJSON_GetArraySize(const cJSON *array)$/;"	f
+cJSON_GetErrorPtr	cJSON/cJSON.c	/^CJSON_PUBLIC(const char *) cJSON_GetErrorPtr(void)$/;"	f
+cJSON_GetNumberValue	cJSON/cJSON.c	/^CJSON_PUBLIC(double) cJSON_GetNumberValue(cJSON *item) $/;"	f
+cJSON_GetObjectItem	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_GetObjectItem(const cJSON * const object, const char * const string)$/;"	f
+cJSON_GetObjectItemCaseSensitive	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_GetObjectItemCaseSensitive(const cJSON * const object, const char * const string)$/;"	f
+cJSON_GetStringValue	cJSON/cJSON.c	/^CJSON_PUBLIC(char *) cJSON_GetStringValue(cJSON *item) $/;"	f
+cJSON_Hooks	cJSON/cJSON.h	/^typedef struct cJSON_Hooks$/;"	s
+cJSON_Hooks	cJSON/cJSON.h	/^} cJSON_Hooks;$/;"	t	typeref:struct:cJSON_Hooks
+cJSON_InitHooks	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks)$/;"	f
+cJSON_Invalid	cJSON/cJSON.h	89;"	d
+cJSON_IsReference	cJSON/cJSON.h	99;"	d
+cJSON_Minify	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_Minify(char *json)$/;"	f
+cJSON_NULL	cJSON/cJSON.h	92;"	d
+cJSON_New_Item	cJSON/cJSON.c	/^static cJSON *cJSON_New_Item(const internal_hooks * const hooks)$/;"	f	file:
+cJSON_Number	cJSON/cJSON.h	93;"	d
+cJSON_Object	cJSON/cJSON.h	96;"	d
+cJSON_Parse	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_Parse(const char *value)$/;"	f
+cJSON_ParseWithLength	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_ParseWithLength(const char *value, size_t buffer_length)$/;"	f
+cJSON_ParseWithLengthOpts	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_ParseWithLengthOpts(const char *value, size_t buffer_length, const char **return_parse_end, cJSON_bool require_null_terminated)$/;"	f
+cJSON_ParseWithOpts	cJSON/cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_ParseWithOpts(const char *value, const char **return_parse_end, cJSON_bool require_null_terminated)$/;"	f
+cJSON_Print	cJSON/cJSON.c	/^CJSON_PUBLIC(char *) cJSON_Print(const cJSON *item)$/;"	f
+cJSON_PrintBuffered	cJSON/cJSON.c	/^CJSON_PUBLIC(char *) cJSON_PrintBuffered(const cJSON *item, int prebuffer, cJSON_bool fmt)$/;"	f
+cJSON_PrintUnformatted	cJSON/cJSON.c	/^CJSON_PUBLIC(char *) cJSON_PrintUnformatted(const cJSON *item)$/;"	f
+cJSON_Raw	cJSON/cJSON.h	97;"	d
+cJSON_SetIntValue	cJSON/cJSON.h	275;"	d
+cJSON_SetNumberHelper	cJSON/cJSON.c	/^CJSON_PUBLIC(double) cJSON_SetNumberHelper(cJSON *object, double number)$/;"	f
+cJSON_SetNumberValue	cJSON/cJSON.h	278;"	d
+cJSON_SetValuestring	cJSON/cJSON.c	/^CJSON_PUBLIC(char*) cJSON_SetValuestring(cJSON *object, const char *valuestring)$/;"	f
+cJSON_String	cJSON/cJSON.h	94;"	d
+cJSON_StringIsConst	cJSON/cJSON.h	100;"	d
+cJSON_True	cJSON/cJSON.h	91;"	d
+cJSON_Version	cJSON/cJSON.c	/^CJSON_PUBLIC(const char*) cJSON_Version(void)$/;"	f
+cJSON__h	cJSON/cJSON.h	24;"	d
+cJSON_bool	cJSON/cJSON.h	/^typedef int cJSON_bool;$/;"	t
+cJSON_free	cJSON/cJSON.c	/^CJSON_PUBLIC(void) cJSON_free(void *object)$/;"	f
+cJSON_malloc	cJSON/cJSON.c	/^CJSON_PUBLIC(void *) cJSON_malloc(size_t size)$/;"	f
+cJSON_strdup	cJSON/cJSON.c	/^static unsigned char* cJSON_strdup(const unsigned char* string, const internal_hooks * const hooks)$/;"	f	file:
+can_access_at_index	cJSON/cJSON.c	295;"	d	file:
+can_read	cJSON/cJSON.c	293;"	d	file:
+cannot_access_at_index	cJSON/cJSON.c	296;"	d	file:
+case_insensitive_strcmp	cJSON/cJSON.c	/^static int case_insensitive_strcmp(const unsigned char *string1, const unsigned char *string2)$/;"	f	file:
+cast_away_const	cJSON/cJSON.c	/^static void* cast_away_const(const void* string)$/;"	f	file:
+check_confirmation	modbus/modbus.c	/^static int check_confirmation(modbus_t *ctx, uint8_t *req,$/;"	f	file:
+check_integrity	modbus/modbus-private.h	/^    int (*check_integrity) (modbus_t *ctx, uint8_t *msg,$/;"	m	struct:_modbus_backend
+checksum_length	modbus/modbus-private.h	/^    unsigned int checksum_length;$/;"	m	struct:_modbus_backend
+child	cJSON/cJSON.h	/^    struct cJSON *child;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+child	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArrayReference(const cJSON *child);$/;"	v
+child	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObjectReference(const cJSON *child);$/;"	v
+cjson_min	cJSON/cJSON.c	1179;"	d	file:
+close	modbus/modbus-private.h	/^    void (*close) (modbus_t *ctx);$/;"	m	struct:_modbus_backend
+close	modbus/modbus-tcp.c	31;"	d	file:
+com_recv	com_uart/com_uart_port.c	/^int com_recv(int fd, char *rcv_buf, int data_len, int timeout)$/;"	f
+com_send	com_uart/com_uart_port.c	/^int com_send(int fd, char *send_buf, int data_len)$/;"	f
+compare_double	cJSON/cJSON.c	/^static cJSON_bool compare_double(double a, double b)$/;"	f	file:
+compute_data_length_after_meta	modbus/modbus.c	/^static int compute_data_length_after_meta(modbus_t *ctx, uint8_t *msg,$/;"	f	file:
+compute_meta_length_after_function	modbus/modbus.c	/^static uint8_t compute_meta_length_after_function(int function,$/;"	f	file:
+compute_response_length_from_request	modbus/modbus.c	/^static unsigned int compute_response_length_from_request(modbus_t *ctx, uint8_t *req)$/;"	f	file:
+confirmation_to_ignore	modbus/modbus-rtu-private.h	/^    int confirmation_to_ignore;$/;"	m	struct:_modbus_rtu
+connect	modbus/modbus-private.h	/^    int (*connect) (modbus_t *ctx);$/;"	m	struct:_modbus_backend
+content	cJSON/cJSON.c	/^    const unsigned char *content;$/;"	m	struct:__anon10	file:
+content	cJSON/cJSON.c	/^    const unsigned char *content;$/;"	m	struct:__anon2	file:
+crc16	modbus/modbus-rtu.c	/^static uint16_t crc16(uint8_t *buffer, uint16_t buffer_length)$/;"	f	file:
+create_reference	cJSON/cJSON.c	/^static cJSON *create_reference(const cJSON *item, const internal_hooks * const hooks)$/;"	f	file:
+data_bit	modbus/modbus-rtu-private.h	/^    uint8_t data_bit;$/;"	m	struct:_modbus_rtu
+deallocate	cJSON/cJSON.c	/^    void (CJSON_CDECL *deallocate)(void *pointer);$/;"	m	struct:internal_hooks	file:
+debug	modbus/modbus-private.h	/^    int debug;$/;"	m	struct:_modbus
+depth	cJSON/cJSON.c	/^    size_t depth; \/* How deeply nested (in arrays\/objects) is the input at the current offset. *\/$/;"	m	struct:__anon10	file:
+depth	cJSON/cJSON.c	/^    size_t depth; \/* How deeply nested (in arrays\/objects) is the input at the current offset. *\/$/;"	m	struct:__anon2	file:
+depth	cJSON/cJSON.c	/^    size_t depth; \/* current nesting depth (for formatted printing) *\/$/;"	m	struct:__anon11	file:
+depth	cJSON/cJSON.c	/^    size_t depth; \/* current nesting depth (for formatted printing) *\/$/;"	m	struct:__anon3	file:
+device	modbus/modbus-rtu-private.h	/^    char *device;$/;"	m	struct:_modbus_rtu
+ensure	cJSON/cJSON.c	/^static unsigned char* ensure(printbuffer * const p, size_t needed)$/;"	f	file:
+error	cJSON/cJSON.c	/^} error;$/;"	t	typeref:struct:__anon1	file:
+error	cJSON/cJSON.c	/^} error;$/;"	t	typeref:struct:__anon9	file:
+error_recovery	modbus/modbus-private.h	/^    int error_recovery;$/;"	m	struct:_modbus
+false	cJSON/cJSON.c	68;"	d	file:
+false	cJSON/cJSON.c	70;"	d	file:
+fd	modbus/modbus-rtu-private.h	/^    HANDLE fd;$/;"	m	struct:win32_ser
+fdSerial	main.c	/^int fdSerial; $/;"	v
+flush	modbus/modbus-private.h	/^    int (*flush) (modbus_t *ctx);$/;"	m	struct:_modbus_backend
+format	cJSON/cJSON.c	/^    cJSON_bool format; \/* is this print a formatted print *\/$/;"	m	struct:__anon11	file:
+format	cJSON/cJSON.c	/^    cJSON_bool format; \/* is this print a formatted print *\/$/;"	m	struct:__anon3	file:
+fp	main.c	/^FILE*fp = NULL;$/;"	v
+free	modbus/modbus-private.h	/^    void (*free) (modbus_t *ctx);$/;"	m	struct:_modbus_backend
+free_fn	cJSON/cJSON.h	/^      void (CJSON_CDECL *free_fn)(void *ptr);$/;"	m	struct:cJSON_Hooks
+function	modbus/modbus-private.h	/^    int function;$/;"	m	struct:_sft
+get_array_item	cJSON/cJSON.c	/^static cJSON* get_array_item(const cJSON *array, size_t index)$/;"	f	file:
+get_decimal_point	cJSON/cJSON.c	/^static unsigned char get_decimal_point(void)$/;"	f	file:
+get_object_item	cJSON/cJSON.c	/^static cJSON *get_object_item(const cJSON * const object, const char * const name, const cJSON_bool case_sensitive)$/;"	f	file:
+global_error	cJSON/cJSON.c	/^static error global_error = { NULL, 0 };$/;"	v	file:
+global_hooks	cJSON/cJSON.c	/^static internal_hooks global_hooks = { internal_malloc, internal_free, internal_realloc };$/;"	v	file:
+header_length	modbus/modbus-private.h	/^    unsigned int header_length;$/;"	m	struct:_modbus_backend
+hooks	cJSON/cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon10	file:
+hooks	cJSON/cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon11	file:
+hooks	cJSON/cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon2	file:
+hooks	cJSON/cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon3	file:
+hooks	cJSON/cJSON.h	/^CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks);$/;"	v
+indication_timeout	modbus/modbus-private.h	/^    struct timeval indication_timeout;$/;"	m	struct:_modbus	typeref:struct:_modbus::timeval
+init_com_port	com_uart/com_uart_port.c	/^int32_t init_com_port(enum COM_PORT port,uint32_t baudrate)$/;"	f
+internal_free	cJSON/cJSON.c	/^static void CJSON_CDECL internal_free(void *pointer)$/;"	f	file:
+internal_free	cJSON/cJSON.c	175;"	d	file:
+internal_hooks	cJSON/cJSON.c	/^typedef struct internal_hooks$/;"	s	file:
+internal_hooks	cJSON/cJSON.c	/^} internal_hooks;$/;"	t	typeref:struct:internal_hooks	file:
+internal_malloc	cJSON/cJSON.c	/^static void * CJSON_CDECL internal_malloc(size_t size)$/;"	f	file:
+internal_malloc	cJSON/cJSON.c	174;"	d	file:
+internal_realloc	cJSON/cJSON.c	/^static void * CJSON_CDECL internal_realloc(void *pointer, size_t size)$/;"	f	file:
+internal_realloc	cJSON/cJSON.c	176;"	d	file:
+ip	modbus/modbus-tcp-private.h	/^    char ip[16];$/;"	m	struct:_modbus_tcp
+isinf	cJSON/cJSON.c	74;"	d	file:
+isnan	cJSON/cJSON.c	77;"	d	file:
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsArray(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsBool(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsFalse(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsInvalid(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNull(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNumber(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsObject(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsRaw(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsString(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsTrue(const cJSON * const item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(char *) cJSON_GetStringValue(cJSON *item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(char *) cJSON_Print(const cJSON *item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(char *) cJSON_PrintUnformatted(const cJSON *item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(double) cJSON_GetNumberValue(cJSON *item);$/;"	v
+item	cJSON/cJSON.h	/^CJSON_PUBLIC(void) cJSON_Delete(cJSON *item);$/;"	v
+json	cJSON/cJSON.c	/^    const unsigned char *json;$/;"	m	struct:__anon1	file:
+json	cJSON/cJSON.c	/^    const unsigned char *json;$/;"	m	struct:__anon9	file:
+len	main.c	/^	uint8_t len;$/;"	m	struct:msg_ipc	file:
+length	cJSON/cJSON.c	/^    size_t length;$/;"	m	struct:__anon10	file:
+length	cJSON/cJSON.c	/^    size_t length;$/;"	m	struct:__anon11	file:
+length	cJSON/cJSON.c	/^    size_t length;$/;"	m	struct:__anon2	file:
+length	cJSON/cJSON.c	/^    size_t length;$/;"	m	struct:__anon3	file:
+libmodbus_version_major	modbus/modbus.c	/^const unsigned int libmodbus_version_major = LIBMODBUS_VERSION_MAJOR;$/;"	v
+libmodbus_version_micro	modbus/modbus.c	/^const unsigned int libmodbus_version_micro = LIBMODBUS_VERSION_MICRO;$/;"	v
+libmodbus_version_minor	modbus/modbus.c	/^const unsigned int libmodbus_version_minor = LIBMODBUS_VERSION_MINOR;$/;"	v
+main	main.c	/^int main(int argc ,char* argv[])$/;"	f
+main	test.c	/^int main (int argc, char *argv[])$/;"	f
+malloc_fn	cJSON/cJSON.h	/^      void *(CJSON_CDECL *malloc_fn)(size_t sz);$/;"	m	struct:cJSON_Hooks
+max_adu_length	modbus/modbus-private.h	/^    unsigned int max_adu_length;$/;"	m	struct:_modbus_backend
+message	main.c	/^char message[64] = "Hello World";$/;"	v
+minify_string	cJSON/cJSON.c	/^static void minify_string(char **input, char **output) {$/;"	f	file:
+modbus_backend_t	modbus/modbus-private.h	/^} modbus_backend_t;$/;"	t	typeref:struct:_modbus_backend
+modbus_backend_type_t	modbus/modbus-private.h	/^} modbus_backend_type_t;$/;"	t	typeref:enum:__anon12
+modbus_backend_type_t	modbus/modbus-private.h	/^} modbus_backend_type_t;$/;"	t	typeref:enum:__anon4
+modbus_close	modbus/modbus.c	/^void modbus_close(modbus_t *ctx)$/;"	f
+modbus_connect	modbus/modbus.c	/^int modbus_connect(modbus_t *ctx)$/;"	f
+modbus_error_recovery_mode	modbus/modbus.h	/^} modbus_error_recovery_mode;$/;"	t	typeref:enum:__anon16
+modbus_error_recovery_mode	modbus/modbus.h	/^} modbus_error_recovery_mode;$/;"	t	typeref:enum:__anon8
+modbus_flush	modbus/modbus.c	/^int modbus_flush(modbus_t *ctx)$/;"	f
+modbus_free	modbus/modbus.c	/^void modbus_free(modbus_t *ctx)$/;"	f
+modbus_get_byte_from_bits	modbus/modbus-data.c	/^uint8_t modbus_get_byte_from_bits(const uint8_t *src, int idx,$/;"	f
+modbus_get_byte_timeout	modbus/modbus.c	/^int modbus_get_byte_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)$/;"	f
+modbus_get_float	modbus/modbus-data.c	/^float modbus_get_float(const uint16_t *src)$/;"	f
+modbus_get_float_abcd	modbus/modbus-data.c	/^float modbus_get_float_abcd(const uint16_t *src)$/;"	f
+modbus_get_float_badc	modbus/modbus-data.c	/^float modbus_get_float_badc(const uint16_t *src)$/;"	f
+modbus_get_float_cdab	modbus/modbus-data.c	/^float modbus_get_float_cdab(const uint16_t *src)$/;"	f
+modbus_get_float_dcba	modbus/modbus-data.c	/^float modbus_get_float_dcba(const uint16_t *src)$/;"	f
+modbus_get_header_length	modbus/modbus.c	/^int modbus_get_header_length(modbus_t *ctx)$/;"	f
+modbus_get_indication_timeout	modbus/modbus.c	/^int modbus_get_indication_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)$/;"	f
+modbus_get_response_timeout	modbus/modbus.c	/^int modbus_get_response_timeout(modbus_t *ctx, uint32_t *to_sec, uint32_t *to_usec)$/;"	f
+modbus_get_slave	modbus/modbus.c	/^int modbus_get_slave(modbus_t *ctx)$/;"	f
+modbus_get_socket	modbus/modbus.c	/^int modbus_get_socket(modbus_t *ctx)$/;"	f
+modbus_mapping_free	modbus/modbus.c	/^void modbus_mapping_free(modbus_mapping_t *mb_mapping)$/;"	f
+modbus_mapping_new	modbus/modbus.c	/^modbus_mapping_t* modbus_mapping_new(int nb_bits, int nb_input_bits,$/;"	f
+modbus_mapping_new_start_address	modbus/modbus.c	/^modbus_mapping_t* modbus_mapping_new_start_address($/;"	f
+modbus_mapping_t	modbus/modbus.h	/^} modbus_mapping_t;$/;"	t	typeref:struct:_modbus_mapping_t
+modbus_mask_write_register	modbus/modbus.c	/^int modbus_mask_write_register(modbus_t *ctx, int addr, uint16_t and_mask, uint16_t or_mask)$/;"	f
+modbus_new_rtu	modbus/modbus-rtu.c	/^modbus_t* modbus_new_rtu(const char *device,$/;"	f
+modbus_new_tcp	modbus/modbus-tcp.c	/^modbus_t* modbus_new_tcp(const char *ip, int port)$/;"	f
+modbus_new_tcp_pi	modbus/modbus-tcp.c	/^modbus_t* modbus_new_tcp_pi(const char *node, const char *service)$/;"	f
+modbus_read_bits	modbus/modbus.c	/^int modbus_read_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)$/;"	f
+modbus_read_input_bits	modbus/modbus.c	/^int modbus_read_input_bits(modbus_t *ctx, int addr, int nb, uint8_t *dest)$/;"	f
+modbus_read_input_registers	modbus/modbus.c	/^int modbus_read_input_registers(modbus_t *ctx, int addr, int nb,$/;"	f
+modbus_read_registers	modbus/modbus.c	/^int modbus_read_registers(modbus_t *ctx, int addr, int nb, uint16_t *dest)$/;"	f
+modbus_receive	modbus/modbus.c	/^int modbus_receive(modbus_t *ctx, uint8_t *req)$/;"	f
+modbus_receive_confirmation	modbus/modbus.c	/^int modbus_receive_confirmation(modbus_t *ctx, uint8_t *rsp)$/;"	f
+modbus_reply	modbus/modbus.c	/^int modbus_reply(modbus_t *ctx, const uint8_t *req,$/;"	f
+modbus_reply_exception	modbus/modbus.c	/^int modbus_reply_exception(modbus_t *ctx, const uint8_t *req,$/;"	f
+modbus_report_slave_id	modbus/modbus.c	/^int modbus_report_slave_id(modbus_t *ctx, int max_dest, uint8_t *dest)$/;"	f
+modbus_rtu_get_rts	modbus/modbus-rtu.c	/^int modbus_rtu_get_rts(modbus_t *ctx)$/;"	f
+modbus_rtu_get_rts_delay	modbus/modbus-rtu.c	/^int modbus_rtu_get_rts_delay(modbus_t *ctx)$/;"	f
+modbus_rtu_get_serial_mode	modbus/modbus-rtu.c	/^int modbus_rtu_get_serial_mode(modbus_t *ctx)$/;"	f
+modbus_rtu_set_custom_rts	modbus/modbus-rtu.c	/^int modbus_rtu_set_custom_rts(modbus_t *ctx, void (*set_rts) (modbus_t *ctx, int on))$/;"	f
+modbus_rtu_set_rts	modbus/modbus-rtu.c	/^int modbus_rtu_set_rts(modbus_t *ctx, int mode)$/;"	f
+modbus_rtu_set_rts_delay	modbus/modbus-rtu.c	/^int modbus_rtu_set_rts_delay(modbus_t *ctx, int us)$/;"	f
+modbus_rtu_set_serial_mode	modbus/modbus-rtu.c	/^int modbus_rtu_set_serial_mode(modbus_t *ctx, int mode)$/;"	f
+modbus_rtu_t	modbus/modbus-rtu-private.h	/^} modbus_rtu_t;$/;"	t	typeref:struct:_modbus_rtu
+modbus_send_raw_request	modbus/modbus.c	/^int modbus_send_raw_request(modbus_t *ctx, const uint8_t *raw_req, int raw_req_length)$/;"	f
+modbus_set_bits_from_byte	modbus/modbus-data.c	/^void modbus_set_bits_from_byte(uint8_t *dest, int idx, const uint8_t value)$/;"	f
+modbus_set_bits_from_bytes	modbus/modbus-data.c	/^void modbus_set_bits_from_bytes(uint8_t *dest, int idx, unsigned int nb_bits,$/;"	f
+modbus_set_byte_timeout	modbus/modbus.c	/^int modbus_set_byte_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)$/;"	f
+modbus_set_debug	modbus/modbus.c	/^int modbus_set_debug(modbus_t *ctx, int flag)$/;"	f
+modbus_set_error_recovery	modbus/modbus.c	/^int modbus_set_error_recovery(modbus_t *ctx,$/;"	f
+modbus_set_float	modbus/modbus-data.c	/^void modbus_set_float(float f, uint16_t *dest)$/;"	f
+modbus_set_float_abcd	modbus/modbus-data.c	/^void modbus_set_float_abcd(float f, uint16_t *dest)$/;"	f
+modbus_set_float_badc	modbus/modbus-data.c	/^void modbus_set_float_badc(float f, uint16_t *dest)$/;"	f
+modbus_set_float_cdab	modbus/modbus-data.c	/^void modbus_set_float_cdab(float f, uint16_t *dest)$/;"	f
+modbus_set_float_dcba	modbus/modbus-data.c	/^void modbus_set_float_dcba(float f, uint16_t *dest)$/;"	f
+modbus_set_indication_timeout	modbus/modbus.c	/^int modbus_set_indication_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)$/;"	f
+modbus_set_response_timeout	modbus/modbus.c	/^int modbus_set_response_timeout(modbus_t *ctx, uint32_t to_sec, uint32_t to_usec)$/;"	f
+modbus_set_slave	modbus/modbus.c	/^int modbus_set_slave(modbus_t *ctx, int slave)$/;"	f
+modbus_set_socket	modbus/modbus.c	/^int modbus_set_socket(modbus_t *ctx, int s)$/;"	f
+modbus_strerror	modbus/modbus.c	/^const char *modbus_strerror(int errnum) {$/;"	f
+modbus_t	modbus/modbus.h	/^typedef struct _modbus modbus_t;$/;"	t	typeref:struct:_modbus
+modbus_tcp_accept	modbus/modbus-tcp.c	/^int modbus_tcp_accept(modbus_t *ctx, int *s)$/;"	f
+modbus_tcp_listen	modbus/modbus-tcp.c	/^int modbus_tcp_listen(modbus_t *ctx, int nb_connection)$/;"	f
+modbus_tcp_pi_accept	modbus/modbus-tcp.c	/^int modbus_tcp_pi_accept(modbus_t *ctx, int *s)$/;"	f
+modbus_tcp_pi_listen	modbus/modbus-tcp.c	/^int modbus_tcp_pi_listen(modbus_t *ctx, int nb_connection)$/;"	f
+modbus_tcp_pi_t	modbus/modbus-tcp-private.h	/^} modbus_tcp_pi_t;$/;"	t	typeref:struct:_modbus_tcp_pi
+modbus_tcp_t	modbus/modbus-tcp-private.h	/^} modbus_tcp_t;$/;"	t	typeref:struct:_modbus_tcp
+modbus_write_and_read_registers	modbus/modbus.c	/^int modbus_write_and_read_registers(modbus_t *ctx,$/;"	f
+modbus_write_bit	modbus/modbus.c	/^int modbus_write_bit(modbus_t *ctx, int addr, int status)$/;"	f
+modbus_write_bits	modbus/modbus.c	/^int modbus_write_bits(modbus_t *ctx, int addr, int nb, const uint8_t *src)$/;"	f
+modbus_write_register	modbus/modbus.c	/^int modbus_write_register(modbus_t *ctx, int addr, const uint16_t value)$/;"	f
+modbus_write_registers	modbus/modbus.c	/^int modbus_write_registers(modbus_t *ctx, int addr, int nb, const uint16_t *src)$/;"	f
+mq_msg_get	main.c	/^int mq_msg_get(msg_id_t msg_id,msg_ipc_t *msg)$/;"	f
+mq_msg_put	main.c	/^int mq_msg_put(msg_id_t msg_id,msg_ipc_t *msg)$/;"	f
+mqfd	main.c	/^mqd_t mqfd;$/;"	v
+msg_content	main.c	/^	uint8_t msg_content[MSG_LEN];$/;"	m	struct:msg_ipc	file:
+msg_id_t	main.c	/^typedef mqd_t msg_id_t;$/;"	t	file:
+msg_ipc	main.c	/^typedef struct msg_ipc$/;"	s	file:
+msg_ipc_t	main.c	/^}msg_ipc_t;$/;"	t	typeref:struct:msg_ipc	file:
+msg_rbuffer	main.c	/^uint8_t msg_rbuffer[8192]={0};$/;"	v
+msg_sbuffer	main.c	/^uint8_t msg_sbuffer[8192]={0};$/;"	v
+msg_type_t	modbus/modbus-private.h	/^} msg_type_t;$/;"	t	typeref:enum:__anon13
+msg_type_t	modbus/modbus-private.h	/^} msg_type_t;$/;"	t	typeref:enum:__anon5
+mutex_file	main.c	/^pthread_mutex_t  mutex_file = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+n_bytes	modbus/modbus-rtu-private.h	/^    DWORD n_bytes;$/;"	m	struct:win32_ser
+nb_bits	modbus/modbus.h	/^    int nb_bits;$/;"	m	struct:_modbus_mapping_t
+nb_input_bits	modbus/modbus.h	/^    int nb_input_bits;$/;"	m	struct:_modbus_mapping_t
+nb_input_registers	modbus/modbus.h	/^    int nb_input_registers;$/;"	m	struct:_modbus_mapping_t
+nb_registers	modbus/modbus.h	/^    int nb_registers;$/;"	m	struct:_modbus_mapping_t
+next	cJSON/cJSON.h	/^    struct cJSON *next;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+noalloc	cJSON/cJSON.c	/^    cJSON_bool noalloc;$/;"	m	struct:__anon11	file:
+noalloc	cJSON/cJSON.c	/^    cJSON_bool noalloc;$/;"	m	struct:__anon3	file:
+node	modbus/modbus-tcp-private.h	/^    char node[_MODBUS_TCP_PI_NODE_LENGTH];$/;"	m	struct:_modbus_tcp_pi
+offset	cJSON/cJSON.c	/^    size_t offset;$/;"	m	struct:__anon10	file:
+offset	cJSON/cJSON.c	/^    size_t offset;$/;"	m	struct:__anon11	file:
+offset	cJSON/cJSON.c	/^    size_t offset;$/;"	m	struct:__anon2	file:
+offset	cJSON/cJSON.c	/^    size_t offset;$/;"	m	struct:__anon3	file:
+old_dcb	modbus/modbus-rtu-private.h	/^    DCB old_dcb;$/;"	m	struct:_modbus_rtu
+old_tios	modbus/modbus-rtu-private.h	/^    struct termios old_tios;$/;"	m	struct:_modbus_rtu	typeref:struct:_modbus_rtu::termios
+onebyte_time	modbus/modbus-rtu-private.h	/^    int onebyte_time;$/;"	m	struct:_modbus_rtu
+parity	modbus/modbus-rtu-private.h	/^    char parity;$/;"	m	struct:_modbus_rtu
+parse_array	cJSON/cJSON.c	/^static cJSON_bool parse_array(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_buffer	cJSON/cJSON.c	/^} parse_buffer;$/;"	t	typeref:struct:__anon10	file:
+parse_buffer	cJSON/cJSON.c	/^} parse_buffer;$/;"	t	typeref:struct:__anon2	file:
+parse_hex4	cJSON/cJSON.c	/^static unsigned parse_hex4(const unsigned char * const input)$/;"	f	file:
+parse_number	cJSON/cJSON.c	/^static cJSON_bool parse_number(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_object	cJSON/cJSON.c	/^static cJSON_bool parse_object(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_string	cJSON/cJSON.c	/^static cJSON_bool parse_string(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_value	cJSON/cJSON.c	/^static cJSON_bool parse_value(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+port	modbus/modbus-tcp-private.h	/^    int port;$/;"	m	struct:_modbus_tcp
+port	modbus/modbus-tcp-private.h	/^    int port;$/;"	m	struct:_modbus_tcp_pi
+position	cJSON/cJSON.c	/^    size_t position;$/;"	m	struct:__anon1	file:
+position	cJSON/cJSON.c	/^    size_t position;$/;"	m	struct:__anon9	file:
+pre_check_confirmation	modbus/modbus-private.h	/^    int (*pre_check_confirmation) (modbus_t *ctx, const uint8_t *req,$/;"	m	struct:_modbus_backend
+prepare_response_tid	modbus/modbus-private.h	/^    int (*prepare_response_tid) (const uint8_t *req, int *req_length);$/;"	m	struct:_modbus_backend
+prev	cJSON/cJSON.h	/^    struct cJSON *prev;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+print	cJSON/cJSON.c	/^static unsigned char *print(const cJSON * const item, cJSON_bool format, const internal_hooks * const hooks)$/;"	f	file:
+print_array	cJSON/cJSON.c	/^static cJSON_bool print_array(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
+print_number	cJSON/cJSON.c	/^static cJSON_bool print_number(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
+print_object	cJSON/cJSON.c	/^static cJSON_bool print_object(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
+print_string	cJSON/cJSON.c	/^static cJSON_bool print_string(const cJSON * const item, printbuffer * const p)$/;"	f	file:
+print_string_ptr	cJSON/cJSON.c	/^static cJSON_bool print_string_ptr(const unsigned char * const input, printbuffer * const output_buffer)$/;"	f	file:
+print_value	cJSON/cJSON.c	/^static cJSON_bool print_value(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
+printbuffer	cJSON/cJSON.c	/^} printbuffer;$/;"	t	typeref:struct:__anon11	file:
+printbuffer	cJSON/cJSON.c	/^} printbuffer;$/;"	t	typeref:struct:__anon3	file:
+read_io_status	modbus/modbus.c	/^static int read_io_status(modbus_t *ctx, int function,$/;"	f	file:
+read_registers	modbus/modbus.c	/^static int read_registers(modbus_t *ctx, int function, int addr, int nb,$/;"	f	file:
+reallocate	cJSON/cJSON.c	/^    void *(CJSON_CDECL *reallocate)(void *pointer, size_t size);$/;"	m	struct:internal_hooks	file:
+receive	modbus/modbus-private.h	/^    int (*receive) (modbus_t *ctx, uint8_t *req);$/;"	m	struct:_modbus_backend
+recv	modbus/modbus-private.h	/^    ssize_t (*recv) (modbus_t *ctx, uint8_t *rsp, int rsp_length);$/;"	m	struct:_modbus_backend
+replace_item_in_object	cJSON/cJSON.c	/^static cJSON_bool replace_item_in_object(cJSON *object, const char *string, cJSON *replacement, cJSON_bool case_sensitive)$/;"	f	file:
+response_exception	modbus/modbus.c	/^static int response_exception(modbus_t *ctx, sft_t *sft,$/;"	f	file:
+response_io_status	modbus/modbus.c	/^static int response_io_status(uint8_t *tab_io_status,$/;"	f	file:
+response_timeout	modbus/modbus-private.h	/^    struct timeval response_timeout;$/;"	m	struct:_modbus	typeref:struct:_modbus::timeval
+rts	modbus/modbus-rtu-private.h	/^    int rts;$/;"	m	struct:_modbus_rtu
+rts_delay	modbus/modbus-rtu-private.h	/^    int rts_delay;$/;"	m	struct:_modbus_rtu
+s	modbus/modbus-private.h	/^    int s;$/;"	m	struct:_modbus
+select	modbus/modbus-private.h	/^    int (*select) (modbus_t *ctx, fd_set *rset, struct timeval *tv, int msg_length);$/;"	m	struct:_modbus_backend
+send	modbus/modbus-private.h	/^    ssize_t (*send) (modbus_t *ctx, const uint8_t *req, int req_length);$/;"	m	struct:_modbus_backend
+send_msg	modbus/modbus.c	/^static int send_msg(modbus_t *ctx, uint8_t *msg, int msg_length)$/;"	f	file:
+send_msg_pre	modbus/modbus-private.h	/^    int (*send_msg_pre) (uint8_t *req, int req_length);$/;"	m	struct:_modbus_backend
+serial_mode	modbus/modbus-rtu-private.h	/^    int serial_mode;$/;"	m	struct:_modbus_rtu
+service	modbus/modbus-tcp-private.h	/^    char service[_MODBUS_TCP_PI_SERVICE_LENGTH];$/;"	m	struct:_modbus_tcp_pi
+setOpt	com_uart/com_uart_port.c	/^int setOpt(int fd, int nSpeed, int nBits, int nParity, int nStop)$/;"	f
+set_rts	modbus/modbus-rtu-private.h	/^    void (*set_rts) (modbus_t *ctx, int on);$/;"	m	struct:_modbus_rtu
+set_slave	modbus/modbus-private.h	/^    int (*set_slave) (modbus_t *ctx, int slave);$/;"	m	struct:_modbus_backend
+sft_t	modbus/modbus-private.h	/^} sft_t;$/;"	t	typeref:struct:_sft
+size	cJSON/cJSON.h	/^CJSON_PUBLIC(void *) cJSON_malloc(size_t size);$/;"	v
+skip_multiline_comment	cJSON/cJSON.c	/^static void skip_multiline_comment(char **input)$/;"	f	file:
+skip_oneline_comment	cJSON/cJSON.c	/^static void skip_oneline_comment(char **input)$/;"	f	file:
+skip_utf8_bom	cJSON/cJSON.c	/^static parse_buffer *skip_utf8_bom(parse_buffer * const buffer)$/;"	f	file:
+slave	modbus/modbus-private.h	/^    int slave;$/;"	m	struct:_modbus
+slave	modbus/modbus-private.h	/^    int slave;$/;"	m	struct:_sft
+ssize_t	modbus/modbus-private.h	/^typedef int ssize_t;$/;"	t
+start_bits	modbus/modbus.h	/^    int start_bits;$/;"	m	struct:_modbus_mapping_t
+start_input_bits	modbus/modbus.h	/^    int start_input_bits;$/;"	m	struct:_modbus_mapping_t
+start_input_registers	modbus/modbus.h	/^    int start_input_registers;$/;"	m	struct:_modbus_mapping_t
+start_registers	modbus/modbus.h	/^    int start_registers;$/;"	m	struct:_modbus_mapping_t
+static_strlen	cJSON/cJSON.c	180;"	d	file:
+stop_bit	modbus/modbus-rtu-private.h	/^    uint8_t stop_bit;$/;"	m	struct:_modbus_rtu
+string	cJSON/cJSON.h	/^    char *string;$/;"	m	struct:cJSON
+strlcpy	modbus/modbus.c	/^size_t strlcpy(char *dest, const char *src, size_t dest_size)$/;"	f
+suffix_object	cJSON/cJSON.c	/^static void suffix_object(cJSON *prev, cJSON *item)$/;"	f	file:
+t_id	modbus/modbus-private.h	/^    int t_id;$/;"	m	struct:_sft
+t_id	modbus/modbus-tcp-private.h	/^    uint16_t t_id;$/;"	m	struct:_modbus_tcp
+t_id	modbus/modbus-tcp-private.h	/^    uint16_t t_id;$/;"	m	struct:_modbus_tcp_pi
+tab_bits	modbus/modbus.h	/^    uint8_t *tab_bits;$/;"	m	struct:_modbus_mapping_t
+tab_input_bits	modbus/modbus.h	/^    uint8_t *tab_input_bits;$/;"	m	struct:_modbus_mapping_t
+tab_input_registers	modbus/modbus.h	/^    uint16_t *tab_input_registers;$/;"	m	struct:_modbus_mapping_t
+tab_registers	modbus/modbus.h	/^    uint16_t *tab_registers;$/;"	m	struct:_modbus_mapping_t
+table_crc_hi	modbus/modbus-rtu.c	/^static const uint8_t table_crc_hi[] = {$/;"	v	file:
+table_crc_lo	modbus/modbus-rtu.c	/^static const uint8_t table_crc_lo[] = {$/;"	v	file:
+thread_function	main.c	/^void *thread_function(void*arg)$/;"	f
+thread_get_message_from_uart_port	main.c	/^void *thread_get_message_from_uart_port(void*arg)$/;"	f
+thread_read	main.c	/^void *thread_read(void*arg)$/;"	f
+thread_read_uart	main.c	/^void *thread_read_uart(void*arg)$/;"	f
+thread_write_console	main.c	/^void *thread_write_console(void*arg)$/;"	f
+thread_write_uart	main.c	/^void *thread_write_uart(void*arg)$/;"	f
+true	cJSON/cJSON.c	63;"	d	file:
+true	cJSON/cJSON.c	65;"	d	file:
+type	cJSON/cJSON.h	/^    int type;$/;"	m	struct:cJSON
+update_offset	cJSON/cJSON.c	/^static void update_offset(printbuffer * const buffer)$/;"	f	file:
+utf16_literal_to_utf8	cJSON/cJSON.c	/^static unsigned char utf16_literal_to_utf8(const unsigned char * const input_pointer, const unsigned char * const input_end, unsigned char **output_pointer)$/;"	f	file:
+valuedouble	cJSON/cJSON.h	/^    double valuedouble;$/;"	m	struct:cJSON
+valueint	cJSON/cJSON.h	/^    int valueint;$/;"	m	struct:cJSON
+valuestring	cJSON/cJSON.h	/^    char *valuestring;$/;"	m	struct:cJSON
+w_ser	modbus/modbus-rtu-private.h	/^    struct win32_ser w_ser;$/;"	m	struct:_modbus_rtu	typeref:struct:_modbus_rtu::win32_ser
+win32_ser	modbus/modbus-rtu-private.h	/^struct win32_ser {$/;"	s
+win32_ser_init	modbus/modbus-rtu.c	/^static void win32_ser_init(struct win32_ser *ws)$/;"	f	file:
+win32_ser_read	modbus/modbus-rtu.c	/^static int win32_ser_read(struct win32_ser *ws, uint8_t *p_msg,$/;"	f	file:
+win32_ser_select	modbus/modbus-rtu.c	/^static int win32_ser_select(struct win32_ser *ws, int max_len,$/;"	f	file:
+write_single	modbus/modbus.c	/^static int write_single(modbus_t *ctx, int function, int addr, const uint16_t value)$/;"	f	file:

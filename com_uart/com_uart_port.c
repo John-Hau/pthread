@@ -165,7 +165,7 @@ int com_recv(int fd, char *rcv_buf, int data_len, int timeout)
     }
     else
     {
-	    //        printf("Sorry,I am wrong!");
+	    printf("Sorry,I am wrong!");
 	    return -1;
     }
 }
