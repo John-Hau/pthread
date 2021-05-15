@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <mqueue.h>
-#include "com_uart_port.h"
+#include "./com_uart/com_uart_port.h"
 
 
 #define TEST_CNT    100
