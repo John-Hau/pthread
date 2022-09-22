@@ -138,13 +138,13 @@ int com_recv(int fd, char *rcv_buf, int data_len, int timeout)
 
     if(timeout >=0)
     {
-	    time.tv_sec = timeout / 1000;              //set the rcv wait time
-	    time.tv_usec = timeout % 1000 * 1000;    //100000us = 0.1s
+	    time.tv_sec  = timeout / 1000;       //set the rcv wait time
+	    time.tv_usec = timeout % 1000 * 1000;//100000us = 0.1s
     }
 
 
-    FD_ZERO(&fs_read);        //每次循环都要清空集合，否则不能检测描述符变化
-    FD_SET(fd, &fs_read);    //添加描述符
+    FD_ZERO(&fs_read); //每次循环都要清空集合，否则不能检测描述符变化
+    FD_SET(fd, &fs_read);//添加描述符
 
     // 超时等待读变化，>0：就绪描述字的正数目， -1：出错， 0 ：超时
     if(timeout >=0)
@@ -201,7 +201,9 @@ int32_t init_com_port(enum COM_PORT port,uint32_t baudrate)
 	}
 
 	// 设置串口阻塞， 0：阻塞， FNDELAY：非阻塞
-	if (fcntl(fdSerial, F_SETFL, 0) < 0)    //阻塞，即使前面在open串口设备时设置的是非阻塞的
+	//阻塞，即使前面在open串口设备时设置的是非阻塞的
+
+	if (fcntl(fdSerial, F_SETFL, 0) < 0)   						
 	{
 		printf("fcntl failed!\n");
 	}
