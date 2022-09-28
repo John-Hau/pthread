@@ -1,0 +1,500 @@
+  209  ./template.exe 
+  210  ./tmsgrev.exe 
+  211  ./tmsgrev.exe 
+  212  vi template.c
+  213  ls /usr/bin/ | grep server
+  214  vi template.c
+  215  gcc template.exe    template.c
+  216  gcc template.exe    template.c  -pthread
+  217  vi template.c
+  218  gcc -o template.exe    template.c
+  219  vi template.c
+  220  gcc -o template.exe    template.c
+  221  vi template.c
+  222  gcc -o template.exe    template.c
+  223  vi template.c
+  224  gcc -o template.exe    template.c
+  225  ./template.exe 
+  226  vi template.c
+  227  gcc -o template.exe    template.c
+  228  ./template.exe 
+  229  vi template.c
+  230  gcc -o template.exe    template.c
+  231  ./template.exe 
+  232  vi template.c
+  233  gcc -o template.exe  template.c
+  234  ./template.exe 
+  235  vi template.c
+  236  gcc -o template.exe  template.c
+  237  ./template.exe 
+  238  ipcs
+  239  ipcs -q
+  240  ipcrm 65536
+  241  ipcrm -q 65536
+  242  ipcs -q
+  243  ./template.exe 
+  244  vi template.c
+  245  gcc -o template.exe  template.c
+  246  ./template.exe 
+  247  vi template.c
+  248  ipcs -q
+  249  ipcrm -q  131072
+  250  gcc -o template.exe  template.c
+  251  ./template.exe 
+  252  vi template.c
+  253  gcc -o template.exe  template.c
+  254  ./template.exe 
+  255  vi template.c
+  256  gcc -o template.exe  template.c
+  257  ipcs -q
+  258  ipcrm -q 196608
+  259  ./template.exe 
+  260  ipcs -q
+  261  ipcrm -q 262144
+  262  ls
+  263  cd ..
+  264  ls
+  265  cd temp/
+  266  ls
+  267  ls -al  signing_key/
+  268  cd signing_key/
+  269  ls
+  270  openssl x509 -in SNAPON.crt  -text -noout
+  271  ls
+  272  openssl x509 -noout -modulus -in SNAPON.crt | openssl sha256
+  273  openssl x509 -noout -modulus -in SNAPON.crt 
+  274  openssl x509 help
+  275  openssl x509 -help
+  276  openssl x509 -noout -pubkey -in SNAPON.crt 
+  277  openssl x509 -noout -pubkey -in SNAPON.crt | base64 -d
+  278  openssl x509 -noout -pubkey -in SNAPON.crt | openssl base64
+  279  openssl x509 -noout -pubkey -in SNAPON.crt | openssl base64 -d
+  280  openssl x509 -noout -pubkey -in SNAPON.crt | openssl base64 -d >  tttt.bin
+  281  xxd tttt.bin 
+  282  ls
+  283  rm tttt.bin 
+  284  ls
+  285  cd ..
+  286  ls
+  287  mkdir genecccrt
+  288  cd genecccrt/
+  289  openssl ecparam -list_curves
+  290  openssl ecparam -name prime256v1 -genkey -noout -out ppp.crt
+  291  ls
+  292  openssl x509 -in ppp.crt   -text -noout
+  293  openssl ecparam -name prime256v1 -genkey -noout -out ppp.pem
+  294  rm ppp.crt 
+  295  ls
+  296  openssl x509 -outform crt -in ppp.pem  -out ppp.crt
+  297  openssl x509 -outform der -in ppp.pem  -out ppp.der
+  298  openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
+  299  openssl ec -in private-key.pem  -pubout -out public-key.pem
+  300  ls
+  301  openssl req -new -x509 -key private-key.pem  -out cert.pem -days 360
+  302  ls
+  303  openssl x509 -outform der -in cert.pem  -out cert.crt
+  304  openssl x509 -in cert.crt   -text -noout
+  305  openssl x509 -in cert.pem   -text -noout
+  306  cat cert.crt
+  307  cd ..
+  308  ls
+  309  cd signing_key/
+  310  ls
+  311  ls -al SNAPON.crt
+  312  ls -al SNAPON.pem
+  313  cd ..
+  314  cd genecccrt/
+  315  ls
+  316  ls -al cert.crt
+  317  ls -al cert.pem
+  318  cat cert.pem 
+  319  openssl x509 -in cert.pem  -text -noout
+  320  openssl x509 -in cert.crt  -text -noout
+  321  cd ..
+  322  cd signing_key/
+  323  ls
+  324  ls -al SNAPON.crt
+  325  ls -al SNAPON.pem
+  326  openssl x509 -in SNAPON.crt  -text -noout
+  327  openssl x509 -in SNAPON.pem  -text -noout
+  328  openssl x509 -in SNAPON.crt  -text -noout
+  329  ls -al SNAPON.crt
+  330  cd ..
+  331  cd genecccrt/
+  332  ls
+  333  openssl x509 -in cert.crt  -text -noout
+  334  openssl x509 -in cert.pem  -text -noout
+  335  openssl x509 -in cert.pem  -text -noout
+  336  clear
+  337  ls
+  338  cat cert.pem 
+  339  openssl x509 -in cert.pem   -text  
+  340  openssl x509 -in cert.pem   -text  -noout
+  341  clear
+  342  openssl req -text  -noout -verify -in new.csr 
+  343  openssl req -text  -noout  -in new.csr 
+  344  cp ../signing_key/*.csr   .
+  345  ls
+  346  openssl req -text  -noout  -verify -in SNAPON.csr 
+  347  cat SNAPON.csr 
+  348  ls
+  349  openssl x509 -outform der  -in cert.pem  xxx.der
+  350  openssl x509 -outform der  -in cert.pem  -out xxx.der
+  351  openssl x509 -text -nout -in xxx.der
+  352  openssl x509 -text -noout -in xxx.der
+  353  cat xxx.der 
+  354  openssl x509 -inform der -in xxx.der 
+  355  ls
+  356  cat cert.pem 
+  357  openssl x509 -inform der -in xxx.der | openssl x509 -text -noout -in 
+  358  vi xxx.der 
+  359  xxd xxx.der 
+  360  openssl x509 -inform der -in xxx.der > mmm
+  361  openssl x509 -text -noout -in mmm
+  362  ls -al xxx.der 
+  363  openssl x509 -in cert.pem    -noout
+  364  openssl x509 -inform der -in xxx.der > xxxx.pem
+  365  cp xxxx.pem  ad
+  366  ls
+  367  openssl x509 -in ad  -text -noout
+  368  openssl x509 -in xxx.der  -text -noout
+  369  openssl x509 -inform der  -in xxx.der 
+  370  ls
+  371  openssl -in ppp.pem  -text  -noout
+  372  openssl x509 -in ppp.pem  
+  373  openssl x509 -in cert.pem 
+  374  cat cert.pem 
+  375  openssl x509 -in cert.pem -text
+  376  openssl x509 -in cert.pem -text -noout
+  377  openssl x509 -outform  der   -in  cert.pem  -out aq.der
+  378  ls
+  379  cat aq.der 
+  380  openssl x509 -inform  der  -in aq.der 
+  381  openssl x509 -inform  der  -in aq.der  -out  aq.pem
+  382  ls
+  383  diff -b aq.pem   cert.pem 
+  384  man diff
+  385  diff  aq.pem   cert.pem 
+  386  vimdiff aq.pem   cert.pem 
+  387  whereis hexdiff
+  388  hexdiff aq.pem   cert.pem 
+  389  exit
+  390  ls
+  391  cd mcrypt/
+  392  ls
+  393  vi test.c
+  394  ./test.exe 
+  395  vi test.c
+  396  echo -ne '\x11' >  m.bin
+  397  xxd m.bin
+  398  vi test.c
+  399  exit
+  400  ls
+  401  ls mod
+  402  ls mod*
+  403  rm -rf hole-file/
+  404  ls
+  405  ls -al
+  406  vi .bashrc 
+  407  ls
+  408  cd usual_and_git_config/
+  409  ls
+  410  cd ..
+  411  ls
+  412  cd temp/
+  413  ls
+  414  cd ..
+  415  ls
+  416  mkdir libmodbus
+  417  cd libmodbus/
+  418  git clone https://github.com/stephane/libmodbus.git
+  419  ls
+  420  cd ..
+  421  mv libmodbus/    modbus
+  422  cd modbus/
+  423  ls
+  424  cd libmodbus/
+  425  ls
+  426  cd src
+  427  ls
+  428  cat Makefile.am 
+  429  cd ..
+  430  ls
+  431  cd ..
+  432  ls
+  433  cd libmodbus/
+  434  ls
+  435  cd tests/
+  436  ls
+  437  cd ..
+  438  ls
+  439  cd m4
+  440  ls
+  441  ls
+  442  cd ..
+  443  ls
+  444  ls -al AUTHORS 
+  445  cat AUTHORS 
+  446  cd ..
+  447  ls
+  448  cd libmodbus/
+  449  ls
+  450  cat autogen.sh 
+  451  ls
+  452  cat Makefile.am 
+  453  ls
+  454  cd tests/
+  455  ls
+  456  cd ..
+  457  ls
+  458  cd
+  459  ls -al
+  460  ls
+  461  cd Desktop/
+  462  ls
+  463  cd ..
+  464  ls
+  465  ls /
+  466  cd home
+  467  ls
+  468  ls -al home
+  469  ls
+  470  cd
+  471  cd modbus/
+  472  ls
+  473  cd libmodbus/
+  474  ls
+  475  git branch
+  476  git fetch
+  477  git branch -r
+  478  git status
+  479  git checkout -b v2.0.X  origin/v2.0.X
+  480  ls
+  481  cat README 
+  482  ls
+  483  cat configure.ac 
+  484  ./configure.ac 
+  485  ./configure
+  486  ls
+  487  cat autogen.sh 
+  488  ./autogen.sh 
+  489  ls
+  490  ./configure
+  491  make
+  492  make -no-undefined
+  493  make
+  494  ls
+  495  cat README 
+  496  make LDFLAGS=-no-undefined
+  497  ls
+  498  cat Makefile
+  499  exit
+  500  cd temp/ecc_practice/
+  501  openssl ec -help
+  502  openssl ec -in private-key.pem   -param_out
+  503  openssl ec -in private-key.pem   -param_out >  pp.log
+  504  vi pp.log 
+  505  base64 -d pp.log  > ppp.bin
+  506  xxd ppp.bin 
+  507  openssl ec -help
+  508  openssl pkeyutl -sign -inkey private-key.pem  -in secret.log  > sss.log
+  509  xxd sss.log 
+  510  sha256sum secret.log  >  rt.hex
+  511  xxd -r -p rt.hex > rt.bin
+  512  ls -al rt.bin
+  513  openssl pkeytul -sign -inkey private-key.pem  -in rt.bin >  sig.bin
+  514  openssl pkeyutl -sign -inkey private-key.pem  -in rt.bin >  sig.bin
+  515  ls -al sig.bin 
+  516  xxd sig.bin 
+  517  openssl sha256 -help
+  518  openssl sha256 -sign private-key.pem  mrt.bin  secret.log 
+  519  openssl sha256 -sign private-key.pem    secret.log 
+  520  openssl sha256 -sign private-key.pem    secret.log > mrt.bin
+  521  xxd mrt.bin
+  522  openssl sha256  secret.log 
+  523  sha256sum secret.log 
+  524  ls
+  525  xxd rt.bin 
+  526  ls
+  527  cat rt.hex 
+  528  openssl pkeyutl -sign -inkey private-key.pem  -in rt.hex >  sig.bin
+  529  openssl sha256 -help
+  530  openssl sha256 secret.log  -binary
+  531  openssl sha256 secret.log  -binary ll.log
+  532  openssl sha256 -sign private-key.pem    secret.log 
+  533  openssl sha256 -sign private-key.pem    secret.log | xxd
+  534  openssl pkeyutl -sign -inkey private-key.pem  -in rt.bin | xxd
+  535  xxd rt.bin
+  536  openssl sha256 -help
+  537  openssl sha256 secret.log -sign private-key.pem | xxd
+  538  openssl sha256  -sign private-key.pem secret.og | xxd
+  539  openssl sha256  -sign private-key.pem secret.log | xxd
+  540  openssl pkeyutl -sign -inkey private-key.pem  -in rt.bin | xxd
+  541  openssl dgst -sha256 -sign private-key.pem  -out msig.bin secret.log 
+  542  xxd msig.bin 
+  543  openssl dgst  -sign private-key.pem  -out msig.bin rt.bin
+  544  xxd msig.bin 
+  545  openssl dgst -sha256 -sign private-key.pem   -out msig.bin  secret.log 
+  546  xxd msig.bin 
+  547  openssl dgst -sha256 -verify public-key.pem  -signature  msig.bin  secret.log 
+  548  openssl dgst -sha256 -verify public-key.pem  -signature  sig.bin  secret.log 
+  549  openssl ecutl -help
+  550  openssl eccutl -help
+  551  openssl -help 
+  552  openssl --help 
+  553  openssl -help 
+  554  openssl --help
+  555  openssl help
+  556  openssl ec -help
+  557  openssl dgst  -help
+  558  ls
+  559  rm ppp.bin mm.bin mm.bin.log pp.log
+  560  ls
+  561  rm rt.bin rt.hex  sa..og sig.bin
+  562  ls
+  563  rm sa.log sss.log 
+  564  ls
+  565  rm a.bin ccc.log
+  566  ls
+  567  rm mrt.bin msig.bin
+  568  ls
+  569  rm ssecret.log 
+  570  ls
+  571  rm pvt.bin pvt.pem
+  572  ls
+  573  rm cc.bin
+  574  sha256sum secret.log 
+  575  sha256sum secret.log > hh.log
+  576  xxd -r -q hh.log > hh.bin
+  577  xxd -r  hh.log > hh.bin
+  578  xxd hh.bin
+  579  cat hh.log
+  580  xxd -r -p hh.log > hh.bin
+  581  xxd hh.bin
+  582  openssl dgst -help
+  583  openssl sign hh.bin -out hh.bin.sig
+  584  openssl -sign private-key.pem hh.bin -out hh.bin.sig
+  585  openssl dgst -sign private-key.pem hh.bin -out hh.bin.sig
+  586  openssl dgst -sign private-key.pem -out hh.bin.sig hh.bin 
+  587  xxd hh.bin.sig
+  588  openssl asn1parse -in hh.bin.sig 
+  589  openssl asn1parse -in hh.bin.sig -inform der
+  590  openssl sha256 -help
+  591  openssl sha256 -sign private-key.pem hh.bin  xhh.bin.sig
+  592  openssl sha256 -sign private-key.pem -out  xhh.bin.sig  hh.bin
+  593  xxd xhh.bin.sig 
+  594  openssl asn1parse -in ahh.bin.sig -inform der
+  595  openssl asn1parse -in xhh.bin.sig -inform der
+  596  ls
+  597  xxd hh.bin
+  598  openssl sha256 -help
+  599  ls
+  600  rm xhh.bin.sig 
+  601  rm hh.bin.sig 
+  602  openssl dgst -help
+  603  ls
+  604  openssl dgst -sha256 -sign private-key.pem  -out hh.bin.sig  hh.bin
+  605  xxd hh.bin.sig 
+  606  openssl sha256 -sign private-key.pem  -out hh.bin.sig  hh.bin
+  607  openssl dgst -sha256 -sign private-key.pem  -out hh.bin.sig  hh.bin
+  608  openssl dgst -sha256 -sign private-key.pem  -out hh.bin.sig  hh.bin
+  609  openssl sha256 -sign private-key.pem  -out xhh.bin.sig  hh.bin
+  610  xxd hh.bin.sig
+  611  xxd xhh.bin.sig 
+  612  openssl dgst -sha256 -sign private-key.pem  -out hh.bin.sig  hh.bin
+  613  openssl ec -help
+  614  openssl help
+  615  openssl dgst -help
+  616  openssl dgst -list
+  617  openssl dgst -sha256 -sign private-key.pem  -out hh.bin.sig  hh.bin
+  618  openssl pkeutl -sign -inkey private-key.pem  -in hh.bin > xhh.bin.sig
+  619  xxd hh.bin
+  620  xxd hh.bin.sig 
+  621  xxd. xhh.bin.sig 
+  622  xxd xhh.bin.sig 
+  623  openssl pkeutl -sign -inkey private-key.pem  -in hh.bin > xhh.bin.sig
+  624  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > xhh.bin.sig
+  625  xxd xhh.bin.sig 
+  626  ls
+  627  rm hh.bin.sig   
+  628  ls
+  629  rm xhh.bin.sig 
+  630  ls
+  631  xxd hh.bin
+  632  sha256sum secret.log 
+  633  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > hh.bin.sig
+  634  openssl dgst -sha256 -sign private-key.pem  secret.log > xhh.bin.sig
+  635  xxd hh.bin.sig 
+  636  xxd xhh.bin.sig 
+  637  ls
+  638  rm hh.bin.sig xhh.bin.sig 
+  639  ls
+  640  xxd hh.bin
+  641  sha256sum secret.log 
+  642  ls -al hh.bin
+  643  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > hh.bin.sig
+  644  openssl dgst -sha256 -sign private-key.pem  secret.log > xhh.bin.sig
+  645  xxd hh.bin.sig 
+  646  xxd xhh.bin.sig 
+  647  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > xhh.bin.sig
+  648  xxd xhh.bin.sig 
+  649  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > hh.bin.sig
+  650  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > xhh.bin.sig
+  651  xxd hh.bin.sig 
+  652  xxd xhh.bin.sig 
+  653  openssl asn1parse -in hh.bin.sig -inform der
+  654  openssl asn1parse -in xhh.bin.sig -inform der
+  655  ls
+  656  rm hh.bin.sig
+  657  ls
+  658  rm xhh.bin.sig 
+  659  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > hh.bin.sig
+  660  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin > xhh.bin.sig
+  661  xxd hh.bin.sig
+  662  xxd xhh.bin.sig
+  663  openssl pkeyutl -in hh.bin.sig -inkey public-key.pem  -pubin -verify -sigfile hh.bin.sig
+  664  openssl pkeyutl -in hh.bin -inkey public-key.pem  -pubin -verify -sigfile hh.bin.sig
+  665  openssl pkeyutl -in hh.bin -inkey public-key.pem  -pubin -verify -sigfile xhh.bin.sig
+  666  ls
+  667  rm hh.bin.sig
+  668  rm xhh.bin.sig 
+  669  ls
+  670  openssl pkeyutl -help
+  671  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin  xhh.bin.sig
+  672  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin  -out xhh.bin.sig
+  673  xxd xhh.bin.sig 
+  674  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin  -out hh.bin.sig
+  675  xxd hh.bin.sig 
+  676  rm *.sig
+  677  ls
+  678  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin  -out hh.bin.sig
+  679  openssl pkeyutl -sign -inkey private-key.pem  -in hh.bin  -out xhh.bin.sig
+  680  openssl asn1parse -in hh.bin.sig 
+  681  openssl asn1parse -in hh.bin.sig -inform der
+  682  openssl asn1parse -in xhh.bin.sig -inform der
+  683  rm *.sig
+  684  openssl dgst -sha256 -sign private-key.pem  secret.log  > hh.bin.sig
+  685  openssl dgst -sha256 -sign private-key.pem  secret.log  > xhh.bin.sig
+  686  xxd hh.bin.sig 
+  687  xxd xhh.bin.sig 
+  688  openssl dgst -sha256 -sign private-key.pem  secret.log  > xxhh.bin.sig
+  689  openssl asn1parse -in hh.bin.sig  -inform der
+  690  openssl asn1parse -in xhh.bin.sig  -inform der
+  691  openssl asn1parse -in xxhh.bin.sig  -inform der
+  692  openssl ecparam -name secp384r1 -genkey -noout -out   aprivate.key
+  693  cat aprivate.key 
+  694  cat private-key.pem 
+  695  openssl ec -in aprivate.key  -pubout -out apublic.pem
+  696  cat apublic.pem 
+  697  openssl pkeyutl -sign -inkey aprivate.key  -in hh.bin > hh.bin.sig
+  698  openssl pkeyutl -sign -inkey aprivate.key  -in hh.bin > xhh.bin.sig
+  699  xxd hh.bin.sig
+  700  xxd xhh.bin.sig
+  701  openssl pkeyutl -sign -inkey aprivate.key  -in hh.bin > a.sig
+  702  openssl pkeyutl -sign -inkey aprivate.key  -in hh.bin > b.sig
+  703  xxd a.sig
+  704  xxd b.sig
+  705  rm a.sig  b.sig
+  706  ls
+  707  history
+  708  history > openssl-cmd.log
