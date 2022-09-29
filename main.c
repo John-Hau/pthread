@@ -1,6 +1,19 @@
 #include <stdio.h>
-#include <assert.h>
+#include <stdlib.h>
 #include <string.h>
+#include <assert.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <unistd.h>
+#include <fcntl.h>
+
+#include <pthread.h>
+
+
+
+
 #include "sha256/sha256.h"
 #include "tinyAES/aes.h"
 
@@ -396,12 +409,42 @@ int sha256_test(void)
 }
 
 
+
+
+void* thread_master(void* arg)
+{
+	int n =0;
+	while(1)
+	{
+		printf("hello world %d\n",n);
+		sleep(1);
+
+		if(n++ > 5)
+		{
+			return (void*)0;
+		}
+
+	}
+
+}
+
+
+
 int main(void) 
 {
 
 	//test_encrypt_ecb();
-        test_decrypt_ecb();
+	//test_decrypt_ecb();
+	
+	pthread_t th_master;
+
+
+
+
+	pthread_create(&th_master,NULL,thread_master,NULL);
+	pthread_join(th_master,NULL);
+
 
 
 	return 0;
-
+}
