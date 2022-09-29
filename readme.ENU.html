@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en">
+  <head>
+    <title>IAR Information Center for Arm - Release notes</title>
+    <meta http-equiv="content-type" 
+	  content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+  </head>
+  <body>
+    <div id="topbanner"></div>
+    <div id="titlebanner">
+      <div>
+	<h1>IAR Information Center for Arm</h1>
+	<p class="subtitle">Release notes</p>
+      </div>
+    </div>
+    <div class="mainblock">
+      <h2>Release notes</h2>
+      <h2>for IAR Embedded Workbench for Arm version 9.10.2</h2>
+<p>Read about the latest features, new device support, and program 
+  corrections in the release notes.</p>
+<p>
+  <ul>
+    <li><a href="#highlights">Highlights</a> 
+    <li><a href="#important">Important information</a> 
+    <li><a href="components.ENU.html">Release notes for individual
+	components</a> 
+    <li><a href="product_packages.ENU.html">Product packages</a> 
+    <li><a href="installation.ENU.html">Installation and license activation</a>
+  </ul>
+</p>
+<h3><a name="highlights"></a>Highlights</h3>
+  <!-- IFLATESTNOTESNOTTRANSLATED_1 -- >
+  <li><p><b>Corrected problems in this release</b><br>
+    The Information Center in English contains late-breaking information that has not yet been translated into Japanese.
+    Please see the <a href="release_notes.ENU.html">English Information Center</a>.
+  </p></li>
+  < !-- IFLATESTNOTESNOTTRANSLATED_2 -->
+<!-- IFFUNCTIONALSAFETY_1 -- >
+<h4>Version 9.10.2 Functional Safety</h4>
+<ul>
+    <li><p>
+    This is a functional safety version of IAR Embedded Workbench for Arm. Links to Functional Safety-specific information:
+    <ul>
+      <li><a href="../EWARM_SafetyGuide.ENU.pdf" target="_self">IAR Embedded Workbench Safety Guide</a></li>
+      <li><a href="../DinkumwareStatement.pdf" target="_self">Statement from Dinkumware, Ltd. for Standard C and C++ library</a></li>
+    </ul>
+    </p></li>
+</ul>
+< !-- IFFUNCTIONALSAFETY_2 -->
+
+<ul>
+  <li><p><b>Arm Cortex-A57 & Cortex-A72 support</b>
+  </p></li>
+  <li><p><b>Improved Code Completion</b><br />
+            <ul>
+            <li>Wider scope of assisted situations, for example when adding include files.</li>
+            <li>More information is shown with the suggestions, for example information on function parameters and types.</li>
+            <li>’Fuzzy matching’ aids in identifying suggested completions.</li>
+            </ul>
+  </p></li>
+  <li><p><b>Relocatable flashloader</b><br />
+            Allows dynamic flashloader placement anywhere in RAM, needed for flexible Arm Cortex-M TrustZone operation.
+  </p></li>
+</ul>
+
+<h3>Device support</h3>
+<ul>
+<li><p><b>New device support</b>
+<table class="example_ul">
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">AmbiqMicro</th><td>AMAP42KK-KBR<br>AMAP42KK-KCR<br>AMA4B2KK-KBR<br></td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">Hdsc</th><td>HC32F003C6UA<br>HC32F003C6PA<br>HC32F005C6UA<br>HC32F005C6PA<br></td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">Infineon-Cypress</th><td>CY8C4588AZI-H675<br>CY8C4588AZI-H676<br>CY8C4588AZI-H685<br>CY8C4588AZI-H686<br>CY8C6148LQI-S2F02<br>CY8C6148LQI-S2F42<br>CY8C614ALQI-S2F02<br>CY8C614ALQI-S2F42<br>CYB06445LQI-S3D42<br>CYB06447BZI-BLD53<br>CYB06447BZI-BLD54<br>CYB06447BZI-D54<br>CYB0644ABZI-S2D44<br>CYS0644ABZI-S2D44<br>CYT3DL<br></td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">NXP</th><td>MIMX8ML3<br>MIMX8ML4<br>MIMX8ML5<br>MIMX8ML6<br>MIMX8ML7<br>MIMX8ML8<br>MIMXRT1165xxx5<br>MIMXRT1165xxx6<br>MIMXRT1166xxx5<br>MIMXRT1166xxx6<br>MKE13Z128xxx7<br>MKE13Z256xxx7<br>MKE16Z128xxx7<br>MKE16Z256xxx7<br>MKE17Z128xxx7<br>MKE17Z256xxx7<br>88MW320<br>88MW322<br></td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">RaspberryPi</th><td>RP2040<br></td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">Renesas</th><td>R7FA6M5AG<br>R7FA6M5AH<br>R7FA6M5BF<br>R7FA6M5BG<br>R7FA6M5BH<br>R7F0E01BD2DNB<br></td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">STMicroelectronics</th><td>BlueNRG-345<br>BlueNRG-355<br>STM32G431M6<br>STM32G431M8<br>STM32G431MB<br>STM32G441MB<br>STM32U575AG<br>STM32U575AI<br>STM32U575CG<br>STM32U575CI<br>STM32U575I-EV<br>STM32U575OG<br>STM32U575OI<br>STM32U575QG<br>STM32U575QI<br>STM32U575RG<br>STM32U575RI<br>STM32U575VG<br>STM32U575VI<br>STM32U575ZG<br>STM32U575ZI<br>B-U585I-IOT02A<br>STM32U585AG<br>STM32U585AI<br>STM32U585CG<br>STM32U585CI<br>STM32U585OG<br>STM32U585OI<br>STM32U585QG<br>STM32U585QI<br>STM32U585RG<br>STM32U585RI<br>STM32U585VG<br>STM32U585VI<br>STM32U585ZG<br>STM32U585ZI<br>STM32U595ZJ<br>STM32U5A5ZJ<br>STM32U599BJ<br>STM32U599J-DK<br>STM32U599NJ<br>STM32U5A9BJ<br>STM32U5A9NJ<br>STM32WB15CC</td></tr>
+	<tr>
+		<th style="background-color:#9B9B9B;color:#EEEEEE;text-align:center;vertical-align:middle;">Vorago</th><td>VA41620<br>VA41622<br>VA41627<br>VA41630<br>VA41632<br>VA41637<br></td></tr>
+</table></p></li>
+<li><p><b>Device support</b>
+<table class ="example_ul">
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/ABOV.ENU.html">ABOV</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/ActiveSemi.ENU.html">ActiveSemi</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Altera.ENU.html">Altera</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/AmbiqMicro.ENU.html">AmbiqMicro</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/AnalogDevices.ENU.html">AnalogDevices</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Axell.ENU.html">Axell</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Broadcom.ENU.html">Broadcom</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Cirrus.ENU.html">Cirrus</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Digi.ENU.html">Digi</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Epson.ENU.html">Epson</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/EtaCompute.ENU.html">EtaCompute</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Faraday.ENU.html">Faraday</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Fujitsu.ENU.html">Fujitsu</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Geehy.ENU.html">Geehy</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/GigaDevice.ENU.html">GigaDevice</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Hdsc.ENU.html">Hdsc</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Hilscher.ENU.html">Hilscher</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Holtek.ENU.html">Holtek</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Infineon-Cypress.ENU.html">Infineon-Cypress</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Infineon.ENU.html">Infineon</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Lapis.ENU.html">Lapis</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/LinearTechnology.ENU.html">LinearTechnology</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Maxim.ENU.html">Maxim</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Mediatek.ENU.html">Mediatek</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Milandr.ENU.html">Milandr</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Microchip.ENU.html">Microchip</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Micronas.ENU.html">Micronas</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Microsemi.ENU.html">Microsemi</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/MindMotion.ENU.html">MindMotion</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Mitsubishi.ENU.html">Mitsubishi</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/NordicSemiconductor.ENU.html">NordicSemiconductor</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Nuvoton.ENU.html">Nuvoton</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/NXP.ENU.html">NXP</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/ONSemiconductor.ENU.html">ONSemiconductor</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Qorvo.ENU.html">Qorvo</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Realtek.ENU.html">Realtek</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Redpine.ENU.html">Redpine</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/RaspberryPi.ENU.html">RaspberryPi</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Renesas.ENU.html">Renesas</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Samsung.ENU.html">Samsung</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/SiliconLabs.ENU.html">SiliconLabs</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Socle.ENU.html">Socle</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Sonix.ENU.html">Sonix</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/STMicroelectronics.ENU.html">STMicroelectronics</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/TexasInstruments.ENU.html">TexasInstruments</a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Toshiba.ENU.html">Toshiba</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Vorago.ENU.html">Vorago</a></td><td style="text-align:center;padding: 5px 10px 5px 10px;"><a href="device_support/Xilinx.ENU.html">Xilinx</a></td>
+	</tr>
+
+</table>
+</p></li>
+
+</ul>
+<ul>
+  <li><p><b>Example projects</b><br />
+         Over 9500 example projects for various evaluation boards
+         are included in the product installation. See the <b>Information Center</b>.
+  </p></li>
+</ul>
+
+<h3><a name="important"></a>Important information</h3>
+<ul>
+  <li><b>Upgrade information</b></li>
+  <ul>
+    <li><b>Before you install</b><br/>
+      <p>To avoid any problems, do not install this release in a directory
+	where you have previously installed any older version of IAR Embedded 
+	Workbench. It is recommended that you either uninstall an earlier 
+	product, or install this release in a separate directory. As before, 
+	however, it is possible to install different products, all using the
+	same version of the main application, in the same root directory.
+    </p></li>
+    <li><b>License renewal</b><br/>
+      <p>The upgrade to this version requires a license renewal.
+      	This can be performed by starting the IAR License Manager and
+	selecting <b>License&rarr;Check for License Renewal</b>, or by
+	using the Light License Manager with the command
+	<code>LightLicenseManager renew YOUR_PROD.EW</code>.
+    </p></li>
+  </ul>
+  <li>
+    <b>Microsoft SCC interface no longer supported</b><br/>
+    <p>
+      Microsoft SCC-compatible version control systems are no longer
+      supported by IAR Embedded Workbench.
+    </p>
+  </li>
+  <li><b>Microsoft Windows</b><br/>
+    <p>
+      Windows Vista and newer operating systems have a security mechanism 
+      called UAC (User Access Control). Disabling UAC will automatically
+      grant you permission when a task requires administrative rights but
+      this is not recommended because it will reduce the security of the
+      computer. It is not necessary to run the IAR Embedded Workbench
+      IDE as an administrator. However, if you are not, modifications to the 
+      installed product tree in C:\Program Files\IAR Systems might not work
+      as intended and could give unexpected results. One example is opening
+      and building projects directly from the installed product tree. The
+      build will succeed, but the resulting files (object, list, ...) will
+      not appear where expected. Instead all output files will be 
+      redirected by the OS to 
+      <tt>
+	C:\Users\&lt;user&nbsp;name&gt;\AppData\Local\VirtualStore\Program&nbsp;Files\IAR&nbsp;Systems.
+      </tt>
+      To avoid this, the preferred way is to copy the examples to a
+      location outside <tt>Program&nbsp;Files</tt>, either manually or
+      automatically by opening them via the <b>IAR Information Center</b>.
+    </p>
+  </li>
+    <li><b>Network licenses</b><br> 
+    <p>For network licenses, IAR Embedded Workbench for ARM version 8.42.1 and later require 
+	IAR License Server Tools version 2.17.2 or later. For more information, see technical note 
+	<a href="https://www.iar.com/support/tech-notes/licensing/iar-license-server-tools-lms2">TN21842</a>. 
+	The latest IAR License Server Tools are backwards compatible with previous IAR Embedded Workbench versions.
+	
+	Note, if you are running older versions of the product, the number of users displayed in the 
+	Network Licenses window might be too large. This is cosmetic and does not affect the use of your network license. 
+	The problem has been corrected in v2.17.2 of the IAR License Server Tools and the IAR License Manager.
+  </p></li>
+
+  <li><b>Object format</b><br>
+    <p>The object format used in the compiler, assembler, linker, and debugger is based on the ARM ABI standard version 2.10 with ELF/DWARF 4.
+    For the standard definition, see the
+    <a href="https://developer.arm.com/documentation/ihi0036/b/"  target="_blank">ARM Application Binary Interface</a>.
+  </p></li>
+
+  <li><b>64-bit Windows support</b><br>
+    <p>Programs, such as compiler and debugger, now run as Windows 64-bit programs. 32-bit Windows is not supported.
+  </p></li>
+ 
+</ul>
+<h3>Trademarks</h3>
+<ul>
+  <font size=-1>
+    <p align="justify">
+       IAR Systems, IAR Embedded Workbench, Embedded Trust, C-Trust,
+       IAR Connect, C-SPY, C-RUN, C-STAT, IAR Visual State,
+       IAR KickStart Kit, I-jet, I-jet Trace, I-scope, IAR Academy,
+       IAR, and the logotype of IAR Systems are trademarks or registered
+       trademarks owned by IAR Systems AB.
+    </p>
+    <p>
+      Microsoft and Windows are registered trademarks of Microsoft
+      Corporation. Adobe and Acrobat Reader are registered trademarks of
+      Adobe Systems Incorporated. CodeWright is a registered trademark of
+      Starbase Corporation. All other product names are trademarks or
+      registered trademarks of their respective owners.
+    </p>
+  </font>
+</ul>
+<br/>
+<font SIZE="1">Copyright &copy; 1996-2021 IAR Systems AB.</font>
+<p/> 
+    </div>
+  </body>
+</html>

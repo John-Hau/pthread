@@ -1,0 +1,5350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+          "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd" 
+      xml:lang="en">
+  
+  <head>
+    <meta http-equiv="Content-Type" 
+          content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+
+    <title>IAR Information Center for Arm </title>
+  </head>
+  <body>
+    <div id="titlebanner">
+      <div>
+	<h1>IAR Information Center for Arm</h1>
+        <p class="subtitle">Release notes for the IAR C-SPY Debugger for 
+          Arm version 9.10.2</p>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.ENU.html">IAR Information Center for Arm</a> | 
+      <a href="release_notes.ENU.html">Release notes</a> | 
+      <a href="components.ENU.html">Components</a>| 
+      Release notes for the IAR C-SPY Debugger for Arm
+    </div>
+    <div class="mainblock">
+      <ul>
+        <li><a href="#important">Important information</a> </li>
+        <li><a href="#features">New features</a> </li>
+        <li><a href="#problems">Known problems</a> </li>
+        <li><a href="#pcorr">Program corrections</a> </li>
+        <li><a href="#manuals">User guide corrections</a> </li>
+        <li><a href="#misc">Miscellaneous</a> </li>
+        <li><a href="#history">Release history</a> </li>
+      </ul>
+      <!--======================================================================-->
+      <!-- IMPORTANT INFORMATION                                                -->
+      <!--======================================================================-->
+      <h3>
+        <a name="important" id="important"></a>Important information
+      </h3>
+<ul>
+        <li>Driver Specific ReleaseNotes</li> 
+		<ul>
+        <li><a href="csjtagjet.ENU.html">IAR C-SPY I-jet and JTAGjet Driver</a> </li>
+        <li><a href="csarmjlink.ENU.html">IAR C-SPY J-Link Driver</a> </li>
+        <li><a href="csarml.ENU.html">IAR C-SPY Texas Instruments Stellaris FTDI Driver</a> </li>
+        <li><a href="csarmg.ENU.html">IAR C-SPY GDB server Driver</a> </li>
+        <li><a href="csstlink.ENU.html">IAR C-SPY ST-Link Driver</a> </li>
+        <li><a href="csxds.ENU.html">IAR C-SPY XDS Driver</a> </li>
+        <li><a href="csmspfet.ENU.html">IAR C-SPY MSP-FET Driver</a> </li>
+</ul>
+</ul>
+<ul>
+  <li>
+    <p>
+      Trace is not available for 64-bit cores. 64-bit trace support will be added in a future release.<br>
+    </p>
+  </li>
+
+  <li>
+    <p>
+      The multicore support requires one of the I-jet debug probes or the CMSIS-DAP interface.<br>
+    </p>
+  </li>
+
+  <li>
+    <p>
+      The ARMv8-M Simulator does not fully support Secure and Non-secure mode.<br>
+    </p>
+  </li>
+
+  <li>
+    <p>New behaviour in <code>assert()</code> (new in 7.10.1)<br/>
+      The <code>assert()</code> function will now launch a dialog box, letting the user choose Abort, Debug, or Ignore.<br>
+      If the old behaviour is wanted, then add the following to your application source code:</p>
+      <pre><code>void __aeabi_assert(char const * msg, char const *file, int line)
+{
+  printf( "%s:%d %s -- assertion failed\n", file, line, msg );
+  abort();
+}</code></pre>
+  </li>
+  
+  <li>
+    <p>
+      The C-SPY macro <code>__loadModule(<i>filename</i>, <i>suppress</i>)</code> has been renamed to <code>__loadImage(<i>patch</i>, <i>offset</i>, <i>debugInfoOnly</i>)</code>.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      The C-SPY macro <code>__sleep(<i>microseconds</i>)</code> has been replaced with <code>__delay(<i>milliseconds</i>)</code>.
+      Note the different time resolution.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      C-SPY in IAR Embedded Workbench for ARM comes with an improved mechanism and 
+      configuration scheme for the flash loader function. An existing project that employs a flash
+      loader with a legacy configuration, will be automatically migrated to the new scheme with
+      default settings. The default settings will in most cases be sufficient. Old settings are converted
+      to a new configuration file (with the extension <code>.board</code>) and may be used if the
+      default settings are not appropriate. Read more about the new mechanism and configuration
+      scheme for flash loaders in the <a href="../FlashLoaderGuide.ENU.pdf">Flash Loader Guide</a>.
+    </p>
+  </li>
+
+</ul>
+      <!--======================================================================-->
+      <!-- NEW FEATURES                                                         -->
+      <!--======================================================================-->
+      <h3>
+        <a name="features" id="features"></a>New features
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- Known Problems-->
+      <!--======================================================================-->
+      <h3>
+        <a name="problems" id="problems"></a>Known problems
+      </h3>
+<ul>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7276'>EWARM-7276</a>]</b>
+        Semihosting (Terminal I/O) does not work correctly after flash download with the XDS100 C-SPY
+        debugger driver. As a workaround, stop the debugger and choose <b>Project&gt;Debug without
+        Downloading</b>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7275'>EWARM-7275</a>]</b>
+        Debugging ARM9, Cortex-A or Cortex-R cores using the C-SPY XDS100 debugger driver, the USR mode
+        registers <tt>R8_USR</tt> to <tt>R14_USR</tt> do not always contain correct values. This makes the
+        stack usage checking generate false warnings. To disable stack usage checking, choose
+        <b>Tools&gt;Options</b> and deselect all options in the <b>Stack</b> category.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7274'>EWARM-7274</a>]</b>
+        <p>Current limitations in the MTB (Micro Trace Buffer) implementation for I-jet</p>
+        <ul>
+        <li>The Trace Start/Stop/Filter breakpoints are not supported in MTB.</li>
+        <li>The timestamps for MTB trace records come from a simple counter and have no relation to
+        CPU/clock cycles. Any conversion between cycles and time for MTB trace data will be misleading. The
+        Call Stack graph in the <b>Timeline</b> window, for example, should not be used to measure time
+        intervals.</li>
+        <li>The MTB trace data sequence might not present discontinuities correctly. Lines in the <b>ETM
+        Trace</b> window (also used for MTB trace) might be marked as discontinuous (colored red), even
+        though the trace sequence is contiguous. Conversely, trace data from a buffer that has overflowed
+        will not always be marked as discontinuous. This is mostly a cosmetic problem, except for the Call
+        Stack graph in the <b>Timeline</b> window, which only displays the latest continuous sequence of
+        trace data.</li>
+        <li>The <b>ETM Trace</b> window and related windows are used for all variants of full instruction
+        trace, ETM, ETB, and MTB.</li>
+        </ul>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5724'>EWARM-5724</a>, <a name='EW26591'>EW26591</a>]</b>
+        Source level debugging for functions (or assembly routines) placed
+        at address zero is not supported. Instruction level stepping and
+        breakpoints work, but source level stepping and breakpoints do not.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5694'>EWARM-5694</a>, <a name='EW26535'>EW26535</a>]</b>
+        A file named JLinkARM.dll in C:\Windows\SysWOW64 or C:\Windows\system will give the error message
+        armjlink2.dll The specified procedure could not be found.
+        Remove this file and the problem will disappear.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5320'>EWARM-5320</a>, <a name='EW25847'>EW25847</a>]</b>
+        Performing a hardware reset when debugging with an Atmel JTAGICE3 probe may cause the probe to
+        become unresponsive. Disconnect and reconnect the probe and avoid using hardware reset.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5148'>EWARM-5148</a>, <a name='EW25468'>EW25468</a>]</b>
+        Setting breakpoints may fail when debugging some multicore systems with one or more disabled cores.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5017'>EWARM-5017</a>, <a name='EW25172'>EW25172</a>]</b>
+        Trace clock calibration may fail (due to silicon errata in some EFM32 devices) when using I-jet
+        Trace, resulting in incorrect trace data.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4977'>EWARM-4977</a>, <a name='EW25079'>EW25079</a>]</b>
+        When C-SPY is used to attach to a running ThreadX application, the Task List window will not show
+        the current tasks after halt.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4877'>EWARM-4877</a>, <a name='EW24834'>EW24834</a>]</b>
+        After stepping over a statement that changes the value of the current stack pointer (for example by
+        way of changing which SP that is the current SP) the execution might not stop as expected.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4796'>EWARM-4796</a>, <a name='EW24661'>EW24661</a>]</b>
+        In some rare cases, code is shown as data in the Disassembly window.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4774'>EWARM-4774</a>, <a name='EW24591'>EW24591</a>]</b>
+        If the embOS plugin is enabled, the contents of Locals window might fail to refresh when the
+        execution stops.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4555'>EWARM-4555</a>, <a name='EW24061'>EW24061</a>]</b>
+        I-jet has problems to debug applications that spends long periods in sleep mode on some devices, for
+        instance Fujitsu MB9BF506R and Toshiba TMPM369.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4552'>EWARM-4552</a>, <a name='EW24054'>EW24054</a>]</b>
+        The dissasembly window might under certain circumstances reappear inadvertently.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4504'>EWARM-4504</a>, <a name='EW23914'>EW23914</a>]</b>
+        C-SPY accesses Freescale Vybrid flexbus address range before the flexbus clock is enabled. This
+        causes a bus error which makes the cpu unresponsive.
+        A workaround is provided in EWARM 6.60.2:
+        Excluding the address range for J-Link with a C-SPY macro and with a memory configuration change for
+        I-jet will prevent reads from the flexbus address range.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4208'>EWARM-4208</a>, <a name='EW23161'>EW23161</a>]</b>
+        Every debug session in the simulator "costs" about 500 kb RAM.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4122'>EWARM-4122</a>, <a name='EW22933'>EW22933</a>]</b>
+        The "Task List" window, column "Max" (and "Max %") display a value that is 4x the correct value in
+        the uC/OS-II RTOS awareness plug-in.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4006'>EWARM-4006</a>, <a name='EW22550'>EW22550</a>]</b>
+        Sometimes when starting a new debug session using J-Trace CM3 with the STM32F207ZG-SK board, you can
+        get the error "No trace frequency measured" depending on if debugging with trace was recently
+        performed. Just click on OK to continue.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4000'>EWARM-4000</a>, <a name='EW22529'>EW22529</a>]</b>
+        Sometimes the value of a float type placed in a packed struct is displayed incorrectly.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-3989'>EWARM-3989</a>, <a name='EW22487'>EW22487</a>]</b>
+        A static variable, defined in more than one source file, will become ambiguous if a pre-include file
+        is used by the compiler.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-3388'>EWARM-3388</a>, <a name='EW20207'>EW20207</a>]</b>
+        An array located at an absolute address is displayed in the watch window as a single int instead of
+        an array. Problem does not occur if variable is located at a user defined segment.
+        </p>
+     </li>
+</ul>
+      <!--======================================================================-->
+      <!-- Program Corrections                                                  -->
+      <!--======================================================================-->
+      <h3>
+        <a name="pcorr" id="pcorr"></a>Program corrections
+      </h3>
+<ul>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8702'>EWARM-8702</a>]</b>
+        When using the Simulator driver, the Function Profiler could, in certain circumstances, produce
+        incorrect call counts and time calculations. The accuracy of the Profiler results has been improved.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8443'>EWARM-8443</a>]</b>
+        When using the J-Link/J-Trace driver, the Call Stack graph in the <b>Timeline</b> window does not
+        work correctly.
+        </p>
+     </li>
+</ul>
+      <!--======================================================================-->
+      <!-- USER GUIDE CORRECTIONS                                               -->
+      <!--======================================================================-->
+      <h3>
+        <a name="manuals" id="manuals"></a>User guide corrections
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- MISCELLANEOUS                                                        -->
+      <!--======================================================================-->
+      <h3>
+        <a name="misc" id="misc"></a>Miscellaneous
+      </h3>
+<ul>
+  <li>
+    Two new debugger command line options are available for the I-jet debug probe. They can be used 
+    with the <tt>cspybat</tt> utility, or on the <b>Project>Options>Debugger>Extra Options</b> page in the IDE.
+    <p><code>
+       --jet_disable_pmu_dap
+      </code><br>
+      Use this option to disable the PMU DAP channel and revert to using CP15 instructions for PMU event 
+      counting. <br>
+      This disables live updating of counter values when the debugger is running.
+    </p>
+    <p><code>
+       --jet_disable_pmu
+      </code><br>
+      Use this option to disable the PMU event counting completely.
+    </p>
+  </li>
+  <br>
+  <li>
+    <b>APB/AHB access ports available as memory zones</b>
+
+    <br><br>APB/AHB access ports that implement the MEM-AP architecture are now accessible as memory zones,
+    and can be accessed through the <b>Memory</b> window, the <b>Debugger Macros</b> window, and the <b>Registers</b> window, using custom DDF files.
+
+    <br><br>The zone names are:
+
+    <ul>
+    <li><p><b>AP_Memory</b>: The currently selected port.</p></li>
+    <li><p><b>AP0_Memory - AP5_Memory</b>: Shows ports 0 through 5.</p></li>
+    </ul>
+
+    The behavior of the access to these zones might be unpredictable when the selected port does not exist,
+    is not a MEM-AP architecture, or if it is inaccessible for other reasons.<br>
+
+    At the moment, these zones are only accessible when using the C-SPY I-jet driver, or the C-SPY CMSIS-DAP driver.
+
+  </li>
+  <br>
+  <li>
+    <b>Disable C-SPY warning for missing source files</b>
+
+    <br><br>C-SPY will complain if it cannot find the source file(s) for files that are compiled
+	with debug information. This warning can be disabled by prepending the file name of these
+	source files with <tt>__dbg_</tt>.
+
+    <br><br>This situation occurs frequently with RTOS vendors that need to export debug information
+	without supplying the source code for these files.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- RELEASE HISTORY                                                      -->
+      <!--======================================================================-->
+      <h3>
+        <a name="history" id="history"></a>Release history
+      </h3>
+  <h4>V8.50 2020-02-17</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='EWARM-8005'>EWARM-8005</a>]</b>
+        When using the Function profiler, <b>Source: Trace (flat)</b> (ETM), the <b>Debug Log</b> window, on
+        <b>Messages</b> filter level, is filled up with non-understandable numbers.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.6<br/>
+        <b>[<a name='EWARM-7794'>EWARM-7794</a>]</b>
+        Using the C-SPY ST-LINK driver, after choosing <b>Project&gt;Attach to Running Target</b> setting
+        breakpoints causes a HardFault exception.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='EWARM-7643'>EWARM-7643</a>]</b>
+        The C-SPY Simulator does not simulate the <tt>EXC_RETURN</tt> values correctly for the v8-M devices.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='EWARM-7521'>EWARM-7521</a>]</b>
+        The <b>Match data</b> options in the <b>Data</b> breakpoints dialog box are not working correctly
+        for Cortex-M7 devices.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='EWARM-7452'>EWARM-7452</a>]</b>
+        The register mapping is incorrect for the ST STM32L4P5ZGT device. The <tt>RTC</tt> register is
+        incorrect and the <tt>TAMP</tt> register is missing from the register group.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='EWARM-7432'>EWARM-7432</a>]</b>
+        The DBGMCU component cannot be accessed by the C-SPY ST-LINK driver.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.2<br/>
+        <b>[<a name='EWARM-7507'>EWARM-7507</a>]</b>
+        The debugger can terminate with an internal error when reading an executable file with debug
+        information in some cases involving C++ code with pure virtual member functions and inline
+        overrides.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7415'>EWARM-7415</a>]</b>
+        The <tt>execUserSetup()</tt> macro is called too early, before the extra images are loaded, when one
+        of these C-SPY debugger drivers is used: J-Link, ST-LINK, TI FET, TI XDS.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.42 2020-01-17</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7128'>EWARM-7128</a>]</b>
+        C-Spy could crash when accessing variables outside their memory range.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7014'>EWARM-7014</a>]</b>
+        When bitfields are modified in the <b>Registers</b> windows, the displayed value is not
+        automatically refreshed if the parent register is not visible in the window.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6928'>EWARM-6928</a>]</b>
+        Flash download to a STM32F777BI device does not work.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6839'>EWARM-6839</a>]</b>
+        In some cases, disabling a CADI breakpoint has no effect. The application still stops at that
+        breakpoint.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6797'>EWARM-6797</a>]</b>
+        Time intervals in the <b>Timeline</b> window are calculated with an incorrect CPU clock speed when
+        ETM trace is used.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6734'>EWARM-6734</a>, <a name='TPB-3114'>TPB-3114</a>]</b>
+        The debugger can terminate with an internal error in some cases when displaying rvalue reference
+        types in watch windows.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.40 2019-05-24</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-7046'>EWARM-7046</a>]</b>
+        Some configurations of a workspace can cause C-SPY to crash when the target application is downloaded.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6891'>EWARM-6891</a>]</b>
+        For ST-Link driver the SP register showed wrong value in certain cases. All debug windows that
+        depend on the SP showed incorrect information.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6867'>EWARM-6867</a>]</b>
+        Using IAR Embedded Workbench for Arm, Cortex-M0 edition, it is not possible to debug applications
+        built for Cortex-M23 devices because of a licensing problem.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6832'>EWARM-6832</a>]</b>
+        SWO trace does not work on STM32H743 and STM32H753.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6795'>EWARM-6795</a>]</b>
+	      There is an error in the file STM32G0xx.dmac that manifests itself when using the C-SPY ST-LINK debugger driver.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6659'>EWARM-6659</a>]</b>
+        When using J-Trace PRO, a 'Trace overflow detected' warning might be displayed, requiring user
+        interaction.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6830'>EWARM-6830</a>]</b>
+        The implementation of asynchronous multicore debugging (AMP) can create performance problems for the
+        Embedded Workbench IDE for projects exceeding a certain size and complexity. If you are using AMP
+        and experience very long debug load times, open the Tools&gt;Options&gt;Project page and try
+        deselecting the option Generate browse information, or try reducing the number of parallel build
+        processes.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6639'>EWARM-6639</a>]</b>
+        Searches for registers in <b>Registers</b> windows fail when the search is for only a part of a
+        register name.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6571'>EWARM-6571</a>]</b>
+        The DFSDM peripheral special function registers are not defined in the right order in the file
+        <tt>STM32H7x3.svd</tt>.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.32 2018-10-12</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.32.4<br>
+        <b>[<a name='EWARM-6758'>EWARM-6758</a>]</b>
+        The bits of a partially shown SFR are not updated in the C-SPY Registers window when a breakpoint is
+        hit.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.32.4<br>
+        <b>[<a name='EWARM-6735'>EWARM-6735</a>]</b>
+        Using a J-Link debug probe with an LPC51U68 device, flash loading fails with the error message:
+        "Could not find core in Coresight setup".
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.32.4<br>
+        <b>[<a name='EWARM-6723'>EWARM-6723</a>]</b>
+        The NEON SIMD instructions cannot be enabled when building with the IAR Command Line Build Utility (iarbuild.exe).
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.32.4<br>
+        <b>[<a name='EWARM-6699'>EWARM-6699</a>]</b>
+        ThreadX plugin crashes when adding a timer
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.32.4<br>
+        <b>[<a name='EWARM-6659'>EWARM-6659</a>]</b>
+        When using J-Trace PRO warnings about "Trace overflow detected" etc. was shown as a pop up dialog.
+        </p>
+     </li>
+     <li>
+        <p>
+       In EWARM 8.32.4<br>
+        <b>[<a name='EWARM-6437'>EWARM-6437</a>]</b>
+        The PC (Port C) register group name is incorrectly interpreted as the name of PC (Program Counter)
+        which results in the PC group missing from the context menu group list.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.32.3<br>
+		<b>[<a name='EWARM-6690'>EWARM-6690</a>]</b>
+        ETM/MTB trace does not work when using the J-Link C-SPY driver and a Cortex-M0+ device.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.32.3<br>
+		<b>[<a name='EWARM-6673'>EWARM-6673</a>]</b>
+        J-Link does not recognize LPC804M101.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+
+  <li><p><b>Streaming trace for improved code coverage and profiling features</b><br />
+                  The code coverage and profiling windows in C-SPY can now be feed with streaming trace data when using the 
+            IAR I-jet Trace probes. This means that both code coverage and profiling data can be collected during infinite 
+            test runs. See <a href="../EWARM_DebuggingGuide.ENU.pdf">IAR Embedded Workbench C-SPY Debugging Guide</a> for 
+            more information.
+  </p></li>
+  <li><p><b>Extended multicore support</b><br />
+            The multicore support has been extended to support any number of asymmetrical cores. For example, it is now 
+            possible to debug and control a device with one A9, one M7, and two M4 cores, all synchronized by the Arm 
+            Coresight CTI mechanism under debugger control.
+  </p></li>
+  <li><p><b>Performance Monitoring window</b><br />
+            The Performance Monitoring window is a viewer for counting events or CPU clock cycles through the Performance 
+            Monitoring Unit (PMU) available on Cortex A and Cortex R processors. This feature is only available when using 
+            an IAR I-jet probe. Live update is available on all recent Cortex-A cores. See <a href="../EWARM_DebuggingGuide.ENU.pdf">
+            IAR Embedded Workbench C-SPY Debugging Guide</a> for more information.
+  </p></li>
+  <li><p><b>Indicator for sleep mode</b><br />
+            A new window in the C-SPY debugger shows if the processor is sleeping or not. See <a href="../EWARM_DebuggingGuide.ENU.pdf">
+            IAR Embedded Workbench C-SPY Debugging Guide</a> for more information.
+  </p></li>
+  <li><p><b>Remedy RTOS Viewer </b><br />
+            The Remedy RTOS from Rowebots now has an C-SPY RTOS awareness plugin included in the debugger.            
+  </p></li>
+</ul>
+ 
+ 
+  <h4>V8.30 2018-06-15</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+       <p>
+        In EWARM 8.30.2<br>
+        <b>[<a name='EWARM-6466'>EWARM-6466</a>]</b>
+        Unable to download and debug when using the NuTiny-M2351 processor.<br>
+        When the CPU is reset, the C-SPY I-jet/JTAGjet driver reports that the CPU is unpowered and the 
+        download is reported to fail. The solution to this timing problem is to add a delay and try again.
+        </p>
+     </li>
+     <li>
+       <p>
+        In EWARM 8.30.2<br>
+        <b>[<a name='EWARM-6465'>EWARM-6465</a>]</b>
+        The trace window showed incorrect trace data when using J-Trace.<br>
+        Segger J-Link driver V6.34f solves the problem.
+        </p>
+     </li>
+     <li>
+       <p>
+        In EWARM 8.30.2<br>
+        <b>[<a name='EWARM-6355'>EWARM-6355</a>]</b>
+        Selecting the *Enable Terminal I/O log file* option before opening a *Terminal I/O* window 
+        results in an error.
+        </p>
+     </li>
+      <li>
+       <p>
+        In EWARM 8.30.2<br>
+        <b>[<a name='EWARM-6292'>EWARM-6292</a>]</b>
+        Using I-jet, it is not possible to download to flash memory on the STM32F4 series 
+        when the device has both read protection and hardware watchdog enabled.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6351'>EWARM-6351</a>]</b>
+        When using one of the J-Link, ST-LINK, TI XDS, or TI MSP-FET debug probes, a project using a
+        customized <tt>cstartup</tt> file might get a false error message "Unknown or ambiguous symbol.
+        __vector" during the debug session.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6319'>EWARM-6319</a>]</b>
+        mbed RTOS version 5 is not supported.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6301'>EWARM-6301</a>]</b>
+        The Renesas S7G2 flash loader fails with the message "Error while calling macro execUserFlashExit"
+        when trying to flash using the Segger J-Link debug connection.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5364'>EWARM-5364</a>, <a name='EW25944'>EW25944</a>]</b>
+        Editing in the Memory Window with slow connection to the debug probe may write inconsistent data
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    A new RTOS awareness plugin has been added to support Mbed OS 5.5 and newer.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.22 2018-01-22</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.22.2<br>
+        <b>[<a name='EWARM-6216'>EWARM-6216</a>]</b>
+        When a debug session is exited, the IAR Embedded Workbench IDE might become unresponsive or crash.
+        The J-Link, ST-LINK, TI-XDS, and TI-MSPFET C-SPY drivers are affected.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6157'>EWARM-6157</a>]</b>
+        The J-Link reset strategies "Hardware NXP LPC" and "Atmel AT91SAM7" are not available, despite being
+        described in the documentation.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>
+    Debugging can now be done by using the ST-LINK server.<br>
+    To use the ST-LINK server, do the following steps:<br>
+    <br>
+    1. Ensure that the server has been installed.<br>
+      The ST-LINK server is provided in the <code>arm\drivers\ST-Link</code> directory.<br>
+      To install the server, run <code>st-stlink-server.1.0.6-1.msi</code> in administrator mode.<br>
+    <br>
+    2. In your project, enable the <b>Shared mode</b> option, which is done in Project>Options>Debugger>ST-LINK>Setup<br>
+  </p></li>
+</ul>
+ 
+ 
+  <h4>V8.20 2017-10-16</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5968'>EWARM-5968</a>]</b>
+        The semihosting call SYS_ELAPSED writes an incorrect value if the value is larger than 0xFFFF.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5903'>EWARM-5903</a>]</b>
+        Attach to running target fails for devices with ECC RAM, for instance STM32F051R8. 
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5880'>EWARM-5880</a>]</b>
+        Under certain circumstances, spurious extra calls to host emulated C runtime library functions could occur in conjunction with regular such calls, causing unexpected and misleading error messages.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5853'>EWARM-5853</a>]</b>
+        Support for the <code>nPRIV</code> bit is missing for Cortex-M0+ in the Armv6 architecture.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>None</p></li>
+</ul>
+ 
+ 
+  <h4>V8.11 2017-04-11</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li>
+    The simulator now throws a HardFault error when doing Unaligned accesses on a Cortex-M0/M0+<br>
+    [EW26209]
+  </li>
+  <li><p>
+    I-jet: SigFlashCmd.exe is missing.<br>
+    [EW26507]
+  </p></li>
+
+  <li><p>
+    In EWARM 8.11.3:<br>
+    I-Jet is not able to reset RM4X devices.<br>
+    [EW26650]
+  </p></li>
+  <li>
+     <p>
+     In EWARM 8.11.3<br>
+     <b>[<a name='EWARM-4171'>EWARM-4171</a>, <a name='EW23060'>EW23060</a>]</b>
+     Environment variables are not expanded the same way in cspybat as in the IDE.
+     </p>
+  </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>
+  <b>TI MSP-FET: CPU state information</b><br />
+      When debugging with devices that contain EnergyTrace+ support, like TI MSP432, the debugger 
+      now can display information about the CPU state, whether the device is in active mode or 
+      one of the low power modes (LPM). This information can be displayed as a State Log graph in 
+      the <b>Timeline</b> window, or as a textual log in the <b>State Log</b> window.
+  </p></li>
+</ul>
+ 
+ 
+  <h4>V8.10 2017-03-10</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li>
+    When downloading an executable where some modules are produced by gcc, the debugger can terminate with an internal error.<br>
+    [EW26384]
+  </li>
+</ul>
+<li>
+   <p>
+   <b>[<a name='EWARM-5113'>EWARM-5113</a>, <a name='EW25403'>EW25403</a>]</b>
+   There could be a deadlock in the disassembly window when a breakpoint invokes a conditon macro,
+   where the macro tries to manipulate breakpoints.
+   </p>
+</li>
+
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.80 2016-10-17</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li><p>
+    In EWARM 7.80.1:<br> 
+    A threadx task name could be corrupted when viewed in the threadx plugin 
+    if the string containing the name is stored near the end of memory.<br>
+    [EW26211]
+  </p></li>
+  <li>
+    In EWARM 7.80.3:<br>
+    I-Jet could not connect to Infineon TLE9867.<br>
+    [EW26321]
+  </li>
+  <li><p>
+    In EWARM 7.80.4:<br>
+    It is not possible to debug on some Cortex-M0+ and Cortex-M7 based STM32 devices with I-jet, 
+    ST-Link, or J-Link. This error is issued:<br />
+    Driver: Fatal Error: The selected device does not match the target device. Session aborted!<br>
+    [EW26369]
+  </p></li>
+  
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.70 2016-06-17</h4>
+  <b>Program corrections</b>
+  
+<ul>
+  <li>
+     <p>
+     <b>[<a name='EWARM-4945'>EWARM-4945</a>, <a name='EW24984'>EW24984</a>]</b>
+     In some situations, stepping out from an interrupt handler might cause the debugger to loose the
+     connection to target.
+     </p>
+  </li>
+  <li>
+    <p>
+      I-jet and I-jet Trace now have trace support for single core tracing of Vybrid devices.<br>
+      [EW24813]
+    </p>
+  </li>
+  <li>
+    <p>
+      SWO/ITM is now supported on Toshiba TMPR454 with I-jet and I-jet Trace.<br>
+      [EW24828]
+    </p>
+  </li>
+</ul>
+
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.60 2015-03-31</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li>
+    <p>
+      The Simulator crashes when using forced interrupt to generate SVC interrupt.<br>
+      [EW25877]
+    </p>
+  </li>
+  <li>
+    <p>
+      J-Link: Setting the JTAG speed for J-Link (Ultra+) was limited to 25 MHz, now up to 50 MHz is possible.<br>
+      [EW25960]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      J-Link does not recognize STM32L151VD-X.<br>
+      [EW25972]
+    </p>
+  </li>
+  <li>
+    <p>
+      The flash loader for STM32L151VD-X does not work.<br />
+      [EW25974]
+    </p>
+  </li>
+  <li>
+    <p>
+      With I-jet Trace, Flat time is sometimes longer than Accumulated time.<br>
+      [EW26010]
+    </p>
+  </li>
+  <li>
+    <p>In EWARM 7.60.2<br>
+      The CPU races when C-stepping out of an interrupt handler on Cortex-M.<br>
+      [EW22343]
+    </p>
+  </li>
+  <li>
+    <p>In EWARM 7.60.2<br>
+      The Function Profiler and the Call Stack graph in the <b>Timeline</b> window both depend 
+      on identifying function calls and function returns in a traced instruction sequence. 
+      Problems can appear as an unbalanced graph, or as incorrectly attributed call counts 
+      in the profiler. This identification has been improved for certain sequences.<br>
+      [EW26040]
+    </p>
+  </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p><b>Flash breakpoints</b><br />
+      Flash breakpoints adds unlimited number of breakpoints for selected Cortex-M devices when using 
+      the I-jet debug probe. A flash breakpoint must be set explicitly from the context menu. To find 
+      out if flash breakpoints are supported for your device, see the semiconductor vendor specific 
+      device lists below.
+  </p></li>
+  <li><p><b>cJTAG support</b><br />
+      The IAR C-SPY Debugger now supports the cJTAG interface on the TI connectivity devices 
+      CC13xx/2538/26xx when using the I-jet debug probe.
+  </p></li>
+  <li><p><b>TI MSP-FET support</b><br />
+        The IAR C-SPY Debugger now supports the TI MSP-FET debug probe.
+    </p></li>
+  <li><p>
+    In EWARM 7.60.2<br>
+    ST-Link: Added possibility to specify access port for dual core debugging. 
+  </p></li>
+</ul>
+ 
+ 
+  <h4>V7.50 2015-11-10</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li>
+    <p>
+      ST-Link: Fixed problem when setting breakpoints during execution.<br>
+      [EW25724]
+    </p>
+  </li>
+  <li>
+    <p>
+      In EWARM 7.50.2<br>
+      CMSIS-DAP: Fixed the handling of the <code>CSW</code> register for Cortex-M7.<br>
+      [EW25781]
+    </p>
+  </li>
+  <li>
+    Corrected problem where I-jet would sometimes fail to connect to STM32 cores 
+    that were in sleep mode and never woke up.<br>
+    [EW25783]
+  </li>
+  <li>
+    <p>
+      In EWARM 7.50.2<br>
+      J-Link, ST-Link, TI XDS: The SWO auto speed select did not work properly.<br>
+      [EW25801]
+    </p>
+  </li>
+  <li>
+    <p>
+      In EWARM 7.50.3:<br>
+      ST EEPROM flash loaders would fail to write correctly when the starting offset 
+      of the data was not 0.<br>
+      [EW25899]
+    </p>
+  </li>
+  <li>
+    <p>
+      In EWARM 7.50.3:<br>
+      Some Freescale Kinetis K devices could not be connected to using CMSIS-DAP.<br>
+      [EW25910]
+    </p>
+  </li>
+  <li>
+    <p>
+      In EWARM 7.50.3:<br>
+      Corrected <code>ACTLR</code> bit defintions for Cortex-A9.<br>
+      [EW25912]
+    </p>
+  </li>
+</ul>
+
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+ 
+  <h4>V7.40 2015-02-19</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    Variables in the Live Watch window might be marked red even though their values remain unchanged
+    through several updates of the window.<br>
+    [EW23114]
+  </p>
+</li>
+
+<li>
+  <p>
+    Function trace is now processed correctly when using I-jet Trace.
+    Note, this requires update of I-jet Trace firmware to at least version 3.2.
+    Read more in <a href="./jet-fw.ENU.html">Information about I-jet, JTAGjet-Trace, and JTAGjet firmware versions</a>.<br>
+    [EW25140, EW25141]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link V9 now works with TMS570 devices.<br>
+    [EW25147]
+  </p>
+</li>
+
+<li>
+  <p>
+    It is not possible to run the C-SPY simulator from Eclipse.<br>
+    [EW25160]
+  </p>
+</li>
+
+<li>
+  <p>
+    ST-Link: It is now possible to set breakpoints during execution.<br>
+    [EW25177]
+  </p>
+</li>
+
+<li>
+  <p>
+    Corrected missing interrupt names in the interrupt log for devices using SVD device description files.<br>
+    [EW25190]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.2:<br>
+    The PC could sometimes be set to an incorrect value when using
+    <b>Download and Debug</b> in certain situations.<br>
+    [EW24825]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 7.40.2:<br>
+    ETM/ETB trace support for I-jet/JTAGJet-trace added for Toshiba TMPR454.<br>
+    [EW24829]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.2:<br>
+    I-jet: When debugging devices with a faulty ROM table, a connection error was reported
+    instead of trying to connect.<br>
+    [EW25261]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The private peripheral bus memory range and its registers are shown with incorrect byte order
+    for Cortex-M devices with BE32 byte order when using I-jet (for example TMS470M06607).<br>
+    [EW24604]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The CMSIS-DAP support on Vybrid is improved.<br>
+    [EW24616]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The CMSIS-DAP driver is now correctly identified in C-SPY.<br>
+    [EW24949]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    I-jet Trace revisions A and B do not have external pull-up on the <code>nRESET</code> line.
+    When connecting to a device where the <code>nRESET</code> line is not connected, a 100K
+    pull-up resistor should be used on the probe pin, connected to Vref.
+    This external pull-up is present in I-jet Trace revision C.<br>
+    [EW25203, EW25420]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    Connecting to a Kinetis L may sometimes fail when using I-jet.<br>
+    [EW25293]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The ES1.21 CC3200 device is now a separate device, different from the generic CC3200 device.
+    This is to correct inconsistencies in the linker configuration file.<br>
+    [EW25307]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    When simulating pairwise SIMD operations, for example <code>VPADD</code> and <code>VPMAX</code>,
+    the result is now correctly distributed in the D registers.<br>
+    [EW25341]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The SWO initialization macro for TI CC2538 is now correct.<br>
+    [EW25352]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The simulator now continues correctly when it returns from an interrupt inside the IT state.<br>
+    [EW25353]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    CMSIS DSP libraries with support for FPU are now built with the correct parameters.<br>
+    [EW25372]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The I-scope detection and initialization mechanism is now working correctly.<br>
+    [EW25376]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    J-Link: C-SPY no longer terminates unexpectedly when stopping on a breakpoint that
+    executes a macro that removes breakpoints.<br>
+    [EW25419]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    For I-jet, MPU_CTRL is now handled correctly.<br>
+    [EW25436]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    For I-jet, DAP read commands did not return a value, leading to type mismatch if used.<br>
+    [EW25469]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The memory configuration for EFM32GG is corrected.<br>
+    [EW25400]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The default reset strategy for online reset was not set to software in some cases for I-jet and CMSIS-DAP.<br>
+    [EW25404]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    The C-SPY macros for ETM initialization on Kinetis W2x series devices are now working correctly.<br>
+    [EW25435]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.3:<br>
+    Bit Banding is now working correctly in the simulator.<br>
+    [EW25444]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    <b>Attach to program</b> is now working when debugging on ARM7 and ARM9.<br>
+    [EW22435]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    Instability has been observed in some cases when using the RTOS awareness plugin for FreeRTOS.<br>
+    [EW24317, EW25433]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    Setting/editing a data log breakpoint now works correctly.<br>
+    [EW25386]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    Fixed a problem with debugging projects with only an externally built executable
+    and debug info from an extra image.<br>
+    [EW25479]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    CMSIS-DAP: C-SPY would sometimes crash when trying to attach
+    to the same probe using multiple instances of IAR Embedded Workbench.<br>
+    [EW25515]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    Too long texts in a tooltip could cause a crash. Now a text that does not fit is truncated.<br>
+    [EW25525]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    If a program contains several different unnamed structure types with equally named
+    and typed fields, but with different offsets, the debugger can display some of the
+    structure types incorrectly.<br>
+    [EW25545]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    Using more than 50 register groups would in some cases make C-SPY not to start correctly.<br>
+    [EW25569]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    J-Link: The performance of Terminal I/O output via SWO has been improved.<br>
+    [EW25612]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    The <b>Disassembly</b> window now displays the labels of byte-long variables on odd addresses.<br>
+    [EW25633]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    Saving the contents of the <b>Interrupt Log</b> window to a file now includes the <b>Execution Time</b> field.<br>
+    [EW25649]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    ETM trace now works with JTAGjet-Trace.<br>
+    [EW24267]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    I-jet could fail to set up stimulus port permissions properly on some Cortex-M7
+    devices causing ITM to fail. This affected <code>stdio/stderr</code> over SWO.<br>
+    [EW25364]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    I-jet: An encoding error caused <code>MVFR0</code> and <code>MVFR1</code> to be swapped during a register access.<br>
+    [EW25522]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    The C-Spy I-jet/JTAGjet driver can now find the address of the <code>__vector_table</code> symbol when
+    it is a <code>struct</code>.<br>
+    [EW25561]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    I-jet: Entering wait mode and backup mode on a SAM4S device (and models with the same sleep modes)
+    will no longer yield fatal errors, and I-scope measurements will not stop while in these
+    deep sleep modes.<br>
+    [EW25581]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.5:<br>
+    I-jet: Software breakpoints are verified and a message is now given when memory contents are damaged while
+    trying to set a software breakpoint. To avoid this you should use hardware breakpoints instead.<br>
+    [EW25586]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.7:<br>
+    An error in retrieving the current locale could load the wrong code page,
+    thus misinterpreting non-ASCII characters.<br>
+    [EW25720]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.7:<br>
+    When the ThreadX plugin was enabled C-SPY might crash unexpectedly when stopping at,
+    for example, a breakpoint, even if the plugin was not being used.<br>
+    [EW25737]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.40.7:<br>
+    J-Link: When a new debug session started right after a debug session that used the C-SPY
+    J-Link/J-Trace driver, C-SPY could crash.<br>
+    [EW25744, EW25725]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.30 2014-09-24</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    I-jet: Unlocking of Kinetis L and E devices has been added, as a C-SPY macro.<br>
+    [EW24397]
+  </p>
+</li>
+
+<li>
+  <p>
+    Fixed in new firmware. Use firmware in arm\drivers\pemicro\OpenSDA\DEBUG-FRDM-K64F_Pemicro_v108a_for_OpenSDA_v2.0.bin.<br>
+    Use system reset and disable watchdog manually if needed.<br>
+    [EW24841]
+  </p>
+</li>
+
+<li>
+  <p>
+    The simulator now simulates the <code>SMMLS(R)</code> instruction correctly.<br>
+    [EW24912]
+  </p>
+</li>
+
+<li>
+  <p>
+    ST-Link: For Cortex-M0, a pending interrupt might get the CPU stuck on the breakpoint
+    where it starts the execution.<br>
+    [EW24966]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    If you use the same name for a variable as for a type, the Watch and Quick Watch
+    windows will fail to evaluate such a variable or an expression containing it.<br>
+    [EW19334, EW21566, EW25058]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    Additionally selectable memory zones do not work properly in some C-SPY drivers.<br>
+    [EW24914]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    Data Log graph settings in the Timeline window are not preserved.<br>
+    [EW24953]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    Power samples are no longer dropped on devices without SWO/TPIU when
+    debugging with I-jet/I-scope.<br>
+    [EW24959]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    Expanding a pointer to function in the <b>Watch/Quickwatch</b> window might cause the debugger to crash.<br>
+    [EW24989, EW25014, EW25016]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    Sometimes the automatic update of the <b>Code Coverage</b> window fails to mark executed statements as executed.<br>
+    [EW25010]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    The <code>FPCA</code> bit in the <code>CONTROL</code> register is incorrectly masked away
+    on access in some C-SPY drivers.<br>
+    [EW25047]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.3:<br>
+    The message box caused by an assertion is not modal. This means that it is possible to execute other commands,
+    which could lead to a crash.<br>
+    [EW25070]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.4:<br>
+    The simulator now handles the <code>CONTROL.FPCA</code> bit correctly.<br>
+    [EW25048]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.30.4:<br>
+    The ThreadX plugin now lets conditional breakpoints stop when a specific task is active.<br>
+    [EW25127]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.20 2014-05-19</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+<li>
+  <p>
+    It is not possible to view a variable in the Watch window as a 64-bit signed or unsigned integer,
+    because the Watch window does not have the <b>Show As&gt;64-bit Signed</b> and
+    <b>Show As&gt;64-bit Unsigned</b> commands.<br>
+    [EW24420]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: Connection to J-Link Remote Server could in some cases terminate with the message "IP communication timeout".<br>
+    [EW24493]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: Power logging now survives a reset.<br>
+    [EW24554]
+  </p>
+</li>
+
+<li>
+  <p>
+    Some objects of a <code>class/struct/union</code> type might be impossible to expand as there is no '+' sign in front of them.<br>
+    [EW24598]
+  </p>
+</li>
+
+<li>
+  <p>
+    The menu command <b>View&gt;Cores</b> was disabled even though the project was configured for asymmetrical multicore debugging.<br>
+    [EW24606]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: SWD mode could not be selected for Cortex A/R.<br>
+    [EW24630]
+  </p>
+</li>
+
+<li>
+  <p>
+    Selecting certain memory zones in the zone display drop-down list of various C-SPY windows, causes an unexpected
+    termination of C-SPY with the error message "A fatal error has occurred. The debugger will terminate".<br>
+    [EW24636]
+  </p>
+</li>
+
+<li>
+  <p>
+    The C-SPY simulator does not simulate Cortex M4F lazy stacking correctly.<br>
+    [EW24675]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: Multicore slave probe configuration is not inherited from the master configuration.<br>
+    [EW24684]
+  </p>
+</li>
+
+<li>
+  <p>
+    The instructions <code>VFMA</code>, <code>VFMS</code>, <code>VFNMA</code>, and <code>VFNMS</code>
+    are now correctly simulated when using Cortex M4F.<br>
+    [EW24692]
+  </p>
+</li>
+
+<li>
+  <p>
+    Simulation of the <code>BFI</code> instruction now produces correct results when LSB is 0 and the width is 32.<br>
+    [EW24695]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    The instruction <code>UXTAB</code> now produces correct results when simulated in the C-SPY simulator.<br>
+    [EW24693]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    Simulation of the <code>VCVT</code> instruction is now correct.<br>
+    [EW24696]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    Adding a C-RUN rule or changing the default C-RUN action caused the IDE
+    to crash when the C-RUN windows were grouped together.<br>
+    [EW24708]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    The SymList plugin should be loaded by default but is not.<br>
+    [EW24718]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    The simulator now only checks for denormal exceptions when the <code>FZ</code> bit in the <code>FPSCR</code> register is set.<br>
+    [EW24726]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    Simulation of the <code>BFC</code> and <code>BFI</code> instructions now works as expected
+    also when all bits are selected (lsb = 0 and width = 32).<br>
+    [EW24727]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    The simulator now reports the correct number of cycles for the <code>SMLAL</code> instruction.<br>
+    [EW24735]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    I-jet: A problem that made it impossible to debug an AMP multicore application has been corrected.<br>
+    [EW24743]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    EWARM no longer crashes if using multiple ThreadX Mutexes and displaying the ThreadX plugin Mutex window.<br>
+    [EW24752]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    Read-only SFRs placed in read-only-mapped memory no longer yield a warning message.<br>
+    [EW24753]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.2:<br>
+    I-jet: The debugger no longer terminates unexpectedly when trying to initialize ETM
+    trace with a 1 bit port width. (The only port width supported in JTAGjet Trace is 4 bits.)<br>
+    [EW24779]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    I-jet: The number of HW breakpoints is no longer limited to six for Cortex-R4.<br>
+    [EW24638]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    An intermittent problem when debugging with JTAGjet, related to a newer version of Windows USB drivers, has been fixed.<br>
+    [EW24750]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    Long function names are truncated in the Call Stack window.<br>
+    [EW24826]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    The Call Stack window leaks resources.<br>
+    [EW24867]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    I-jet: The SWO interrupt log is now correctly handled on devices with slow SWO clock.<br>
+    [EW24840]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    I-jet: Debugger reads of memory on Cortex-A when cache is enabled now shows the correct values.<br>
+    [EW24857, EW24780, EW24796]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.20.5:<br>
+    I-jet: Software breakpoints are restored at <code>main()</code> in CM408F example project Button_LED_GPIO.<br>
+    [EW24866]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.10 2014-02-21</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    Architecturally defined core registers, CP14 registers, and CP15 registers are now available in the Register window.<br>
+    [EW23046,EW23780,EW23919,EW24276,EW24504]
+  </p>
+</li>
+
+<li>
+  <p>
+    If a problem arises in the download phase the state is now properly reset.<br>
+    [EW24105, EW24520]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: A data breakpoint with <b>Match Data</b> on Cortex-M0 might cause the debugger to terminate unexpectedly, and might also make the
+    EWARM project file corrupt.<br>
+    [EW24307]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: When debugging an ARMv7-R/A core, and stepping on a branch to self instruction, the C-SPY driver reports
+    <code>Unknown stop condition or CPU is running</code>.<br>
+    [EW24419]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: C-SPY is now able to read the <code>FPSCR</code> register on Cortex-M with FPU extension.<br>
+    [EW24496]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.2:<br>
+    CMSIS-DAP is now available in 7.10.<br>
+    [EW24515]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    Very rarely, adding a variable to the Watch window might cause the debugger to exit abnormally.<br>
+    [EW24398]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    I-jet: The option <b>Restore software breakpoints at</b> did not work as expected after reset. It has now been corrected.<br>
+    [EW24498]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    J-Link: When starting the STR9 commander tool, JLinkSTR91x.exe, it incorrectly claimes that
+    "Reset pin is high but should be low".<br>
+    [EW24535]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    In some cases, using a macro to save target memory to a file might cause the debugger to crash.<br>
+    [EW24551, EW24553]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    I-jet correctly disables cache on Vybrid on a software reset.<br>
+    [EW24562]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    Simulator now gives correct <code>UDIV</code> result when dividend is 0x80000000 and divisor is 0xFFFFFFFF.<br>
+    [EW24563]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    In the simulator it is not possible to read registers using a # prefix (for instance <code>#PC</code>)
+    in the <code>execUserExecutionStopped()</code> macro.<br>
+    [EW24569]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    The Simulator does no longer terminate unexpectedly when the target application change to Monitor mode.<br>
+    [EW24576]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 7.10.3:<br>
+    When debugging with the P&E Micro JTAG probe, <b>verify download</b> sometimes reported "Target inconsistency detected"
+    when code was correcly downloaded.<br>
+    [EW24579]
+  </p>
+</li>
+
+<li>
+  <p>
+    In some rare cases data is shown as code in the Disassembly window.<br>
+    [EW24580]
+  </p>
+</li>
+
+<li>
+  <p>
+    Sometimes SFR groups might not be shown in the Register window even though they are defined
+    in the device description file (<code>.ddf</code>).<br>
+    [EW24592]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+    <li><p><b>Reset alternatives</b><br />
+      For devices that support multiple reset alternatives, these can now easily be selected from a dropdown
+      list in the tool bar.
+    </p></li>
+    <li><p>Architecturally defined core registers, CP14 registers and CP15 registers are now available 
+           in the register window.
+    </p></li>
+
+</ul>
+ 
+ 
+  <h4>V6.70 2013-10-29</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    The I-jet in-circuit debugging probe now operates more smoothly when the host system is a one-core Windows XP computer.<br>
+    Note, make sure to update I-jet firmware to 4.2 or later. Read more in
+    <a href="./jet-fw.ENU.html">Information about I-jet, JTAGjet-Trace, and JTAGjet firmware versions</a><br>
+    [EW23848, EW24016]
+  </p>
+</li>
+
+<li>
+  <p>
+    When C-SPY stops at a breakpoint, the <b>Go to function</b> button and the insertion point position
+    on the status bar are not visible until you click in the editor window.<br>
+    [EW24182]
+  </p>
+</li>
+
+<li>
+  <p>
+    An <code>.svd</code> file that contains extremely long lines might cause the IAR Embedded Workbench
+    IDE to stop responding.<br>
+    [EW24189]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link fails to connect to the target over Ethernet.<br>
+    [EW24194]
+  </p>
+</li>
+
+<li>
+  <p>
+    The I-jet C-SPY driver now reports the correct CPUID in the Debug Log window.<br>
+    [EW24199]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: When enabling or disabling SWO or ETM trace while target was running, an annoying warning message popped up. This has been corrected.<br>
+    [EW24204]
+  </p>
+</li>
+
+<li>
+  <p>
+    The I-jet C-SPY driver now access CP15 registers correctly when debugging a Faraday FA606TE.<br>
+    [EW24213]
+  </p>
+</li>
+
+<li>
+  <p>
+    For devices that support JTAG only or SWD only, the setting is now forced set to the supported mode.<br>
+    [EW24234]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.2:<br>
+    I-jet: Setting a breakpoint directly on a vector in the interrupt vector table no longer disables the interrupt.<br>
+    [EW24230]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.2:<br>
+    I-jet: Custom reset strategies are now available for NXP LCP23xx and LPC24xx devices.<br>
+    [EW24253]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.2:<br>
+    When displaying the interrupt log in the Timeline window, the interrupt duration was always displayed in
+    time units, even if <b>Time Axis Unit</b> was set to cycles.<br>
+    [EW24291]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.2:<br>
+    If an externally built ELF/DWARF object file contained a struct declared in a function scope prototype,
+    the debugger could exit unexpectedly while downloading the file.<br>
+    [EW24312]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.2:<br>
+    Removing a breakpoint while the debugger is executing might make the debugger unstable.<br>
+    [EW24374]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.3:<br>
+    Windows drivers for ST-Link, for support in Windows8, are now found in <code>arm\drivers\ST-Link</code>,
+    together with ST-Link firmware upgrade package.<br>
+    [EW23655]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.70.3:<br>
+    J-Link: A misleading warning was shown in debug log window about using reset strategy #1 and Cortex-M1.<br>
+    [EW24386]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V6.60 2013-06-27</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    Expanding a huge array in a debugger watch window could cause an out-of-memory crash.
+    Now array expansion is halted after 5000 elements, but can be continued manually.<br>
+    [EW23262]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: ETM trace is now working when debugging a TMDXRM48HDK with JTAGjet-Trace.<br>
+    [EW23843]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: Terminating a debug session while the Terminal I/O window still prints, no longer causes the debugger to crash.<br>
+    [EW23893]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: Attaching to a running Cortex-M target is now performed without executing the
+    <code>execConfigureTraceSWO()</code> or <code>execConfigureTraceETM()</code> macros.<br>
+    [EW23910]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-Jet can now download to flash on an ADuC7026. If this problem persists,
+    open the <b>I-jet/JTAGjet>Memory Configuration</b> dialog box, in the <b>Used Ranges</b>
+    pane, define the <b>Cache Type</b> of memory in range 0-0xF7FF as <b>ROM/Flash</b>.<br>
+    [EW23932]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: MTB trace now works also when power logging is active.<br>
+    [EW23951]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: The unlock scripts now run without doing a license check.<br>
+    [EW23955]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: Debug mechanisms are now kept enabled in sleep mode on STM32 devices.
+    This is done through STM32-specific C-SPY macros.<br>
+    [EW23998, EW24011, EW24021]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    J-Link: Shutting down a debug session while running SWO or ETM trace could lead to a crash.<br>
+    [EW23196]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    I-jet now supports ETB trace when debugging on Cortex-M4.<br>
+    [EW23748]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    J-Link: ETB trace is now working on LPC185x.<br>
+    [EW23946]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    End of file, <code>EOF</code>, condition on <code>stdin</code> is now handled correctly, causing
+    <code>_read()</code>, <code>fread()</code>, and similar to return the proper status.<br>
+    [EW24039]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    If you started and stopped the debugger several times during one IAR Embedded Workbench
+    session, a serious memory leak could lead to abnormal termination.<br>
+    [EW24052,EW24058,EW24081]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    I-jet: Improved wording and nature of a warning message.<br>
+    [EW24063]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    I-jet: Stability when receiving ETM trace data from a Kinetis K60 is improved.<br>
+    [EW24073]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    I-jet: EmuDiag can now update the firmware in JTAGjet-Trace.<br>
+    [EW24082]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    I-jet: Using BE8 big-endian mode and I-jet no longer gets the application to malfunction when
+    hitting a software breakpoint.<br>
+    [EW24092]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    I-jet: The unlock scripts, <code>Kinetis_unlock_jtag.bat</code> and <code>Kinetis_unlock_swd.bat</code> now work on
+    Freescale Kinetis devices.<br>
+    [EW24125]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    J-Link: The debugger no longer terminates with a crash when the power to the board is turned off.<br>
+    [EW24142]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.60.2:<br>
+    The SVD reader can now handle <code>&lt;cluster&gt;</code> elements that do not contain any <code>dimElementGroup</code>.<br>
+    [EW24163]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+
+  <li><p>
+    <b>CMSIS SVD cluster elements</b><br/>
+    The debugger now supports cluster elements in CMSIS System View Description files.
+  </p></li>
+
+  <li><p>
+    <b>New behaviour in <code>assert()</code></b> (new in 6.60.2)<br/>
+    The <code>assert()</code> function will now launch a dialog box, letting the user choose Abort, Debug, or Ignore.<br>
+    If the old behaviour is wanted, then add the following function to your application source code:
+    <pre><code>int __iar_ReportAssert(char const *file, char const *line, char const *func, char const * msg)
+    {
+      printf( "%s:%s %s -- assertion failed\n", file, line, msg );
+      return 0;
+    }
+    </code></pre>
+  </p></li>
+
+  <li><p>
+    <b>Support for Texas Instruments XDS200</b><br>
+    Support has been added for the Texas Instruments XDS200 debug probe.
+  </p></li>
+
+  <li><p>
+    <b>ST-Link: More registers available in the Register window</b><br>
+    The FPU, Control, and primask registers are now available in the Register window.
+    To get access to the FPU registers, you need to update the ST-Link probe firmware
+    to the latest version. This firmware is found in your IAR Embedded Workbench for ARM
+    installation in <code>arm\drivers\ST-Link\ST-LinkUpgrade.exe</code>.
+  </p></li>
+
+</ul>
+ 
+ 
+  <h4>V6.50 2012-11-10</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    J-Link: A more obvious warning is now displayed when multiple symbols are found in the debug images.<br>
+    [EW22957]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: The C-SPY driver for I-jet is now enhanced to serve JTAGjet as well.<br>
+    [EW23152]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: Debugging on Freescale i.MX25 is now possible without workaround.<br>
+    [EW23364]
+  </p>
+</li>
+
+<li>
+  <p>
+    The enter/leave indication in the Interrupt log is now correct when there are
+    several simultaneous interrupts.<br>
+    [EW23457]
+  </p>
+</li>
+
+<li>
+  <p>
+    32-bit multiplication no longer fails when simulating an A9 processor with Neon and VFP.<br>
+    [EW23516]
+  </p>
+</li>
+
+<li>
+  <p>
+    The ETM Trace Window now shows data output when debugging on STM32F4xx.<br>
+    [EW23560]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: The C-SPY driver for J-Link now works with CSpyBat when using command line option
+    <code>--drv_communication</code>.<br>
+    [EW23574]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    Expressions in the Live Watch window which did not evaluate to a C/C++ lvalue did not update during
+    execution. This has been corrected.<br>
+    [EW23205]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    The simulator now simulates <code>MOV.W</code> correctly when the register is <code>SP</code>.<br>
+    [EW23575]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    The simulator now simulates the instructions <code>FSTMIAX</code> and <code>FLDMIAX</code> correctly.<br>
+    [EW23577]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    The <code>IT/ICI</code> bits in the <code>EPSR</code> register are now cleared when the simulator enters an interrupt.<br>
+    [EW23600]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    The instruction <code>QDADD</code> now saturates correctly.<br>
+    [EW23604]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    Some problems that could cause the IDE to freeze terminating a debug session have been corrected.<br>
+    [EW23618]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.2:<br>
+    TI Stellaris: Detection of hardware connection failure is improved.<br>
+    [EW23646]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: It is now possible to use CSpyBat with the I-jet/JTAGjet debugger driver.<br>
+    [EW23504]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    Sometimes, setting a breakpoint in highly optimized code could cause IAR Embedded Workbench to exit
+    unexpectedly. This has been corrected.<br>
+    [EW23521]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: The intrinsic function <code>__WFI</code> is now handled correctly in I-jet.<br>
+    [EW23533]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: If you set up I-jet not to supply the target board with power, power delivery to the target
+    board will now stop when the debug session starts.<br>
+    [EW23633]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    Setting a breakpoint in a uC/OS-III project could make C-SPY unresponsive. This has been corrected.<br>
+    [EW23672]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: When SWO interrupt information packets have to be dropped because of excessive amounts of data,
+    this is now handled gracefully.<br>
+    [EW23675]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: Pressing Reset just when the CPU has started autonomously no longer causes a deadlock.<br>
+    [EW23693]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: Interrupts are now logged and presented correctly in C-SPY windows.
+    (However, the interrupt specifications in the Freescale SVD files are not correct, so the naming of such
+    interrupts might be misleading. See EW23788 for more information.)<br>
+    [EW23694]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    I-jet: Running EmuDiag.exe no longer requires administrator privileges.<br>
+    [EW23695]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    TI Stellaris: It is now possible to use CSpyBat with the TI Stellaris debugger driver.<br>
+    [EW23697]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    The uC/OS plugins keep responding even when the event flag group is corrupt.<br>
+    [EW23723]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    In some cases incorrect project settings caused the debugger to issue an error upon starting, only to exit
+    unexpectedly after the error was corrected. This no longer occurs.<br>
+    [EW23725]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.3:<br>
+    Interrupt definitions are now correctly added in C-SPY when the SFR definitions are provided in an SVD file.<br>
+    [EW23774]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.5:<br>
+    I-jet: It is now possible to download and verify with I-jet on LPC2103.
+    Note however that it might be necessary to add an execUserPreload
+    macro to set MEMMAP to the proper value, 1 for a flash configuration
+    and 2 for a RAM configuration.<br>
+    [EW23652]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.5:<br>
+    I-jet: It is now possible to set a breakpoint when running on a Freescale Kinetis K60.<br>
+    [EW23692]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.5:<br>
+    I-jet: The example projects for Spear3xx are now adapted to I-jet/JTAGjet.<br>
+    [EW23794]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.5:<br>
+    J-Link: FPU registers in Cortex-A are now supported by the J-Link driver.<br>
+    [EW23805]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.5:<br>
+    I-jet: It is now possible to debug AM335x with I-jet and JTAGjet.<br>
+    [EW23806]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.5:<br>
+    I-jet: JTAGjet-trace now handles trace data (ETM) correctly when debugging on STM32F407ZG-SK.<br>
+    [EW23899]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: <b>Match data</b> for data breakpoints is no longer ignored by I-jet.<br>
+    [EW23505]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: The C-SPY driver for I-jet now handles SWO on MB9AFB44N correctly.<br>
+    [EW23595]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: Data log is now working when debugging on MB9BF506R.<br>
+    [EW23708]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    J-Link: C-SPY no longer crashes when trying to read FPU registers before the FPU is enabled.<br>
+    [EW23777]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: The C-SPY driver for I-jet now handles FPU registers correctly.<br>
+    [EW23778]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: C-SPY now behaves robustly when the ETM signal from the device is unstable.<br>
+    [EW23786]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    The driver-specific menu for CMSIS-DAP now has the correct name and content.<br>
+    [EW23807]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    Executing a Reset command while debugging could lead to a crash if the Stack window was open.<br>
+    [EW23916]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: The last ITM event log before execution is stopped at a breakpoint, is no longer missing.<br>
+    [EW23832]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: Power sampling now works for devices without SWO.<br>
+    [EW23876]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: ITM logging is now intact, also when Power sampling is not active.<br>
+    [EW23879]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    I-jet: C-SPY can now download an image to a K60 device.<br>
+    [EW23931]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.50.6:<br>
+    Sometimes, when performing the internal integrity check, the flash loader caused a false alarm.
+    This resulted in a long list of incorrect warnings in the <code>flash0.trace</code> file.<br>
+    [EW23933]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p><b>JTAGjet-Trace support</b><br>
+    Full support, including ETB and ETM, for the JTAGjet-Trace debug probe from IAR Systems.
+  </p></li>
+  
+  <li><p><b>Source browser call graph display</b><br>
+    The source browser can now display a call graph for easy navigation of the function hierarchy.
+  </p></li>
+  
+  <li><p><b>Multi-core SWD support</b><br>
+    Two instances of IAR Embedded Workbench can now access one core each in a multi-core
+    device via SWD.
+  </p></li>
+  
+  <li><p>New Macro Quicklaunch window for executing macros (and evaluating expressions) on demand.
+  </p></li>
+  
+  <li><p>The debugger drivers for I-jet and TI XDS100 can now handle multiple probes connected 
+    to the PC.
+  </p></li>
+  
+  <li>
+    <b>Support for MTB (Micro Trace Buffer) in I-jet</b><br>
+    The MTB trace mechanism gives access to instruction trace on devices based on the Cortex-M0+ core.
+  </li>
+  <li><p>
+    In EWARM 6.50.5:<br>
+    I-jet: Unlock utilities for EFM32, Kinetis and LM3S devices are inluded in <code>$EW_DIR$\arm\bin\jet\bin</code>
+    as Windows batch files. They are run without parameters. Please make certain that the correct utility is
+    used, according to the available debugger interface (JTAG or SWD).
+  </p>
+  </li>
+</ul>
+ 
+ 
+  <h4>V6.40 2012-06-05</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    J-Link: In previous versions, when enabling ETM on an LPC1788/LPC1778 device, the debugger was writing <code>0x08</code>
+    into the <code>IOCON_P0_10</code> register. This is no longer done.<br>
+    [EW23133]
+  </p>
+</li>
+
+<li>
+  <p>
+    Opening the Symbolic Memory window when debugging an RVDS-built application that contains
+    union data members without a location attribute, caused C-SPY to exit unexpectedly.
+    This has been corrected.<br>
+    [EW23143]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: THUMB breakpoints that end up in the same 32-bit word are now handled correctly by C-SPY.<br>
+    [EW23243]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.2:<br>
+    The default value in <b>Project&gt;Options...&gt;TI XDS100&gt;Setup&gt;TI emulation package installation path</b>
+    is now handled correctly.<br>
+    [EW23158]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.2:<br>
+    The IDE could crash when a leaf was double clicked in the Code Coverage window, because of a missing
+    path in the editor view. This has been corrected.<br>
+    [EW23282]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.2:<br>
+    The IDE no longer becomes unresponsive when a device description file (<code>.ddf</code>) containing empty sections is opened.<br>
+    [EW23286]
+  </p>
+</li>
+
+<li>
+  <p>
+    I-jet: When debugging on an AM1808 device with I-jet you no longer get warnings about misplaced SFRs.<br>
+    [EW23289]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.2:<br>
+    The J-Link driver is now always able to get the CPU status when SWO is enabled.<br>
+    [EW23290]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.2:<br>
+    J-Link: When <b>Project&gt;Options...&gt;General Options&gt;Library Configuration&gt;stdout/stderr</b>
+    is set to <b>Via SWO</b>, the J-Link/J-Trace Connection Interface setting now reflects that correctly.<br>
+    [EW23301]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.2:<br>
+    XDS: Problems with the debugger driver for TI XDS100 has been corrected.
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.3:<br>
+    The Timeline window was not updated correctly when data log breakpoints were enabled/disabled during a debug session.
+    This has been corrected.<br>
+    [EW22807]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.3:<br>
+    Setting/clearing breakpoints on the lowest line in the Disassembly window by clicking on the leftmost column now
+    works correctly in all cases.<br>
+    [EW23040]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.3:<br>
+    Sometimes the localized (Japanese) strings were garbled in the Watch window. This has been corrected.<br>
+    [EW23335]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.3:<br>
+    The Memory window lost focus when editing memory content after entering one unit. This has been corrected.<br>
+    [EW23340]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.4:<br>
+    The Symbolic Memory window know behaves correctly after resizing the tabs.<br>
+    [EW21509]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.4:<br>
+    C-SPY could misinterpret certain flags in an ELF file such that some read-only segments
+    were considered writable. This could interfere with memory integrity checks when launching
+    a debug session. This has been corrected.<br>
+    [EW23327]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.4:<br>
+    When the downloaded application does not contain any C variables (with static storage duration),
+    the I-jet driver will no longer issue a warning about finding no variables in memory designated
+    as RAM.<br>
+    [EW23440]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.4:<br>
+    It is no longer possible in the Memory Configuration window to enter an end address that is
+    lower than the start address.<br>
+    [EW23450]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.4:<br>
+    Executing the context menu command <b>Force</b> on a vacant area in the <b>Forced Interrupt</b>
+    window caused the debugger to exit unexpectedly. This has been corrected.<br>
+    [EW23470]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.5:<br>
+    I-jet now works with TMS470R1B1M.<br>
+    [EW23310]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.5:<br>
+    I-jet: C-SPY no longer terminates unexpectedly when closing a debug session.<br>
+    [EW23370, EW23531]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.5:<br>
+    I-jet now works with LPC2138. Note, reset strategy must be set to "Hardware" or "Software".<br>
+    [EW23427, EW23442, EW23443]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.5:<br>
+    I-jet: Turning on "Power Sampling" in the Function Profiler window could sometimes cause a crash, e.g. if Profiling was turned on already when launching a debug session, but Power Sampling was turned on later. This has been fixed.<br>
+    [EW23509]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.5:<br>
+    I-jet: Creating or editing configurations in the Memory Configuration dialog box when running a session in Japanese could cause IAR Embedded Workbench to exit unexpectedly. This has been corrected.<br>
+    [EW23513]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.40.5:<br>
+    I-jet now works with LPC2378. Note, reset strategy must be set to "Hardware" or "Software" and JTAG/SWD speed must be set to "Adaptive".<br>
+    [EW23515]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>
+    <b>ITM event log</b><br>
+    The ITM events can now be plotted as a line graph.
+  </p></li>
+  <li><p>
+    <b>C-SPY macros</b><br>
+    Two new C-SPY macros have been added, <code>execUserExecutionStarted()</code>,
+    <code>execUserExecutionStopped()</code>.
+    They can be used for executing C-SPY macro code immediately before starting and
+    immediately after halting program execution.
+  </p></li>
+  <li><p>
+    <b>I-jet memory configuration</b><br>
+    The memory access map can be configured in detail to setup caching of regions
+    and block accesses to restricted areas.
+    The default memory configuration can be modified using the Memory Configuration dialog box.
+  </p></li>
+</ul> 
+ 
+  <h4>V6.30 2011-10-22</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+<li>
+  <p>
+    Evaluating a cast expression that contains a plain char, such as <code>(char *)42</code>, when the
+    application does not use the plain char type anywhere, could result in a crash. This has
+    been corrected.<br>
+    [EW20519]
+  </p>
+</li>
+
+<li>
+  <p>
+    ST-Link: It is no longer any problem with step or go, when the register window contains a large number of registers.<br>
+    [EW22020]
+  </p>
+</li>
+
+<li>
+  <p>
+    C-SPY no longer terminates unexpectedly when right-clicking in a ThreadX RTOS plugin view.<br>
+    [EW22508]
+  </p>
+</li>
+
+<li>
+  <p>
+    A warning message no longer pops up when debugging an AM1808 device.<br>
+    [EW22557]
+  </p>
+</li>
+
+<li>
+  <p>
+    In the Watch window, pointers to Thumb functions are now displayed with the correct function name.<br>
+    [EW22664]
+  </p>
+</li>
+
+<li>
+  <p>
+    Single stepping or running to breakpoints when the Call Stack window is open no longer
+    causes the IDE to become unresponsive.<br>
+    [EW22765]
+  </p>
+</li>
+
+<li>
+  <p>
+    If you used two or more monitors, ending a debug session with the main IDE window
+    open on one monitor but the Disassembly window on another monitor, IAR Embedded
+    Workbench could terminate unexpectedly when you restarted the debug session.
+    This has been corrected.<br>
+    [EW22762]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.3:<br>
+    The debugger no longer terminates unexpectedly during long trace acquisition (several hours)
+    in the Timeline window.<br>
+    [EW22452]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.3:<br>
+    J-Link: The ETM port is now initialized correctly when an STM32 device is debugged using J-Trace.<br>
+    [EW22796,EW22822]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.3:<br>
+    The simulator now simulates the <code>SPSR</code> instruction correctly in System mode.<br>
+    [EW22801]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.3:<br>
+    A problem in the breakpoint handling in the P&E Micro debugger driver could lead to unexpected behavior when stepping in the source code.
+    This has been corrected.<br>
+    [EW22838]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.4:<br>
+    J-Link: PINSEL10 is no longer set by debugger when using SWO with LPC17xx.<br>
+    [EW22698]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.4:<br>
+    J-Link: Trace port is now enabled when enabling ETM trace on STM32F4xx.<br>
+    [EW22903]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.4:<br>
+    TI Stellaris: A problem with interrupts not being executed due to improper reset has been corrected.<br>
+    [EW22915]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    J-Link: CPU reset is now performed properly for Stellaris devices that need special reset handling.<br>
+    [EW22935]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    Trying to load a file containing modules produced with <code>gcc</code> no longer causes the IDE to crash.<br>
+    [EW22866]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    J-Link: Hardware breakpoints now works correctly after hardware reset of LPC11U14 (Cortex-M0).<br>
+    [EW22872]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    Support for the new CMSIS SVD keyword <code>RESERVED</code> is now implemented.<br>
+    [EW22895]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    The contents of the Statics window were not filtered when it was opened after the start of a debugging
+    session. The correct contents were not displayed until after a window update (for example after
+    executing a step command). This has been corrected.<br>
+    [EW22900]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    In some cases, executing multiple <b>Page Up</b> commands in the Disassembly window could cause the code to be
+    disassembled incorrectly. This has been corrected.<br>
+    [EW22922]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    TI Stellaris: CPU reset is now performed properly for Stellaris devices that need special reset handling.<br>
+    [EW22936]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    TI Stellaris: Interrupts were not disabled during single-stepping. The application did not continue from the breakpoint
+    when you continued to step, because the single step was executed in the interrupt function instead.
+    This has been corrected.<br>
+    [EW22950]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    ST-Link: The watch window now shows correct values in functions where <code>SP_process</code> is used as current stack pointer.<br>
+    [EW22962]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    J-Link: Exceptions in the Interrupt log and Timeline window are now named correctly when ETM trace is enabled.<br>
+    [EW22995]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.6:<br>
+    The Interrupt Log Summary window could show uninitialized content directly after a debugging session started.
+    This has been corrected.<br>
+    [EW23007]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.7:<br>
+    It is now possible to set the offset on the <b>Project&gt;Options...&gt;Debugger&gt;Images</b> page to a value
+    greater than 0x7FFFFFFF.<br>
+    [EW23030]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.7:<br>
+    It is now possible to use the RDI driver with CSpyBat.<br>
+    [EW23068]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.30.8:<br>
+    J-Link: The <code>JLinkSTM32.exe</code> utility now identifies the device correctly when erasing an STM32F4 device.<br>
+    [EW23184]
+  </p>
+</li>
+
+<li>
+  <p>
+    FreeRTOS 7.1.1 is compatible with the C-SPY FreeRTOS plugin. Read more in
+    <a href="http://sourceforge.net/projects/freertos/files/FreeRTOS/V7.1.1/README/download">FreeRTOS 7.1.1 readme</a>.<br>
+    (This is not limited to any explicit EWARM version.)<br>
+    [EW23130]
+  </p>
+</li>
+
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p><b>ETM/ETB selection</b><br>
+    It is now possible to chose between ETM and ETB for devices with support for both.
+  </p></li>
+</ul>
+ 
+ 
+  <h4>V6.21 2011-07-05</h4>
+  <b>Program corrections</b>
+<ul>
+
+<li>
+  <p>
+    Executing <b>Add to Watch</b> on a selection in the editor
+    window not only opens the Watch window but now also adds an entry to it.<br>
+    [EW22408]
+  </p>
+</li>
+
+<li>
+  <p>
+    Disassembly of an unknown address no longer causes the debugger to crash.<br>
+    [EW22458]
+  </p>
+</li>
+
+<li>
+  <p>
+    ST-Link: Programming flash using ST-LINK now works correctly with the C-SPY macro <code>execUserFlashInit()</code>.<br>
+    [EW22457, EW22473]
+  </p>
+</li>
+ 
+<li>
+  <p>
+    The Stack window no longer crashes upon opening when, under certain circumstances, C-Spy has insufficient information about target system stacks to display stack information as intended.<br>
+    [EW22486]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.21.2:<br>
+    J-Link: Only relevant bits in the <code>RCC_AHB1ENR</code>/<code>RCC_AHBENR</code> and <code>GPIOE</code> registers are enabled when enabling ETM trace on STM32F2xx/STM32L15x.<br>
+    [EW22552]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.21.2:<br>
+    The C-SPY driver for P&E Micro no longer causes the debugger to crash.<br>
+    [EW22554]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.21.2:<br>
+    The J-Link flash loader mechanism now works for STM32L15x devices.<br>
+    [EW22639]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.21.3:<br>
+    The checkmark in front of the <b>Mixed-Mode</b> entry on the disassembly window context menu is now displayed correctly.<br>
+    [EW22604]
+  </p>
+</li>
+ 
+</ul>
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>
+    <b>Support for Texas Instruments XDS100v2</b><br>
+    The Texas Instruments debug probe XDS100v2 is now supported for TI TMS570 devices.
+    To use XDS100v2, select <b>TI XDS100</b> in the <b>Driver</b> drop-down list on the 
+    Debugger&gt;Setup options page. The XDS100v2 debug driver requires the Texas Instruments
+    emulator package to be installed. To install the emulator package, start 
+    <code>...\arm\drivers\ti-xds\ti_emupack_setup.exe</code> and follow the installation 
+    procedure. Make sure to install the emulator package in the suggested default location. 
+    This will allow the debugger to find the emulator package automatically. If for some
+    reason the package is installed in a custom location, the option
+    <code>--xds_rootdir=<em>path</em></code> must be specified on the options page
+    Debugger&gt;Extra Options.
+  </p></li>
+  
+  <li><p>
+    <b>Support for ST ST-LINK version 2 with SWO</b> (new in 6.20.4)<br>
+    The ST debug probe ST-LINK version 2 is now supported.
+    The Serial Wire Output (SWO) functionallity is also implemented, enabling features such as
+    function profiling and interrupt tracing for all STM32 devices.
+  </p></li>
+  
+</ul> 
+ 
+  <h4>V6.20 2011-04-29</h4>
+  <b>Program corrections</b>
+  <ul>
+
+<li>
+  <p>
+    Variables of array, struct, union or class type placed at an absolute address are now displayed
+    properly in the Watch window family.<br/>
+    [EW19987]
+  </p>
+</li>
+
+<li>
+  <p>
+    The J-Link driver instruction set simulation for 32-bit Thumb instructions on Cortex-A/R targets
+    now works correctly.<br>
+    [EW22179]
+  </p>
+</li>
+
+<li>
+  <p>
+    The J-Link flash breakpoints now work properly on LPC ARM7 devices also when
+    the mapping is changed via the <code>MEMMAP</code> register in the target application.<br>
+    [EW22187]
+  </p>
+</li>
+
+<li>
+  <p>
+    Correct values are now displayed for the <code>LR</code> and <code>PSP</code> registers in the
+    Register window.<br/>
+    [EW22279]
+  </p>
+</li>
+
+<li>
+  <p>
+    The simulator now resets the pending bit of the <code>PendSV</code> exception when that exception
+    is executed. It also simulates exception priorities in a better way. Changing exception
+    priorities dynamically and using priority grouping is now supported.<br/>
+    [EW22301]
+  </p>
+</li>
+
+<li>
+  <p>
+    The 32-bit thumb instruction <code>LDR(literal)</code> is now decoded and simulated correctly for
+    all combinations of operands.<br/>
+    [EW22360]
+  </p>
+</li>
+
+<li>
+  <p>
+    <code>LSRS R0,R0,#32</code> is now simulated correctly.<br/>
+    [EW22371]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.20.2:<br>
+    J-Link: The C-SPY macro <code>__setCodeBreak</code> now works as expected.<br>
+    [EW22410]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.20.4:<br/>
+    Now programming flash works correctly with macro <code>execUserFlashInit()</code>.<br/>
+    [EW22473]
+  </p>
+</li>
+  </ul>
+
+  <b>New features</b>
+  <ul>
+          <li><p>None.</p></li>
+  </ul>
+
+
+  <h4>V6.10 2010-11-04</h4>
+  <b>Program corrections</b>
+  <ul>
+
+<li>
+  <p>
+    J-Link: The debugger no longer tries to obtain data from ETM when ETM isn't available.<br>
+    [EW21816]
+  </p>
+</li>
+
+<li>
+  <p>
+    There was a redundant warning when the flash loader checked for the presence of arguments.
+    This warning is no longer issued.<br/>
+    [EW21861]
+  </p>
+</li>
+
+<li>
+  <p>
+    Namespaces could not be used when the IAR C-SPY Debugger resolved names. This has been corrected.<br/>
+    [EW21868]
+  </p>
+</li>
+
+<li>
+  <p>
+    A variable declared in an assembly file could be given an incorrect address when displayed in a
+    Watch window. This has been corrected.<br/>
+    [EW21873]
+  </p>
+</li>
+
+<li>
+  <p>
+    The embOS and PowerPac RTOS awareness plugins did not display the Settings and About dialog
+    boxes correctly on Windows7.<br/>
+    [EW21901]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: It is now possible to debug on LPC 2378 using a J-Link Ultra.<br>
+    [EW21921]
+  </p>
+</li>
+
+<li>
+  <p>
+    Setting up a Trace/SWO port now leaves other bits in the SFR (e.g. <code>DBGMCU_CR</code>)
+    untouched.<br/>
+    [EW21970]
+  </p>
+</li>
+
+<li>
+  <p>
+    ST-Link: The <code>__hwReset</code> macro has been implemented in the ST-LINK driver.<br/>
+    [EW21995]
+  </p>
+</li>
+
+<li>
+  <p>
+    The last index in a trace is now included when saved to file.<br/>
+    [EW22012]
+  </p>
+</li>
+
+<li>
+  <p>
+    C-SPY macro <code>__setLogBreak()</code> is now recognized by all relevant debugger drivers.<br/>
+    [EW22030]
+  </p>
+</li>
+
+<li>
+  <p>
+    Stepping and setting breakpoints now take <code>#line</code> directives into account.<br/>
+    [EW22044]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.2:<br/>
+    ST-Link: It is now possible to open the Breakpoints window when using the ST-LINK driver.<br/>
+    [EW22087]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.2:<br>
+    J-Link: For some JTAG or target errors the debugger could hang forever waiting on execution to stop.
+    It is now possible to choose to abort the debug session or reset and try again to get the
+    control back.<br>
+    [EW22096]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.2:<br/>
+    The uCOS-II plugin now save settings in the registry subtree <code>HKEY_CURRENT_USER</code>
+    instead of <code>HKEY_LOCAL_MACHINE</code>.<br/>
+    [EW22109]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.2:<br>
+    J-Link: In some cases, when using trace-based features, executing an application in the debugger
+    over a long time no longer results in a Runtime Error! message and an abrupt IAR Embedded
+    Workbench termination.<br>
+    [EW22122]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.2:<br/>
+    When displaying the <code>CP15</code> register <code>CPACR</code> in the Register window,
+    the values for the individual bits are now correctly displayed.<br/>
+    [EW22128]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.2:<br/>
+    The IDE no longer crashes if the Message Queues window of the ThreadX plugin contains a lot
+    of messages in a single queue.<br/>
+    [EW22142]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.3:<br/>
+    Type definitions containing pointers to functions no longer produces incorrect debug information
+    that led to unexpected IAR Embedded Workbench termination when the debugger was started.<br/>
+    [EW22176]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 6.10.5:<br>
+    J-Link: The semihosting for ARM7 and ARM9 no longer fails if the  __vector symbol is located to an address different from 0.<br>
+    [EW22242]
+  </p>
+</li>
+  </ul>
+
+  <b>New features</b>
+  <ul>
+
+  <li><p>
+    <b>Memory region blacklist</b> (new in 6.10.2)<br/>
+    The device description file can optionally specify valid memory regions for a device.
+    User access outside valid regions will be blocked.
+  </p></li>
+
+  <li><p>
+    <b>New context menu entry in editor while debugging with trace</b><br/>
+    If Trace is available in a driver, a new context menu item <b>Find in Trace</b> will 
+    appear in the editor context menu (when the debugger is running). If you click in 
+    source code that corresponds to code in the target, and the trace window is not 
+    empty, the menu item will be enabled. If you select it, it will directly search 
+    the trace window for occurrences of the given trace data and report the result 
+    in the standard Find in Trace window. 
+  </p></li>
+
+  <li><p>
+    <b>Navigating to code from Timeline window and related windows</b><br/>
+    Existing functionality: Double-clicking in the Timeline window (when it has something
+    to show, of course) will open an editor window with the insertion point at the corresponding
+    source code location, if any. This also happens when double-clicking in some other related
+    windows, such as the Data Log or Interrupt Log windows.<br/>
+    New functionality for the same situation: If the disassembly window is already open,
+    its insertion point will also be positioned at the proper location. If the desired code location has no
+    corresponding source code (and the code thus cannot be shown in an editor window) the
+    code will only be shown in the disassembly window, and this window will then be opened
+    if necessary. 
+  </p></li>
+
+  <li><p>
+    <b>The power log system will show if a log has been produced during processor 'idle' mode</b><br/>
+    The Power Log window, the PowerStripe tooltip, and the system saving power logs to a file
+    will all be displaying the word 'idle' as the PC value if the target has signalled that the
+    log is generated during idle mode. 
+  </p></li>
+  </ul>
+
+  <h4>V5.50 2010-04-21 </h4>
+  <b>Program corrections</b>
+  <ul>
+  <li>
+    <p>
+      JTAG: The Macraigor Wiggler debugger now works with Sharp LH79524.<br>
+      [EW19382]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      J-Link: There was an inconsistency between the J-Link control panel and the C-SPY debugger
+      when showing information about the actual breakpoint type used on target.<br>
+      [EW21604]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      J-Link: The error message when setting a breakpoint fails was not informative enough.<br>
+      [EW21605]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.5:<br>
+      J-Link: Problems related to the proper execution and mapping of the on-chip bootloader
+      on NXP LPC11xx and LPC13xx devices have been corrected.<br>
+      [EW21769]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.5:<br>
+      J-Link: Access to specific memory areas no longer results in the fatal error message "Failed to prepare indirect memory access, no RAM area configured!".<br>
+      [EW21801]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.5:<br/>
+      The CMX plugin module now updates the task window when used with J-Link and Cortex-M.<br/>
+      [EW21819]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.5:<br>
+      J-Link: In some cases where a fatal error appear, the debugger no longer ends with a crash.<br>
+      [EW21827]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.5:<br>
+      TI Stellaris: Starting execution from a breakpoint no longer failes when there is a breakpoint
+      also on the next instruction. This earlier resulted with the error message
+      "Unable to start execution 0x00000004"<br>
+      [EW21835]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.6:<br/>
+      When returning from an exception routine executing in ARM to Thumb state, the return <code>pc</code>
+      value was sometimes incorrect in the simulator.<br/>
+      [EW21908]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.6:<br/>
+      The simulation of the instructions <code>QADD</code>, <code>QDADD</code> and <code>QDSUB</code> no longer
+      produces incorrect result for some input values.<br/>
+      [EW21971]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.6:<br/>
+      The debugger no longer terminates with a crasch when the trace-based profiling is
+      activated while the Trace window is closed.<br/>
+      [EW21919]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.6:<br/>
+      The <code>UNPRIV</code> bit in the <code>CONTROL</code> register is now reset correctly in the simulator.
+      This means that the simulator no longer starts in unprivileged mode for Cortex-M3 and Cortex-M4 devices.<br/>
+      [EW21982]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 5.50.6:<br>
+      TI Stellaris: Implemented the special reset sequence needed by TI Stellaris Tempest/Firestorm devices.<br>
+      [EWARM-973]
+    </p>
+  </li>
+  <li>
+    <p>
+      In EWARM 5.50.6:<br/>
+      ST-Link: Fixed problem with ST-LINK reset behaviour.<br/>
+      [EWARM-980]
+    </p>
+  </li>
+
+  </ul>
+
+  <b>New features</b>
+  <ul>
+  <li>
+    The Function Profiler window can now optionally use a flat sampling method when the input is ETM trace.
+    This will give accurate profiling even in situations where the debugger fails to build
+    a correct call chain, for example when the application uses a RTOS.
+  </li>
+  </ul>
+
+  <h4>V5.41 2009-12-14 </h4>
+  <b>Program corrections</b>
+  <ul>
+    <li>
+      <p>
+        The <code>LDREX</code> and <code>STREX</code> instructions are no longer missing in the simulator for Cortex-M3.<br/>
+        [EW19814]
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Dragging an expression containing a dereferenced function pointer onto the Memory window no longer causes the debugger to crash.<br/>
+        [EW21390]
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Editing a Trace Starting, Stopping or Filter point, set on a source line, no longer results in an error message.<br/>
+        [EW21393]
+      </p>
+    </li>
+
+    <li>
+      <p>
+        The CMX RTOS plugin no longer fails if some symbols, for example "queue", are missing in the target project.<br/>
+        [EW21437]
+      </p>
+    </li>
+
+    <li>
+      <p>
+        In EWARM 5.41.2:<br/>
+        When simulating the <code>RFE</code> instructon, bits are no longer copied incorrectly from memory to the <code>CPSR</code> register.<br/>
+        [EW21580]
+      </p>
+    </li>
+
+    <li>
+      <p>
+        In EWARM 5.41.2:<br/>
+        Code size limitation control in C-SPY no longer includes constant data or data initializers.<br/>
+        [EW21591]
+      </p>
+    </li>
+  </ul>
+
+  <b>New features</b>
+  <ul>
+    <li>
+        <p><b>New C-SPY macro function</b><br/>
+         <code>__targetDebuggerVersion()</code> returns the version of the debugger.
+         This makes it possible to write debugger macro scripts that adapt to different versions of the debugger.
+        </p>
+      </li>
+  </ul>
+  
+  
+  <h4>V5.40 2009-07-10 </h4>
+  
+  <b>New features</b>
+  
+  <ul>
+  <li>
+    <p>
+      Interrupt definitions in <code>ddf</code> files is available in the interrupt
+      simulation setup dialogs for Cortex-M devices.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      These new features have been added to cspybat:
+      <ul>
+        <li>code coverage</li>
+        <li>download only mode</li> 
+        <li>timeout option</li>
+      </ul>
+    </p>
+  </li>
+
+  <li>
+    <p>
+      A new C-SPY macro <code>__delay(milliseconds)</code>.
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      J-Trace for Cortex-M3 with triggering and filtering conditions.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      J-Link: Data breakpoints with value match condition for ARM7, ARM9 and Cortex-M
+    </p>
+  </li>
+
+  <li>
+    <p>
+      J-Link: 64-bits memory accesses.
+    </p>
+  </li>
+
+  <li>
+    <p>
+    GDB Server: New C-SPY macro for sending commands directly to the GDB server:<br>
+    <code>__gdbserver_exec_command("command string")</code>
+    </p>
+  </li>
+
+  <li>
+    <p>
+    TI Stellaris: Supports both SWD and JTAG.
+    </p>
+  </li>
+  </ul>
+  
+  
+  <b>Program corrections</b>
+  <ul>
+  
+<li>
+  <p>
+    The debugger could end up in infinite loops while unwinding call stack.<br/>
+    [EW20280]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: Slow download on ARM11 when using J-Link. This has been fixed but requires a J-Link v8 or later to get the higher speed.<br>
+    [EW20318]
+  </p>
+</li>
+
+<li>
+  <p>
+    Debug information for stepping was off by one line when an include file was completely empty.<br/>
+    [EW20541]
+  </p>
+</li>
+
+<li>
+  <p>
+    The C-SPY macro <code>__gdbserver_exec_command</code> was missing.<br/>
+    [EW20857]
+  </p>
+</li>
+
+<li>
+  <p>
+  It is now possible to simulate exceptions with exception numbers below 16 for Cortex-M cores.<br/>
+  [EW20866,EW20867,EW20931]
+  </p>
+</li>
+
+<li>
+  <p>The possibility to edit interrupt descriptions has been disabled for cores
+    that has only <code>IRQ</code> and <code>FIQ</code> interrupts. This will prevent confusing error
+    messages from appearing.<br/>
+    [EW20868]
+  </p>
+</li>
+
+<li>
+  <p>
+    A rare problem with downloading files in the Motorola S37 format into the wrong memory location has been corrected.<br/>
+    [EW20964]
+  </p>
+</li>
+
+<li>
+  <p>
+    J-Link: Hardware reset during execution could lead C-SPY to believe execution had stopped.<br>
+    [EW21106]
+  </p>
+</li>
+
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    Using the <code>--drv_vector_table_base</code> option no longer causes the flash loader to fail.<br/>
+    [EW21171]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    The Function Profiler now shows correct values.<br/>
+    The disassembly in the trace window is now correct for Cortex-M.<br/>
+    [EW21187]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    ST-Link: The disassembly window now display disassembler when running the ST-LINK driver.<br/>
+    [EW21198]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    The source file paths retrieved from the externally built ELF/DWARF object file are now correctly interpreted by the debugger.<br/>
+    [EW21223]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    Line number information in the debugger is now accurate. Highlighting and breakpoint setting now works correctly.<br/>
+    [EW21268]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    Downloading to flash memory no longer causes the IDE to become unresponsive.<br/>
+    [EW21297]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    Stepping in a complex C++ program no longer causes the displayed source code location not to reflect the current program counter.<br/>
+    [EW21300]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br/>
+    The CMX plugin no longer fails to detect the CMX RTOS when the RTOS is compiled in thumb mode.<br/>
+    [EW21311]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br>
+    J-Link: SWO trace data is now collected during single step.<br>
+    [EW21339]
+  </p>
+</li>
+<li>
+  <p>
+    In EWARM 5.40.4:<br>
+    J-Link: Running C-SPY J-Link driver in batch mode now works when connected to an older revision of the STM32F10x device.<br>
+    [EWARM-685]
+  </p>
+</li>
+  </ul>
+
+<h4>5.30 2009-01-23</h4>
+
+<b>Program corrections</b>
+
+<ul>
+  <li>
+    <p>
+      The Auto window is available in this release.
+    </p>
+  </li>
+  <li>
+    <p>
+      The CMX plugin module uses one breakpoint instead of two during its initialization.
+      This reduces the risk of plugin failure due to lack of hardware breakpoints.<br/>
+      [EW19139]
+    </p>
+  </li>
+  <li>
+    <p>
+      The C-SPY macro<code> __openFile ( input_file, "r+b" ) </code>could earlier fail if
+      the input file had the read-only attribute set. This has been corrected.<br/>
+      [EW20268]
+    </p>
+  </li>
+  <li>
+    <p>
+      The result of some floating-point expressions was incorrectly displayed in the
+      Watch window.<br/>
+      [EW20303]
+    </p>
+  </li>
+  <li>
+    <p>
+      With the Luminary FTDI driver, data breakpoints could only be used right after first download.
+      For any subsequent download, data breakpoints were disabled and could not be enabled.<br/>
+      [EW20360]
+    </p>
+  </li>
+  <li>
+    <p>
+      J-Link: Vector catch functionallity did not work properly and in some cases this could
+      lead to the fact that two breakpoints were set at same address.<br>
+      [EW20480]
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>CPSID</code> and <code>CPSIE</code> were incorrectly exchanged when disassembling
+      in ARM mode. This has been corrected.<br/>
+      [EW20521]
+    </p>
+  </li>
+  <li>
+    <p>
+      The <code>MCR</code> instruction was incorrectly disassembled as <code>MCR2.</code>
+      This has been corrected.<br/>
+      [EW20523]
+    </p>
+  </li>
+  <li>
+    <p>
+      The flash loader based on a previous flash loader framework could not properly be
+      invoked from<code> cspybat.exe</code>. This has been corrected.<br/>
+      [EW20529]
+    </p>
+  </li>
+  <li>
+    <p>
+      J-Link: The diagnostic message "Debugger problem discovered: The debugger has set two
+      breakpoints at the same address 0x00000008." was incorrectly displayed when
+      using vector catch on SWI and having semihosting enabled. This has been corrected.<br>
+      [EW20604]
+    </p>
+  </li>
+  <li>
+    <p>
+      The debugger did not support the semihosting command <code>SYS_FLEN</code> which caused
+      the C library functions <code>fseek()</code> and <code>ftell()</code> to fail. This has been corrected.<br/>
+      [EW20680]
+    </p>
+  </li>
+  <li>
+    <p>
+      When the Simulator attempted to execute a VFP instruction with VFP disabled (EN in FPSCR),
+      it correctly took the UNDEF interrupt (offset 0x4) but the LR was off by 2 bytes - not 4 bytes
+      as it should. This has been corrected.<br/>
+      [EWARM-169]
+    </p>
+  </li>
+</ul>
+
+
+<h4>5.20 2008-07-11</h4>
+
+<b>Program corrections</b>
+<ul>
+  <li><p>
+    If an external editor was used in the IDE, it was also used in the debugger.
+    This could make it impossible to set breakpoints in the source code.
+    Now the debugger always uses the built-in editor.<br/>
+    [EW19591]
+  </p></li>
+
+  <li><p>
+   If the simulator executed a tight loop containing illegal instructions, it
+   would flood the debug log window with error messages and the IDE would
+   hang. This has been corrected.<br/>
+   [EW19815]
+  </p></li>
+
+  <li><p>
+   The debugger can now read all RealView 3.1 generated ELF/DWARF files.<br/>
+   [EW19868]
+  </p></li>
+
+  <li>
+    <p>
+   J-Link: For Cortex-M3 the PRIMASK register was always displayed as "0" in the register window.<br>
+   [EW19974]
+    </p>
+  </li>
+
+  <li><p>
+   Examining a function pointer that is a class member, either with a
+   tooltip or by adding it to the watch window, no longer makes the debugger crasch.<br/>
+   [EW20034]
+  </p></li>
+
+  <li><p>
+   A multiple failure to open a file using the<code> fopen() </code>library function could
+   use up all available file handles. This no longer occurs.<br/>
+   [EW20102]
+  </p></li>
+
+  <li>
+    <p>
+   J-Link, RDI, JTAG: The disassembly window made accesses to the VICAddress register etc. (0xFFFFFF00 - 0xFFFFFFFF )
+   when displaying the interrupt vectors at 0x00-0x20. This led to that no IRQs were triggered any more.<br>
+   [EW20160]
+    </p>
+  </li>
+
+  <li><p>
+   For Cortex-M cores, the 16 bit MOV(register) instruction is now simulated
+   correctly when PC is the destination register.<br/>
+   [EW20200]
+  </p></li>
+
+  <li>
+    <p>
+   J-Link: When using the restore breakpoints feature and ARM11, the debugger could set two breakpoints at the same address.<br>
+   [EW20221]
+    </p>
+  </li>
+  
+  <li><p>
+   J-Link, JTAG, TI Stellaris: For Cortex-M, the hardware breakpoint was not removed when it was cleared.
+   This happened when there was only one breakpoint set.<br>
+   [EW20251]
+  </p></li>
+  
+  <li><p>
+    GDB Server: Improvements to support the GDB server protocol more generically.
+  </li>
+
+</ul>
+
+<b>New features</b>
+<ul>
+  <li><b>Debugger startup</b><br/>
+     You can now start the debugger with or without downloading code,
+     using two new buttons on the toolbar, or two new Project menu commands.
+     There are also two new corresponding ways to restart the debugger during the debug session.
+  </li>
+  <p>
+  <li><b>Loading multiple ELF images</b><br/>
+    The debugger can load multiple ELF images using the C-SPY macro <code>__loadModule()</code>.
+  </li>
+  <p>
+  <li><b>Symbols window</b><br/>
+     The Symbols window displays the complete list of symbols used within the project.
+     In contrast to the Source Browser, the list of symbols is not based
+     on project source files but is retrieved from the debug information.
+     This means, that it also lists symbols from libraries that you do not have the source for.
+     It also lists assembler labels, which are not conveniently visible in any other window. 
+  </li>
+  <p>
+  <li><b>New flash loader mechanism</b><br/>
+     A new flash loader mechanism is available that adds increased speed and flexibility.
+  </li>
+  <li>
+    <p>
+     J-Link: For Cortex-M, support for Trace and Terminal I/O (output) via SWO.
+    </p>
+  </li>
+  <li>
+    <p>
+     J-Link: For ARM7 and ARM9, support for Terminal I/O (output) via DCC.
+    </p>
+  </li>
+  <li>
+    <p>
+     J-Link: Support for the flash download and flash breakpoints features offered by J-Link (optional features).
+     For more information see the <a href="../jlinkarm.pdf">J-Link / J-Trace User Guide</a>
+    </p>
+  </li>
+  <li>
+    <p>
+     J-Link: New reset methods added.
+    </p>
+  </li>
+</ul>
+
+<h4>5.11 2007-11-28</h4>
+
+<b>Program corrections</b>
+<ul>
+  <li><p>
+    The macro function<code> __openFile() </code>now takes all kind of parameters, not only <code>"r"</code>
+    or <code>"w"</code>. In particular, it is possible to use the <code>"b"</code> parameter, to open the
+    file in binary mode.<br/>
+    [EW17017, EW19034]
+  </p></li>
+  <li><p>
+    <code>CPSID</code> and <code>CPSIE</code> were exchanged in disassembly for Cortex-M.<br/>
+    [EW18739]
+  </p></li>
+  <li>
+    <p>
+   TI Stellaris: For Cortex-M3, sometimes the debugger incorrectly left hardware breakpoints enabled during step which made the 
+   target seem to be halted on the current address.<br>
+   [EW18848]
+    </p>
+  </li>
+  <li>
+    <p>
+   J-Link: Single stepping over a breakpoint on Cortex-M3 failed and the target was halted on the breakpoint address.<br>
+   [EW18892]
+    </p>
+  </li>
+  <li>
+    <p>
+   J-Link, JTAG: When using the <b>Attach to program</b> option and having the stack plugin enabled, the debugger crashed when ending a debug session.<br>
+   [EW19229]
+    </p>
+  </li>
+  <li><p>
+    When simulating a core with no system coprocessor (CP15) support, a CP15
+    instruction could crash the simulator.<br/>
+    [EW19244]
+  </p></li>
+  <li><p>
+    When several compilation units used the same type, a problem with debug information
+    could earlier cause some of the instances of that type to be incorrectly
+    handled by C-SPY. This could cause syntax errors in C-SPY expressions
+    containing the type and also make it impossible to expand its members.<br/>
+    [EW19338, EW19340]
+  </p></li>
+  <li><p>
+    The simulator did not simulate the <code>SVC</code> instruction correctly for Cortex-M
+    cores.<br/>
+    [EW19484]
+  </p></li>
+  <li><p>
+    Corrupted semihosting data structures could cause the
+    debugger to crash.<br/>
+    [EW19507]
+  </p></li>
+  <li><p>
+     In some cases, references were incorrectly shown in the QuickWatch, Watch
+     and Locals windows. This has been corrected.<br/>
+    [EW19542]
+  </p></li>
+  <li><p>
+    Setting a breakpoint in a large switch statement could earlier fail.<br/>
+    [EW19553,19611]
+  </p></li>
+  <li><p>
+    When debugging nested switch statement in ARM mode, the current source code
+    location displayed could be incorrect. This made it look like the wrong case
+    statement was executed.<br/>
+    [EW19681]
+  </p></li>
+  <li><p>
+   Angel, JTAG, RDI: Downloading very small applications could earlier lead to a crash.
+  </li>
+  <li><p>
+    JTAG scan chain with multiple target option did not work properly.
+    </p>
+  </li>
+  <li><p>
+     GDB Server: Improved support for software breakpoints.
+  </li>
+
+</ul>
+
+<b>New features</b>
+<ul>
+  <li><p><b>
+    Support for the Cortex-M1 core.
+  </b></p></li>
+  <li><p>
+    RDI: Added support for Cortex-M3.
+  </li>
+  <li><p>
+     JTAG: Added support for ARM11 and Cortex-M3.
+  </li>
+  <li>
+    <p>
+     J-Link: Support for ARM11.
+    </p>
+  </li>
+  <li>
+    <p>
+     J-Link: New reset methods added.
+    </p>
+  </li>
+  <li><p>
+    GDB Server, TI Stellaris: Data breakpoints. For more information refer to
+    <i>Part 6. C-SPY hardware debugger systems</i> in the <a href="../EWARM_DebuggingGuide.ENU.pdf">EWARM Debugging Guide</a>
+  </li>
+</ul>
+
+
+<h4>5.10 2007-07-02</h4>
+
+<b>Program corrections</b>
+<ul>
+  <li><p>
+    Cortex-M3 devices were earlier started in unprivileged mode in the simulator.<br/>
+   [EW18742]
+  </p></li>
+
+  <li>
+    <p>
+   J-Link: When using the CPU ARM7TDMI-S, some features that are only working on ARM9 were incorrectly available in the menus.
+    </p>
+  </li>
+
+  <li>
+    <p>
+   J-Link: Diagnostic messages sent from the J-Link driver during download were incorrectly treated as warnings.
+    </p>
+  </li>
+
+  <li>
+    <p>
+   J-Link: For Cortex-M3, the debugger sometimes left hardware breakpoints enabled when stepping which made the 
+   target seem to be halted on the current address.<br>
+   [EW18848]
+    </p>
+  </li>
+
+  <li><p>
+    The debugger used to crash for code where the base class is a template class.<br/>
+    [EW18999]
+  </p></li>
+
+  <li><p>
+    C-SPY no longer crashes if a C-SPY macro invoked by a breakpoint
+    deletes the very same breakpoint.<br/>
+    [EW19001]
+  </p></li>
+
+  <li><p>
+    JTAG: Using the CPU ARM7TDMI-S resulted in an error message "Invalid Register Code" 
+    when starting execution.<br>
+    [EW19160]
+  </li>
+  
+  <li><p>
+    C-SPY is now able to download a large image to the target.<br/>
+    [EW19855]
+  </p></li>
+  
+  <li><p>
+    TI Stellaris: Cortex-M3 was not supported in 5.10.
+  </p></li>
+</ul>
+
+<b>New features</b>
+<ul>
+  <li><p>
+    J-Link, JTAG, RDI: Data breakpoints are supported. For more information, refer to
+    <i>Part 6. C-SPY hardware debugger systems</i> in the <a href="../EWARM_DebuggingGuide.ENU.pdf">EWARM Debugging Guide</a>
+  </li>
+
+  <li><p>
+     J-Link: The debugger can now display trace data from the ETB (Embedded Trace Buffer)
+     available on some ARM devices. This is supported by both the J-Link and the J-Trace probe.
+    </p>
+  </li>
+
+  <li><p>
+   J-Link: Attach/detach to a running system without interrupting execution (nonintrusive debugging) is now supported.
+   </p>
+  </li>
+
+  <li><p>
+   J-Link: Breakpoints and memory can now be modified during execution.
+   Global/static variables can be displayed by the Live watch window during execution.
+   To enable these features on ARM7/ARM9, a DCC handler must repeatedly be
+   called by the application.
+   The DCC handler code can be found in <code>src\debugger\DCC</code>.
+   </p>
+  </li>
+
+  <li><p>
+   J-Link: Macros for accessing the co-processor CP15 have been added.
+   </p>
+  </li>
+
+  <li><p>
+   J-Link: Macro for JTAG TRST<code> __jtagResetTRST() </code> has been added.
+    </p>
+  </li>
+  
+  <li><p>
+    GDB Server: First release.
+  </li>
+
+</ul>
+
+<h4>V4.41A 2006-12-08</h4>
+
+<b>Program corrections</b>
+<ul>
+  <li><p>
+    RDI: The IAR Embedded Workbench IDE does not report a non-existing RDI driver before a debug session has been started.<br>
+    [EW17236]
+  </p></li>
+  
+ <li>
+    <p>
+      J-Link: Some CPUs do not emit any trace information for certain 
+      instructions during single step due to a bug in the silicon.
+      The debugger did not handle this and an error occured when reading a trace buffer.<br>
+      [EW18388]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      J-Link: Trace buffer size setting were incorrectly not saved.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      J-Link: Information about program corrections in the low-level J-Link C-SPY
+      driver can be found in the <a href="../jlinkarmdll.html#pcorr">release notes
+      for J-Link ARM DLL</a>.
+    </p>
+  </li>
+
+  <li><p>Interrupt simulation was always incorrectly enabled after reload of a project.<br/>
+	 [EW18578]
+  </p></li>
+
+  <li><p>
+    TI Stellaris: Derivatives based on Rev C silicon are supported.
+  </p></li>
+   
+  <li><p>
+    TI Stellaris: There is USB driver support for both old and new evaluation boards.
+  </p></li>
+</ul>
+
+<b>New features</b>
+<ul>
+  <li><p>
+      <b>Exporting command line for cspybat</b><br/>
+      C-SPY now generates a file with helpful information that can be used for 
+      running the debugger from the command line using the cspybat utility. Every 
+      time the debugger is initialized (technically, it happens when a project 
+      is loaded and when terminating a debug session) a <code>bat</code> file is generated 
+      that can be used almost without modifications to start cspybat from the command 
+      line with the same settings as in the IDE.<p></p>
+
+      The file is generated as <code>$PROJ_DIR$\settings\projectname.cspy.bat</code>
+  </li>
+  
+  <li><p>
+  J-Link: Live watch window for variables and live access of memory.
+    </p>
+  </li>
+  
+  <li><p>
+  J-Link: Setting breakpoints during execution.
+    </p>
+  </li>
+  
+  <li><p>
+  J-Link: Possible to show trace timestamps. (J-Trace)
+    </p>
+  </li>
+  
+  <li><p>
+  J-Link: Code coverage (J-Trace)
+    </p>
+  </li>
+
+  <li><p>
+  J-Link: Command line option that performs <code>__jlinkExecCommand</code> macro calls at startup.
+    </p>
+  </li>
+
+  <li><p>
+  J-Link: Macros for direct JTAG access.
+    </p>
+  </li>
+
+  <li><p>
+      J-Link: Information about new features in the low-level J-Link C-SPY driver
+      can be found in the <a href="../jlinkarmdll.html#features">release notes for
+      J-Link ARM DLL</a>.
+    </p>
+  </li>
+  
+  <li><p>
+    ROM-monitor: Serial ports COM1-COM32 are now supported.
+  </p></li>
+
+  <li><p>
+    ROM-monitor: Breakpoint usage information is available from the ROM-monitor menu.
+  </li>
+  
+  <li><p>
+    Angel: Serial ports COM1-COM32 are now supported.
+  </li>
+  
+  <li><p>
+    Angel: Breakpoint usage information is available from the Angel menu.
+  </li>
+</ul>
+
+
+<h4>V4.40A 2006-05-18</h4>
+
+<b>Program corrections</b>
+<ul>
+  <li><p>The CMX plugin could crash the debugger if debug information generation was
+         disabled in project options.<br/>
+	 [EW17832]
+  </p>
+  </li>
+
+  <li><p>Debugger testing for read/write memory when setting breakpoints
+         interfered with the ST STR910 flash controller.<br/>
+         [EW17930]
+  </p>
+  </li>
+
+  <li><p>The C-SPY macro <code>__emulatorStatusCheckOnRead()</code> did not work correctly,
+         causing problems when debugging TI TMS470R1B1M.<br/>
+         [EW17992,EW18012]
+  </p>
+  </li>
+
+  <li><p>Some ThreadX views could crash the debugger when running in big endian
+         mode.<br/>
+         [EW18010]
+  </p>
+  </li>
+
+  <li><p>A row with a single newline in the debugger <b>Extra Options</b> dialog crashed
+         the debugger.<br/>
+         [EW18011]
+  </p>
+  </li>
+
+  <li><p>A syntax error message and a macro definition error message appeared
+         erroneously in the debug window under certain circumstances.<br/>
+	 [EW18069]
+  </p>
+  </li>
+</ul>
+
+<b>New features</b>
+<ul>
+  <li><p><b>Support for the Cortex-M series has been added</b></p></li>
+
+  <li><p>
+    TI Stellaris: First release.
+  </li>
+  
+  <li><p><b>Symbolic Memory window</b><br/>
+    A symbolic memory window has been added. It displays raw memory contents
+    annotated with any global symbols present.
+  </li>
+</ul>
+
+
+<h4>V4.31A 2006-02-03</h4>
+
+<b>Program corrections</b><p>
+
+<ul>
+  <li><p>
+    The Live watch window is currently only supported by the simulator,
+    and should not be active for other debugger drivers, like JTAG.<br/>
+    [EW15698]
+  </p></li>
+
+  <li><p>
+    <code>MSR</code> with an immediate operand was disassembled and simulated incorrectly for
+    some immediate values.<br/>
+    [EW17465]
+  </p></li>
+
+  <li><p>
+    The simulator could errorneously set the processor mode to system mode 
+    when running <code>SWI</code>, <code>LDM</code>, <code>STM</code> or <code>BKPT</code> instructions.<br/>
+    [EW17454]
+  </p></li>
+
+  <li><p>
+    Selecting hardware reset when using a flash loader should give one reset
+    before flashing and a second reset just before starting the application.
+    The second hardware reset was not performed.<br/>
+    [EW17777]
+  </p></li>
+  
+  <li><p>
+      J-Link: The cspybat.exe command line debug tool crashed when configured to use the J-Link driver.<br>
+      [EW17782]
+  </p></li>
+</ul>
+
+<b>New features</b><p>
+<ul>
+  <li><p><b>Stack window</b><br/>
+    To monitor the memory consumption and the integrity of the stack, a new Stack 
+    window has been added. It shows the stack contents as raw data, C/C++ 
+    variables, and function frames. It also shows current and maximum stack 
+    consumption graphically. Warnings can be issued when the stack exceeds a 
+    certain level or if the stack pointer points outside the stack memory.
+    </p>
+  </li>
+
+  <li><b>New breakpoint category - Log breakpoint</b><br/>
+    Log breakpoints make it easy to log messages whenever execution passes 
+    a certain code location without having to add any code to the 
+    target application. When a log breakpoint is triggered, it writes to the 
+    Debug Log window and then the application continues execution.<p></p>
+
+  <li><b>New way to toggle breakpoints</b><br/>
+    You can now&nbsp;set or clear a breakpoint 
+    by&nbsp;double-clicking in the left margin of the editor window; the breakpoint 
+    location is marked by a red X. If there is more than one possible breakpoint
+    location in the source line, the breakpoint is placed on the first location.<p></p>
+
+  <li><p>
+      J-Link: Added support for J-Trace with ETM trace.
+    </p>
+  </li>
+</ul>
+
+
+<h4>V4.30A 2005-06-23</h4>
+
+<b>Program corrections</b><p>
+
+<ul>
+  <li><p>
+    The Memory window now displays "--" for each individual memory unit that cannot
+    be read accessed; as opposed to the whole row.<br/>
+    [EW16446]
+  </p></li>
+
+  <li><p>
+    J-Link: In some cases, the debugger could fail to clear temporary
+    breakpoints set to control the execution of the flash loader.<br>
+    [EW16610, EW16699]
+  </p></li>
+
+  <li><p>
+    J-Link: The J-Link firmware did not work correctly with ARM946E-S and ARM926EJ-S.
+    The new J-Link driver will automatically update the firmware.<br>
+    [EW16638]
+  </p></li>
+
+  <li><p>
+    Setting data breakpoints in explicitly sized (8/16/32) memory crashed the
+    debugger.<br/>
+    [EW16756]
+  </p></li>
+
+  <li><p>
+    The CMX RTOS plugin could fail to be activated because it did not properly
+    detect the CMX operating system.<br/>
+    [EW16890]
+  </p></li>
+
+  <li><p>
+    The simulation of the <code>SMLAL</code> instruction was incorrect. Upon
+    entry to the instruction the content of the upper word <code>RdHi</code>
+    was lost (<code>RdHi</code> was set equal to <code>RdLo</code>).<br/>
+    [EW16902]
+  </p></li>
+
+  <li><p>
+    When disassembling in Thumb mode, labels were shown on a separate line,
+    with a preceeding blank line. When single-stepping, the blank line was
+    highlighted instead of the line with the current instruction.
+  </p></li>
+</ul>
+
+<h4>V4.20A 2005-01-10</h4>
+
+<b>Program corrections</b><p>
+  
+<ul>
+  <li><p>
+    The simulation of the VFP coprocessor could not be disabled by
+    clearing the <code>EN</code> bit in the <code>VFPEXC</code>.<br/>
+    [EW14654]
+  <p></li>
+
+  <li><p>
+    At certain conditions when debugging for big endian processors C-SPY
+    could crash or stop responding.<br/>
+    [EW15126]
+  <p></li>
+
+  <li><p>
+    The debugger disassembly wrongly switched to thumb mode 64 bytes after
+    an arm label if the code was followed further down by a thumb
+    label.<br/>
+    [EW15571]
+  <p></li>
+
+  <li><p>
+    The Analog Devices (ADUC702X) flash programming algorithm failed
+    if the binary image contained gaps.<br/>
+    [EW15780]
+  </p></li>
+
+  <li><p>
+    Setting breakpoints in C was not possible if the <code>PC</code> did not line
+    up with a statement boundary.<br/>
+    [EW15590]
+  </p></li>
+
+  <li><p>
+    The simulator incorrectly set the <code>Q</code>-flag when executing
+    <code>SMLAxy</code> or <code>SMLAWy</code> instructions even when no overflow
+    occured in the execution.<br/>
+    [EW15603]
+  </p></li>
+
+  <li><p>
+    The file <code>CMXTinyArmPlugin.ewplugin</code> contained an incorrect
+    path.<br/>
+    [EW15702]
+  </p></li>
+
+  <li><p>
+    Under certain circumstances, IAR Embedded Workbench could crash when
+    starting C-SPY and the CmxArmPlugin or the CMXTinyArmPlugin was
+    used.<br/>
+    [EW15703]
+  </p></li>
+
+  <li><p>
+    Annoying 'data coverage not supported' log message removed.<br/>
+    [EW15704]
+  </p></li>
+
+  <li><p>
+    If the flash loader operation failed and gave an error dialog box the
+    progress bar could be left open.<br/>
+    [EW16050]
+  </p></li>
+
+  <li><p>
+    If, during a simulation, execution reached unallocated memory, a new
+    memory block would be allocated and filled with zeros. Then the
+    execution would continue in this block, since 0x0 is a valid
+    instruction in both ARM and Thumb mode. The execution would continue,
+    potentially until the memory runs out on the host machine. This has
+    been fixed. Now the simulation stops and an error message is displayed
+    whenever the program reaches memory that has not been allocated. The
+    simulator allocates memory in 16 Kbyte blocks. If the error message
+    "Tried to execute instruction in unallocated memory space, address
+    <code>0xXXXXX000</code>" is displayed, the execution did go wrong in the 16
+    Kbyte block before <code>0xXXXXX000</code>. Then it continued until it
+    reached the 16 Kbyte border, at <code>0xXXXXX000</code>, where it
+    stopped.<br/>
+    [EW16085]
+  </p></li>
+
+  <li>
+    J-Link: Changing the Philips LPC212x EXTPOLAR register caused JTAG
+    disconnection.<br>
+    [EW16365]
+  </li>
+</ul>
+
+  <b>New features</b><p>
+<ul>
+  <li>
+    By using different memory zones, you can control the access width used
+    for reading and writing in, for example, the Memory window. For normal
+    memory, the default zone <code>Memory</code> can be used, but certain I/O
+    registers may require to be accessed as 8, 16, or 32 bits to give
+    correct results.
+  </li><p>
+
+  <li>
+    The debugger displays I/O register bit names for most supported
+    devices.
+  </li><p>
+
+</ul>
+
+<h4>V4.11A 2004-06-10</h4>
+<ul>
+
+  <li></p>
+    J-Link: Debugging with big endian byte order did not work.<br>
+    [EW15030]
+  </p></li>
+
+  <li><p>
+    J-Link: Combining the options <b>Suppress download</b> and <b>Verify
+    download</b> did not work. The combination of the options <b>Suppress
+    download</b> and <b>Verify download</b> should verify the target
+    content without downloading.
+  </p></li>
+
+  <li><p>
+    At certain conditions when debugging for big endian processors, C-SPY
+    could crash or stop responding.<br/>
+    [EW15126]
+  </p></li>
+
+  <li><p>
+    Incorrect simulation of the <code>SMULL</code> instruction.<br/>
+    [EW15191]
+  </p></li>
+
+  <li><p>
+    Wrong simulation of the instructions<br/>
+    <code>
+    SMLAW<y> (SMLAWB, SMLAWT)<br/>
+    SMLA<x><y> (SMLABB, SMLABT, SMLATB, SMLATT)<br/>
+    SMLAL<x><y> (SMLALBB, SMLALBT, SMLALTB, SMLALTT)<br/>
+    SMULW<y> (SMULWB, SMULWT)<br/>
+    </code>
+    [EW15463]
+  </p></li>
+
+  <li><p>
+    A debug information construct was wrongly handled by the debugger and
+    caused it to crash.<br/>
+    [EW15712]
+  </p></li>
+
+  <li><p>
+    The simulator always started at address zero regardless of the start address
+    specified by the program start label. The simulator now starts at the
+    program start label if it exists, if not it will start at address zero.
+  </p></li>
+
+  <li><p>
+    ROM-monitor: Memory window display of address areas generating a data abort
+    crashed the ROM monitor. The memory window now displays dashes
+    for data abort locations.
+  </p></li>
+  
+  <li><p>
+    ROM-monitor: The RS232 RTS and DTS signals are now held low to make it possible
+    to debug the IAR Philips kickstart card when the ISP and RST signals
+    are activated on the board (jumpers JP7 and JP8).
+  </p></li>
+  
+  <li><p>
+    Angel: Debugging with big endian byte order did not work when using the EPI
+    Jeeni JTAG interface.
+  </li>
+</ul>
+
+<h4>V4.10B 2004-03-09</h4>
+<ul>
+  <li><p>
+    J-Link: Flashing code larger than 8 Kbytes was erratic.
+  </p></li>
+  <li><p>
+    RDI: The <code>__setCodeBreak</code> C-SPY macro did not work on RDI devices.<br>
+    [EW14295]
+  </li>
+</ul>
+
+<h4>V4.10A 2004-02-21</h4>
+<ul>
+
+  <li><p>
+    Packed structs (<code>#pragma pack</code>) are not correctly displayed in
+    C-SPY.<br/>
+    [EW14151]
+  </p></li>
+
+  <li><p>
+    Executing a "Memory Fill" command for very large chunks of memory could take
+    a long time and occasionally lead to debugger crashes.<br/>
+    [EW14252]
+  </p></li>
+
+  <li><p>
+    The simulator responded with an illegal instruction error when
+    executing coprocessor instructions. The new behavior is to
+    silently ignore them unless it is recognized by the simulator,
+    for example the VFP.<br/>
+    [EW14489]
+  </p></li>
+
+  <li><p>
+    Long pathnames to projects could trigger a bug that forced
+    the driver to use big endian mode.<br/>
+    [EW14860]
+  </p></li>
+
+  <li><p>
+    Wrong simulation of <code>QDADD</code> and <code>QDSUB</code>.<br/>
+    [EW14884]
+  </p></li>
+
+</ul>
+
+
+<h4>V4.09 2003-12-15</h4>
+<ul>
+  <li>
+    J-Link: First release.
+  </li>
+</ul>
+
+
+<h4>V3.40B-P1 2003-10-06</h4>
+<ul>
+  <li><p>
+    Error in simulation of the VFP instructions <code>FMSC</code>,
+    <code>FNMAC</code> and <code>FNMSC</code>.<br/>
+    [EW14464]
+  </p></li>
+
+  <li><p>
+    VFP conversion of doubles to float could trash other VFP registers.<br/>
+    [EW14473]
+  </p></li>
+
+</ul>
+
+<h4>V3.40A 2003-07-03</h4>
+<ul>
+  <b>Program corrections</b><p>
+
+  <li>
+    Pressing the End key anywhere on the last line in the Memory window will
+    put the cursor to the end of the previous line. This also happens when
+    selecting memory.<br/>
+    [EW12542, EW12645, EW12649]
+  </li>
+  <p>
+  <li>
+    A problem where .ddf files containing lines longer than 1024 characters could not be
+    loaded has been fixed. The maximum line length is still fixed, but is now 16384 characters.<br/>
+    [EW13875]
+  </li>
+  <p>
+  <b>New features</b><p>
+  <li>
+    Support for the Vector Floating-point Architecture (VFP).
+  </li>
+  <p>
+  <li>
+    The simulator gives a warning in the log window if it detects an unaligned access.
+    This is because ARM processors do not support unaligned accesses to memory.
+  </li>
+
+</ul>
+
+<h4>V3.30A 2003-02-18</h4>
+
+<ul>
+  <li><p>
+    RDI: When the CPU ran in SYSTEM mode, C-SPY failed to access
+    <code>SPSR</code> and a fatal error (134) occurred.<br>
+    [EW13054]
+  </li>
+
+  <li><p>
+    Fixed problem: When executing in pipeline simulation mode the fatal error
+    "Unknown exception 9 in driver" occurred.<br/>
+    [EW13064, EW13065]</li>
+  </li>
+  
+  <li><p>
+    Angel: First release.
+  </li>
+</ul>
+
+<h4>
+V3.21A 2002-09-30</h4>
+
+<ul>
+  <li><p>
+    RDI: Big-endian could not be enabled when initializing the RDI driver
+    for BDI1000/2000.<br>
+    [EW12345]
+  </li>
+  
+  <li><p>
+  The <code>R0-R14</code>, <code>SPSR</code> registers were not properly synchronized with the <code>R0, R14, SPSR_&lt;mode></code>
+  registers when&nbsp; modifying one of these registers.
+  <br/>[EW12432]</li>
+
+  <li><p>
+  The <code>MSR</code> instruction was incorrectly simulated.
+  <br/>[EW12434]</li>
+
+  <li><p>
+    RDI: Entering a register name in the breakpoint dialog location field
+    caused an internal error.<br>
+    [EW12596]
+  </li>
+  <li><p>
+    RDI: Improved download speed.
+  </li>
+  <li><p>
+    RDI: Recognition of <code>MCRR</code>, <code>MRRC</code>, <code>BKPT</code>
+    instructions at single step done by the debugger.
+  </li>
+
+  <li><p>
+    The <code>LDM</code> instruction restoring the <code>PC</code> and the
+    <code>CPSR</code> masked bit 1 of the <code>PC</code> when switching to Thumb
+    mode.
+  </li>
+
+  <li><p>
+  When enabling pipeline mode, breakpoints are triggered when OP-fetch is done
+  which can cause the debugger to stop at an instruction that will not reach
+  the execution stage later on. You must have this in mind when setting
+  breakpoints when running in pipeline mode. In this release, the library
+  function <code>exit()</code> has been modified, and will not interfere with the application
+  anymore.
+  <br/>[EW12347]</li>
+
+  <li><p>
+    ROM-Monitor first release.
+  </li>
+
+</ul>
+
+
+
+
+<h4>
+V3.20A 2002-06-19</h4>
+
+<ul>
+  <li>
+    RDI: First release.
+  </li>
+
+  <li>
+    ARM instruction set version 5TE is now supported.
+  </li>
+
+  <li>
+    Additional disassembly comments to instructions with the
+    <code>[#xx,PC]</code> operand is now supported.
+  </li>
+
+  <li>
+  The registers <code>SPSR</code>, <code>R8_usr</code> to <code>R14_usr</code> are now
+  accessible through the Register window.
+  </li>
+
+  <li>
+  C-SPY could could give an error message about an illegal instruction for valid
+  code.
+  <br/>[EW12247]</li>
+
+  <li>
+  Reading <code>SPSR</code> does not take the current processor mode into
+  account, causing the wrong value to be read.
+  <br/>[EW12040]</li>
+  
+  <li>
+  When expanding a structure with bitfields, C-SPY crashed.
+  <br/>[EW11379]</li>
+
+  <li>
+  Terminal I/O input did only accept ASCII characters (0-127), now characters
+  0-255 are supported.
+  <br/>[EW11969]</li>
+
+</ul>
+
+<h4>
+V3.11A 2001-12-03</h4>
+
+<ul>
+<li>
+The Call Stack window could sometimes fail to show parameter values.
+<br/>[EW10086]</li>
+
+<li>
+Code coverage in Thumb mode did not work.</li>
+
+<li>
+Interrupt simulation did not work properly.</li>
+</ul>
+
+<h4>
+V3.10A 2001-10-02</h4>
+
+<ul>
+  <li>
+  Data breakpoints on character variables located on even addresses could
+  fail.
+  <br/>[EW10081]</li>
+
+  <li>
+  The C-SPY SFR window flagged some values as lost and no change of SFR value
+  was possible.
+  <br/>[EW10085]</li>
+
+  <li>
+  Entering pointers to structure members or array elements in the location
+  field of the edit breakpoint dialog caused a fatal C-SPY error.
+  <br/>[EW10293]</li>
+
+  <li>
+  The C-SPY simulator could mix up <code>ASR</code> and <code>LSR</code> in some
+  cases. For example:
+  <br/><code>ldr r4, [r1, r2, LSR #24]</code>
+  <br/>[EW10296]</li>
+
+  <li>
+  The C-SPY simulator did not handle the <code>UMLAL</code> instruction correctly.
+  <br/>[EW10298]</li>
+
+  <li>
+  The simulator did not handle the simulation of <code>LDMIA SP!,{...,PC}^</code>
+  correctly when returning from IRQ to SVC mode. Instead of incrementing
+  <code>SP_irq</code>, <code>SP_svc</code> was modified.
+  <br/>[ARMDTW0020]</li>
+
+  <li>
+  The first message printed in a program using <code>printf()</code> could be lost in
+  the terminal I/O window.
+  <br/>[ARMDTW0023]</li>
+
+  <li>
+  Doing a reset after program termination failed.
+  <br/>[ARMDTW0024]</li>
+
+  <li>
+  Enable pipeline mode. Select Low level - Memory Access Configuration from
+  the menu bar. In the dialog box, click Add. If the OK or Cancel button was clicked,
+   C-SPY crashed.
+  <br/>[ARMDTW0025]</li>
+
+  <li>
+  Single-step in assembler mode when debugging C code crashed C-SPY if
+  the Trace option on the Control menu was enabled.
+  <br/>[ARMDTW0026]</li>
+
+</ul>
+
+<h4>
+V2.10D 2001-06-29</h4>
+
+<ul>
+  <li>
+  The simulator does not consider the mode used when doing this instruction:
+  <code>MRS R3,SPSR</code>. It always read from <code>SPSR_SVR</code>. This is now
+  corrected.
+  <br/>[ARMDTW0010]</li>
+</ul>
+
+<h4>
+V2.10A 2001-02-21</h4>
+
+<ul>
+  <li>
+  Support for big-endian mode is implemented in this release. Big-endian
+  mode is selected with the command line option <code>-e</code>. The default mode is little-endian.</li>
+
+  <li>
+  Support for ARM9TDMI simulation is implemented. This affects the pipeline
+  simulation and the cycle counter. The ARM9 simulation mode is selected
+  with the command line option <code>-v1</code>. The default mode is ARM7 ( <code>-v0</code> ).</li>
+</ul>
+
+<h4>
+V1.30A 2000-09-08</h4>
+
+<ul>
+  <li>
+  Device definition file handling has been implemented in this release. Select
+  the appropriate ddf file in the C-SPY options dialog box in the Embedded Workbench.
+  It will then be possible to open the sfr window and access the sfrs defined
+  for the current chip. The currently available ddf files are installed in
+  the config directory. Corresponding include files (io*.h) are installed
+  in the inc directory.</li>
+</ul>
+
+<h4>
+V1.20A 2000-05-28</h4>
+
+<ul>
+  <li>
+  The name of this component has been changed from CWARM to CSARM.</li>
+
+  <li>
+  Selection of disassembly mode is implemented in this release. Select one
+  of the entries in the Low Level menu.
+
+  <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disassemble in Thumb mode
+  <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disassemble in ARM mode
+  <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disassemble in Current processor mode
+  <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disassemble in Auto mode
+  <br/>To refresh the display of the disassembled code after the mode is changed, you need
+  to scroll the window up and down far enough to get a refresh.</li>
+
+  <li>
+  The cycle-accurate simulation mode is implemented. To enter this mode from
+  start, select "Enable pipeline simulation" on the Simulator tab on the
+  C-SPY options page to start the simulation in cycle accurate mode.</li>
+
+  <li>
+  Clock Speed Register is implemented. Fill in the clock speed in Hz. C-SPY
+  will calculate the execution time in microseconds, and display it in the
+  Register window.</li>
+</ul>
+
+<h4>
+V1.10A 1999-12-30</h4>
+
+<ul>
+<li>
+First release.</li>
+</ul>
+
+    </div>
+  </body>
+</html>

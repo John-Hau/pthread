@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<!-- V171109 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Release notes for the embOS plug-in for IAR C-Spy Debugger</title>
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+body {
+  margin: 0;
+  background-color: #4F5157;
+  color: #3B3D3F;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+ font-size: 0.9rem  line-height: 1.5;
+  min-width: 400px;
+}
+.header{
+  background: #2C5B9C;
+  }
+.head {
+  color: #fff;
+  padding: 20px 30px;
+}
+.head h2 {
+  color: #fff;
+}
+.headh3 li, .head h3 a, .head a {
+  color: #fff;
+}
+.footer {
+  color: #4f5157;
+  background: #BFC3C6;
+  padding: 20px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+.footer h2 {
+  color: #bfc3c6;
+}
+.footer h3 li, .footer h3 a, .footer a {
+  color: #000;
+}
+
+.divider-global {
+  border-top: 2px solid #fff;
+  padding: 20px 30px;
+}
+h1 {
+  margin-bottom: 30px;
+  text-align: left;
+  font-size: 1.5em;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+h2 {
+  text-align: left;
+  font-size: 1.2em;
+  color: #002F5C;
+  text-decoration: underline;
+  display: inline-block;
+}
+h3 {
+  text-align: left;
+  font-size: 1.0em;
+}
+h3 li {
+  margin: 10px 0;
+}
+div.divider-global:nth-of-type(odd) {
+  background: #F2F2F2;
+}
+div.divider-global:nth-of-type(even) {
+  background: #F6F6F6;
+}
+.toolChain Table {
+  max-width: 1000px;
+}
+.toolChain Table th {
+  font-weight: 600;
+  text-align: left;
+  width: 12%;
+}
+#seggerLogo {
+  padding: 20px 30px;
+  display: inline-block;
+}
+.claim {
+  font-size: 20px;
+  display: inline-block;
+  color: #fff;
+  line-height: 115px;
+  vertical-align: top;
+}
+ @media screen and (max-width: 600px) {
+.claim {
+  display: none;
+}
+}
+ @media screen and (min-width: 600px) {
+.claim {
+  font-size: 200%;
+}
+}
+ @media screen and (min-width: 1024px) {
+.claim {
+  font-size: 300%;
+}
+}
+</style>
+</head>
+<body class="en" id="top">
+<main class="main-content" id="content" role="main">
+  <div class="header">
+    <div class="row">
+      <div id="seggerLogo"> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="150px" height="75px" viewBox="110 27.5 150 75" style="enable-background:new 110 27.5 150 75;" xml:space="preserve">
+        <style type="text/css">
+
+  .st0{fill:#FFFFFF;}
+  .st1{fill:#005CA8;}
+  .st2{fill:#010000;}
+
+</style>
+        <g>
+          <g>
+            <path class="st0" d="M258,96.1c0,2.6-2,4.7-4.4,4.7H115.9c-2.4,0-4.4-2.1-4.4-4.7V33.7c0-2.6,2-4.7,4.4-4.7h137.7
+      c2.4,0,4.4,2.1,4.4,4.7"></path>
+            <path class="st2" d="M253.7,102.3H115.9c-3.3,0-5.9-2.8-5.9-6.2V33.7c0-3.5,2.6-6.2,5.9-6.2h137.7c3.3,0,5.9,2.8,5.9,6.2v62.4
+      C259.6,99.5,256.9,102.3,253.7,102.3z M115.9,30.6c-1.6,0-2.8,1.4-2.8,3.1v62.4c0,1.7,1.3,3.1,2.8,3.1h137.7
+      c1.6,0,2.8-1.4,2.8-3.1V33.7c0-1.7-1.3-3.1-2.8-3.1H115.9z"></path>
+          </g>
+          <polygon class="st1" points="117.8,52.4 127.1,64.9 117.8,77.3   "></polygon>
+          <g>
+            <path class="st1" d="M131.6,41.3l15.6,20.3v0.1c0.4,0.5,1,1,1.7,1h99.7c1.2,0,2.2-1.1,2.2-2.3c0-1.2-1-2.3-2.2-2.3H150l-14.9-19.4
+      l0,0c-0.4-0.5-1-0.9-1.7-0.9c-1.2,0-2.2,1-2.2,2.2C131.2,40.4,131.4,40.9,131.6,41.3L131.6,41.3z"></path>
+            <path class="st1" d="M140.4,66.3c0.3-0.4,0.5-0.9,0.5-1.4c0-0.5-0.2-1-0.5-1.4l-18.6-24.9l0,0c-0.4-0.5-1-0.9-1.7-0.9
+      c-1.2,0-2.2,1-2.2,2.2c0,0.5,0.2,1,0.5,1.4l17.6,23.5l-17.7,23.5c-0.3,0.4-0.5,0.9-0.5,1.4c0,1.2,1,2.2,2.2,2.2
+      c0.7,0,1.3-0.3,1.7-0.9l0,0L140.4,66.3z"></path>
+            <path class="st1" d="M248.7,67.2h-99.8c-0.7,0-1.3,0.4-1.7,1v0.1l-15.6,20.3l0,0c-0.3,0.3-0.5,0.8-0.5,1.3c0,1.2,1,2.2,2.2,2.2
+      c0.7,0,1.3-0.3,1.7-0.9v0.1l15-19.4h98.7c1.2,0,2.2-1.1,2.2-2.3S249.9,67.2,248.7,67.2z"></path>
+          </g>
+          <path class="st2" d="M163,80.7c0,0.4-0.1,0.7-0.4,1c-0.3,0.2-0.7,0.3-1.2,0.3c-0.6,0-1.2-0.3-1.8-1c-0.2-0.2-0.3-0.3-0.3-0.3
+    c-0.3-0.3-0.7-0.5-1.2-0.7c-0.5-0.1-1-0.2-1.7-0.2c-0.9,0-1.6,0.2-2.1,0.5c-0.5,0.3-0.7,0.7-0.7,1.3c0,0.7,1,1.3,2.9,1.7
+    c0.5,0.1,0.9,0.2,1.1,0.2c1.2,0.2,2.1,0.5,2.7,0.6s1,0.3,1.5,0.5c0.7,0.3,1.2,0.8,1.6,1.3c0.3,0.6,0.5,1.2,0.5,2
+    c0,1.4-0.6,2.6-1.8,3.4c-1.2,0.9-2.8,1.3-4.9,1.3c-1.2,0-2.1-0.1-2.9-0.3c-0.8-0.2-1.6-0.5-2.4-1c-0.5-0.3-0.9-0.7-1.2-1.2
+    s-0.5-0.9-0.5-1.3c0-0.4,0.1-0.7,0.4-1c0.3-0.3,0.7-0.4,1.2-0.4c0.6,0,1.2,0.3,1.7,1c0.2,0.3,0.3,0.5,0.5,0.6
+    c0.3,0.3,0.7,0.6,1.3,0.8c0.5,0.2,1.1,0.2,1.8,0.2c1.1,0,1.9-0.2,2.5-0.5c0.6-0.3,0.9-0.8,0.9-1.4c0-0.9-1.4-1.6-4.3-2.1
+    c-0.1,0-0.2-0.1-0.2-0.1c-2.2-0.4-3.7-1-4.5-1.6c-0.8-0.6-1.2-1.6-1.2-2.8c0-1.4,0.6-2.5,1.7-3.2c1.1-0.7,2.8-1.2,4.8-1.2
+    c1,0,1.8,0.1,2.6,0.3c0.7,0.2,1.5,0.5,2.1,0.9c0.5,0.3,0.9,0.6,1.2,1C162.8,79.9,163,80.3,163,80.7z"></path>
+          <path class="st2" d="M177.8,89.6c0.6,0,1.1,0.1,1.4,0.3c0.3,0.2,0.5,0.6,0.5,1s-0.2,0.7-0.5,1c-0.3,0.2-0.8,0.3-1.4,0.3h-9
+    c-0.8,0-1.4-0.2-1.7-0.5c-0.3-0.3-0.5-0.9-0.5-1.8V80c0-0.9,0.1-1.5,0.5-1.8c0.3-0.3,0.9-0.5,1.7-0.5h8.6c0.6,0,1.1,0.1,1.4,0.3
+    c0.3,0.2,0.5,0.5,0.5,1c0,0.4-0.2,0.7-0.5,0.9c-0.3,0.2-0.8,0.3-1.4,0.3h-7.2v3.1h6.5c0.6,0,1.1,0.1,1.4,0.3c0.3,0.2,0.5,0.5,0.5,1
+    c0,0.4-0.2,0.7-0.5,0.9c-0.3,0.2-0.8,0.3-1.4,0.3h-6.5v3.7L177.8,89.6L177.8,89.6z"></path>
+          <path class="st2" d="M194.2,86.9h-2.6c-0.5,0-0.8-0.1-1.1-0.3c-0.3-0.2-0.4-0.5-0.4-0.9c0-0.3,0.1-0.7,0.4-0.9
+    c0.3-0.2,0.6-0.3,1.1-0.3h3.8c0.7,0,1.3,0.1,1.6,0.3c0.3,0.2,0.5,0.6,0.5,1v5.6c0,0.5-0.1,0.7-0.3,1c-0.2,0.2-0.5,0.3-0.9,0.3
+    c-0.3,0-0.6-0.1-0.9-0.2c-0.2-0.2-0.4-0.4-0.5-0.7l-0.3-1.1c-0.6,0.7-1.4,1.3-2.2,1.6c-0.8,0.3-1.7,0.5-2.8,0.5
+    c-2.4,0-4.4-0.7-5.8-2.1c-1.5-1.4-2.2-3.3-2.2-5.6s0.7-4.2,2.2-5.6c1.5-1.4,3.5-2.1,5.9-2.1c0.8,0,1.6,0.1,2.2,0.2
+    c0.7,0.1,1.4,0.3,2,0.6c0.9,0.4,1.5,0.8,2,1.3c0.5,0.5,0.7,1,0.7,1.4c0,0.4-0.2,0.7-0.5,1c-0.3,0.3-0.6,0.4-1.1,0.4
+    c-0.4,0-0.7-0.1-1-0.2c-0.3-0.1-0.6-0.4-1-0.8c-0.5-0.5-1-0.9-1.4-1.1c-0.5-0.2-1.1-0.3-1.8-0.3c-1.4,0-2.6,0.5-3.4,1.3
+    c-0.8,0.9-1.2,2.1-1.2,3.7c0,1.6,0.4,2.8,1.3,3.7c0.9,0.9,2.1,1.3,3.5,1.3c1.2,0,2.1-0.3,2.8-0.9C193.5,88.7,193.9,87.8,194.2,86.9
+    z"></path>
+          <path class="st2" d="M212.6,86.9H210c-0.5,0-0.8-0.1-1.1-0.3c-0.3-0.2-0.4-0.5-0.4-0.9c0-0.3,0.1-0.7,0.4-0.9
+    c0.3-0.2,0.6-0.3,1.1-0.3h3.8c0.7,0,1.3,0.1,1.6,0.3c0.3,0.2,0.5,0.6,0.5,1v5.6c0,0.5-0.1,0.7-0.3,1c-0.2,0.2-0.5,0.3-1,0.3
+    c-0.3,0-0.6-0.1-0.9-0.2c-0.2-0.2-0.3-0.4-0.5-0.7l-0.3-1.1c-0.6,0.7-1.4,1.3-2.2,1.6c-0.8,0.3-1.8,0.5-2.9,0.5
+    c-2.4,0-4.4-0.7-5.9-2.1c-1.5-1.4-2.2-3.3-2.2-5.6s0.7-4.2,2.2-5.6c1.5-1.4,3.5-2.1,5.9-2.1c0.8,0,1.6,0.1,2.2,0.2
+    c0.7,0.1,1.4,0.3,2,0.6c0.9,0.4,1.5,0.8,2,1.3c0.5,0.5,0.7,1,0.7,1.4c0,0.4-0.1,0.7-0.5,1c-0.3,0.3-0.7,0.4-1.1,0.4
+    c-0.3,0-0.7-0.1-1-0.2c-0.3-0.1-0.6-0.4-1-0.8c-0.5-0.5-0.9-0.9-1.4-1.1c-0.5-0.2-1.1-0.3-1.8-0.3c-1.4,0-2.6,0.5-3.4,1.3
+    c-0.8,0.9-1.2,2.1-1.2,3.7c0,1.6,0.4,2.8,1.3,3.7c0.9,0.9,2,1.3,3.5,1.3c1.1,0,2.1-0.3,2.8-0.9C212,88.7,212.5,87.8,212.6,86.9z"></path>
+          <path class="st2" d="M230.5,89.6c0.6,0,1.2,0.1,1.4,0.3c0.3,0.2,0.5,0.6,0.5,1s-0.2,0.7-0.5,1c-0.3,0.2-0.8,0.3-1.4,0.3h-9
+    c-0.8,0-1.4-0.2-1.7-0.5c-0.3-0.3-0.5-0.9-0.5-1.8V80c0-0.9,0.2-1.5,0.5-1.8c0.3-0.3,0.9-0.5,1.7-0.5h8.6c0.6,0,1.1,0.1,1.4,0.3
+    s0.5,0.5,0.5,1c0,0.4-0.2,0.7-0.5,0.9c-0.3,0.2-0.8,0.3-1.4,0.3h-7.2v3.1h6.6c0.6,0,1.1,0.1,1.4,0.3c0.3,0.2,0.5,0.5,0.5,1
+    c0,0.4-0.2,0.7-0.5,0.9c-0.3,0.2-0.8,0.3-1.4,0.3h-6.6v3.7L230.5,89.6L230.5,89.6z"></path>
+          <path class="st2" d="M238.4,80.3v3.9h4.1c0.9,0,1.6-0.2,2-0.5c0.4-0.3,0.6-0.8,0.6-1.4c0-0.6-0.2-1.1-0.6-1.4
+    c-0.4-0.3-1-0.5-1.8-0.5H238.4L238.4,80.3z M238.4,90.8c0,0.5-0.1,0.9-0.5,1.2c-0.3,0.3-0.7,0.4-1.3,0.4s-1-0.1-1.3-0.4
+    c-0.3-0.3-0.5-0.7-0.5-1.2V80c0-0.9,0.2-1.5,0.5-1.8c0.3-0.3,0.9-0.5,1.7-0.5h6.2c1.9,0,3.3,0.3,4.1,1c0.9,0.7,1.4,1.7,1.4,3.1
+    c0,0.9-0.2,1.6-0.7,2.2c-0.5,0.6-1.1,1-1.9,1.2c0.6,0.2,1.1,0.5,1.5,0.9c0.3,0.4,0.5,0.9,0.6,1.6c0.1,0.3,0.1,0.6,0.1,1
+    c0,0.5,0.1,0.7,0.1,0.9c0.1,0.2,0.1,0.4,0.2,0.7c0.1,0.3,0.1,0.6,0.1,0.7c0,0.4-0.2,0.7-0.5,1c-0.3,0.2-0.7,0.3-1.3,0.3
+    c-0.7,0-1.3-0.2-1.6-0.5c-0.3-0.3-0.5-1.3-0.6-2.8c-0.1-1.1-0.3-1.9-0.7-2.2c-0.3-0.3-1-0.4-1.9-0.4h-3.7v4.3H238.4z"></path>
+        </g>
+        </svg> </div>
+      <div class="claim">The Embedded Experts</div>
+      <div class="head">
+        <div class="container">
+          <!-- ****************************************************************** -->
+          <!-- Modifiable information starts here                                 -->
+          <!-- Don't forget to edit the title tag either                          -->
+          <!-- ****************************************************************** -->
+          <h1>Release notes for the embOS plug-in for IAR C-Spy Debugger</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ****************************************************************** -->
+  <!-- History                                                       -->
+  <!-- ****************************************************************** -->
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.7, 7.10.3.7, 7.50.3.7, 8.10.3.7, 8.30.3.7, and 9.10.3.7 [11. Feb 2021]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>New plug-in version for IAR EWARM 9.10.1.</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Memory allocation issue fixed.<br>
+            When debugging an application that did not contain any embOS task, the plug-in could exhaust all allocatable memory.
+            The problem existed in versions 6.10.3.6, 7.10.3.6, 7.50.3.6, 8.10.3.6, and 8.30.3.6 and is fixed with versions 6.10.3.7, 7.10.3.7, 7.50.3.7, 8.10.3.7, and 8.30.3.7.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.6, 7.10.3.6, 7.50.3.6, 8.10.3.6, and 8.30.3.6 [30. Oct 2020]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>The plug-in may now be configured to activate when a user-defined function gets executed on the target. This may be used to avoid accessing target memory e.g. during segment initialization, during the execution of a bootstrap loader, etc.</li>
+        </ol>
+        <h3>Improvements</h3>
+        <ol>
+          <li>Plug-in settings are now saved to and restored from the Windows registry and thus are permanent between debug sessions.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.5, 7.10.3.5, 7.50.3.5, 8.10.3.5, and 8.30.3.5 [03. Jun 2020]</h2>
+      <div>
+        <h3>Improvements</h3>
+        <ol>
+          <li>Displayed plug-in data now gets cleared upon target reset.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.4, 7.10.3.4, 7.50.3.4, 8.10.3.4, and 8.30.3.4 [25. Mar 2020]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Support for the new embOS version number scheme added.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 8.30.3.3 [05. Dec 2019]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Update to IAR EWARM 8.42.1.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.2, 7.10.3.2, 7.50.3.2, 8.10.3.2, and 8.30.3.2 [06. Nov 2019]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>The plug-in now disables the IAR stack feature to avoid erroneous warnings when the stack pointer is modified to point to any task stack.</li>
+        </ol>
+        <h3>Improvements</h3>
+        <ol>
+          <li>The plug-in now retrieves information on tasks and OS objects only after OS_Init() has been executed. This avoids display of stale data from previous debug sessions (e.g. after performing a reset in the IDE).</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>The plug-in will no longer display any "System Status" in non-debug builds of embOS, since that information does not exist in these builds. The erroneous display of "System Status" in non-debug builds affected all previous versions of the plug-in and is fixed with version 6.10.3.2, 7.10.3.2, 7.50.3.2, 8.10.3.2, and 8.30.3.2.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.1, 7.10.3.1, 7.50.3.1, 8.10.3.1, and 8.30.3.1 [03. May 2018]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Updated for IAR Embedded Workbench 8.30.</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            With versions 6.10.3.0, 7.10.3.0, 7.50.3.0, and 8.10.3.0, the plug-in could be requested to read target data even when target initialization was not yet completed.
+            This could result in the plug-in accessing invalid memory and/or reporting erroneous data. The problem existed with the given versions only and is fixed with
+            Versions 6.10.3.1, 7.10.3.1, 7.50.3.1, and 8.10.3.1.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.3.0, 7.10.3.0, 7.50.3.0, and 8.10.3.0 [18. Sep 2017]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Introduced additional views for inspection of Counting Semaphores, Event Objects, Queues, Fixed Block Size Memory Pools, and Watchdogs.</li>
+          <li>Added support for Human Readable Object Identifiers (introduced with embOS V4.38) to all views.</li>
+          <li>This version of the plug-in displays the task list even in XR library modes of embOS.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.6, 7.10.2.6, 7.50.2.6, and 8.10.2.6 [24. Aug 2017]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Extended fix to erroneous display of task names with embOS for RL78 and IAR to be effective on versions V4.00 to V4.14a of embOS as well.<br>
+            The fix applied with versions 6.10.2.4, 7.10.2.4, and 7.50.2.4 of the plug-in was effective on embOS versions V4.16 and later. This version extends the fix to previous versions.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.5, 7.10.2.5, 7.50.2.5, and 8.10.2.5 [30. Jun 2017]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Fixed erroneous display of constant strings with embOS for RL78 and IAR.<br>
+            With far data model, constant strings were retrieved incorrectly. The problem existed in all previous versions and is fixed with version 6.10.2.5, 7.10.2.5, 7.50.2.5, and 8.10.2.5.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.4, 7.10.2.4, 7.50.2.4, and 8.10.2.4 [04. Apr 2017]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Updated for IAR Embedded Workbench 8.10.</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Fixed erroneous display of task names with embOS for RL78 and IAR for embOS V4.16 and later.<br>
+            If the location for __near declared constants and strings was specified for Mirror ROM1, task names were retrieved incorrectly. The problem existed in all previous versions and is fixed with version 6.10.2.4, 7.10.2.4, and 7.50.2.4.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.3, 7.10.2.3, and 7.50.2.3 [05. Dec 2016]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Updated for modified C-Spy Debugger with Cortex-M and IAR Embedded Workbench 7.8.</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>Fixed incomplete display of waiting tasks in RSema/Event view.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.2, 7.10.2.2, and 7.50.2.2 [17. Aug 2016]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Updated for modified stack layout with embOS for RX and IAR.</li>
+        </ol>
+        <h3>Improvements</h3>
+        <ol>
+          <li>Improved task sensitivity with embOS for RL78 and IAR.</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Fixed task sensitivity with Cortex-M when executing OS_Idle().<br>
+            While executing OS_Idle(), states of suspended tasks were retrieved incorrectly due to modified C-Spy debugger with IAR 7.5 and later. The problem existed in all 7.50.x versions and is fixed with version 7.50.2.2.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.1, 7.10.2.1, and 7.50.2.1 [08. Jun 2016]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Fixed menu option for software timers.<br>
+            The software timers window could not be activated in the menu even when software timers were used in the application. The problem existed in all 6.x and 7.x versions and is fixed with version 6.10.2.1, 7.10.2.1, and 7.50.2.1.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Versions 6.10.2.0, 7.10.2.0, and 7.50.2.0 [24. Apr 2016]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Updated for modified stack layout with Cortex-M since embOS V4.22.</li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Fixed task sensitivity with Cortex-M for versions of embOS prior to V4.22.<br>
+            On rare occasions, previous versions of the plugin could not retrieve appropriate task information upon task selection.<br>
+            The problem existed in all previous versions and is fixed with version 6.10.2.0, 7.10.2.0, and 7.50.2.0.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 7.10.1.2 [12. Jan 2016]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Update for modified runtime model with RL78 since embOS V4.16.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 7.50.1.1 [30. Jul 2016]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Update for IAR Embedded Workbench 7.50.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 7.10.1.1 [11. May 2015]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Update for IAR Embedded Workbench 7.10.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.10 [29. May 2013]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Update for embOS Cortex M IAR V3.88b.<br>
+            With version 3.88b of embOS for Cortex M IAR, the stack and memory layout has changed.
+            Previous versions of the plugin could not show the task sensitive call stack for this embOS version.
+          </li>
+          <li>
+            embOS version shown in the system information window.<br>
+            With version 3.88b of embOS, the embOS version can be read out of the target application.
+            If present, the version is shown in the system information window.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.9 [21. Mar 2012]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Problem with embOS software timer list fixed.<br>
+            Previous version of the plugin might have produced an error in CSPy when embOS timer were used in the project.
+            The debug session might have been closed with the message.<br>
+            &quot;Fatal error: Unknown exception in processor (#P1) Session aborted!&quot;<br>
+            The problem existed in the previous version 6.0.6.8 only and is fixed with version 6.0.6.9.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.8 [18. Nov 2011]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Problem with embOS software timer list fixed.<br>
+            Previous versions of the plugin did not show embOS software timer when extended timer were used in the project.
+            The problem existed in all previous versions and is fixed with version 6.0.6.8.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.7 [27. Oct 2011]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Support for Cortex M4F VFP added.<br>
+            The floating point registers can be shown task sensitive when walking through the task sensitive call stack.
+          </li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Problem with task sensitive call stack for Cortex M under IAR Embedded Workbench fixed.<br>
+            Previous versions of the plugin might have shown wrong execution state in the task sensitive call stack for tasks that were preempted (interrupted).
+            The problem existed in all previous versions and is fixed with version 6.0.6.7.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.6 [10. Jun 2011]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Support for Cortex M4F added.<br>
+            The previous versions of the pugin did not show the task sensitve call stack correctly, when a CPU with VFPv4 unit was used.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.5 [10. Jun 2011]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Complete task awareness for RENESAS RL78 cores.<br>
+            The new embOS plugin V6.0.6.5 for IAR C-Spy and RENESAS RL78 targets now shows the state and call stack of all tasks.
+            Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+            An embOS version 3.82t or later of embOS for RL78 is required for task sensitivity.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.4 [06. Apr 2011]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Big endian support for ARM cores added<br>
+            Previous versions of the plugin did not support the task sensitive call stack in big endian targets for IAR Embedded Workbench.
+            Support is added with version 6.0.6.4.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.3 [03. Mar 2011]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Problem with task sensitive call stack under IAR Embedded Workbench fixed.<br>
+            Using the IAR Embedded Workbench V6.10.2, the plugin did not show the task sensitive call stack of Cortex M CPUs correctly.
+            The problem is fixed with version 6.0.6.3 of the plugin which can be used for all IAR Embedded Workbench V6 versions.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.2 [18. Feb 2011]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Update for new IAR EWRL78<br>
+            The embOS plugin V6.0.6.2 now supports the EW RL78 for the Renesas RL78 CPU.
+          </li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Problem with task sensitive call stack under IAR Embedded Workbench fixed.<br>
+            Using the IAR Embedded Workbench V6.10.2, the plugin did not show the task sensitive call stack of ARM CPUs correctly.
+            Since version 3.82 of embOS the call stack of preempted tasks was not shown correctly.
+            Both problems are fixed with version 6.0.6.2 of the plugin which can be used for all IAR Embedded Workbench V6 versions.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6.1 [28. Dec 2010]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Problem with plugin initialization under IAR Embedded Workbench fixed.<br>
+            Using the IAR Embedded Workbench, sometimes the plugin could not be started and the following error message was shown:<br>
+            &quot;Could not start embOS-Plugin. The OS_TASK structure is not present.&quot;<br>
+            To start and initialize the plugin, it is required to get information about the current task structure in the project.
+            It might have happened, that the debugger did not deliver the requested information which then resulted in the error message.
+            The method to retrieve the required information from the debugger was modified to fix the problem.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.6 [08. Oct 2010]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Update for new IAR Embedded Workbench V6<br>
+            The embOS plugin V6.0.6 is built to be used with the new IAR Embedded Workbench for ARM V6.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.5 [06. Jul 2010]</h2>
+      <div>
+        <h3>Improvements</h3>
+        <ol>
+          <li>
+            Debug and trace library mode shown.<br>
+            Previous versions of the plugin did not show the Debug and Trace library mode (DT) in the System Information window.
+            This problem is fixed with version 6.0.5 of the plugin.
+          </li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Display errors under Windows 7 corrected.<br>
+            The previous versions did not show the &quot;Settings&quot; dialog and the &quot;About&quot; box correctly when running under Windows 7.
+            The Settings dialog was empty and could therefore not be used. The About box did not show all information.
+            The problem is fixed with version 6.0.5 of the plugin.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.4 [28. May 2010]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Big endian support for Renesas RX added<br>
+            In previous versions of the embOS plugin the task sensitive call stack did not work with Renesas RX CPUs running in big endian mode.
+            With the embOS plugin version V6.0.4 RX is supportd in little and big endian byte order.
+          </li>
+          <li>
+            Manual updated, task sensitivity explained.<br>
+            The new manual revison 6 now explaines the task sensitive call stack, register window and source window which is available for several CPUs.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.3 [27. May 2010]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Update for new IAR EW-RX V2.10<br>
+            The new IAR Embedded Workbench V2.10 for Renesas RX CPUs comes with a modified debug engine which required modification of the embOS plugin for RX.
+            The older version 3.82.2 of the plugin which was initially built for the EW-RX can not be used.
+            All plugin-versions V6.0.x can be used, but the task sensitive call stack does not work with these versions.
+            The new embOS RX-Version 3.82g is required for the new IAR EW-RX 2.10 and task sensitive call stack.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.2 [13. Apr 2010]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Complete task awareness for RENESAS SH2A cores.<br>
+            The new embOS plugin V6.0.2 for IAR C-Spy and RENESAS SH2A targets now shows the state and call stack of all tasks. Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+            An embOS version 3.82f or later of embOS for SH2A is required for task sensitivity.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 6.0.1 [08. Apr 2010]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Update for new IAR workbench V6<br>
+            The new IAR workbench V6 uses a modified SDK which requires an updated embOS plugin for IAR C-Spy.
+            The new embOS plugin V6 can be used with the new IAR workbench V6. It is based on the previous plugin V3.82.2 and supports all features of the previous versions.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.82.2 [30. Oct 2009]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Complete task awareness for RENESAS RX cores.<br>
+            The new embOS plugin V3.82.2 for IAR C-Spy and RENESAS RX targets now shows the state and call stack of all tasks. Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+            An embOS version 3.80l or later of embOS for RX is required for task sensitivity.
+          </li>
+          <li>
+            Complete task awareness for RENESAS R32C cores.<br>
+            The new embOS plugin V3.82.2 for IAR C-Spy and RENESAS R32C targets now shows the state and call stack of all tasks. Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+            An embOS version 3.80l or later of embOS for R32C is required for task sensitivity.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.82.1 [26. Oct 2009]</h2>
+      <div>
+        <h3>Improvements</h3>
+        <ol>
+          <li>
+            Plugin useable when target application was not downloaded to target.<br>
+            Previous versions of the plugin did not show the task list and system information, when embOS version 3.80 or later was used and the target application was not downloaded into the target.
+            This might have happened, when the debugger option &quot;Attach to program&quot; was used.
+            This problem is fixed with version 3.82.1 of the plugin.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.82.0 [07. Oct 2009]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Memory read error with J-Link fixed.<br>
+            Previous versions of the plugin might have produced a memory read error when debugging a connected hardware with external data memory.
+            The problem occurred when the external data memory was not accessible directly after downloading into the target memory.
+            During initialization, the plugin tried to read some variables from the data memory which failed, as long as the access to the external memory was not initialized by the target application or debug macro function.
+            The problem existed in all previous versions of the plugin and is corrected with version 3.82.0.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.80.3 [11. Sep 2009]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Complete task awareness for RENESAS M16C and R8C cores.<br>
+            The new embOS plugin V3.80.3 for IAR C-Spy and RENESAS M16C or R8C targets now shows the state and call stack of all tasks. Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+            An embOS version 3.80l or later of embOS for M16C is required for task sensitivity.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.80.2 [06. Jul 2009]</h2>
+      <div>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Display of suspended tasks corrected.<br>
+            Previous versions of the plugin did not show the &quot;suspended&quot; state of a task in the task list.<br>
+            The problem existed in all previous versions of the plugin and is corrected with version 3.80.2.
+          </li>
+          <li>
+            Display of task states of tasks waiting with timeout corrected.<br>
+            Previous versions of the plugin did not show the task state when a task was waiting on any object like an Event object, a mail box or a task object with timeout.
+            The timeout value was shown, but the task state was not shown in the task list.
+            The problem existed in all previous versions of the plugin and is corrected with version 3.80.2.
+          </li>
+          <li>
+            Current task was not marked in the task list.<br>
+            The running task should be marked with a green arrow in the first column of the task list.
+            When embOS version 3.80 or later was used, the arrow was positioned at idle always and did not mark the running task.
+            The plugin version 3.80.2 positions the marker at the running task.
+          </li>
+          <li>
+            Erroneous permanent update of debugger windows corrected.<br>
+            When used with EW-ARM 5.30 or later, the plugin might have forced a window update of all debugger windows after restarting the application.
+            This problem occurred when the call stack and task state of a suspended task was examined and the application was started without having the current task selected in the task window.
+            The workbench could have crashed or raised an exception.
+            The problem occurred when using EW-ARM 5.30 or later and is fixed with the plugin version 3.80.2.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.80.1 [05. May 2009]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Complete task awareness for Cortex M3 cores.<br>
+            The new embOS plugin V3.80.1 for IAR C-Spy and Cortex M3 targets now shows the state and call stack of all tasks. Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+            An embOS version 3.62c or later of embOS for Cortex M3 is required for task sensitivity.
+          </li>
+          <li>
+            Support for new embOS versions 3.80 added.<br>
+            embOS Version 3.80 or later with optimized internal data structures could not be used with the older version of the plugin.
+            The task list and system variables were not shown. The new plugin V3.80.1 can be used with all versions of embOS.
+          </li>
+        </ol>
+        <h3>Program corrections</h3>
+        <ol>
+          <li>
+            Display of embOS library mode corrected.<br>
+            The older embOS plugin might have shown a debug and profiling library, even if only a debug library was used.
+            The problem occurred, when an embOS version 3.32b or later was used.
+            The new version 3.80.1 of the plugin shows the correct library mode.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 3.60e [08. Sep 2008]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>
+            Complete task awareness for ARM cores.<br>
+            The new embOS plugin V3.60e for IAR C-Spy and ARM targets now shows the state and call stack of all tasks. Every task in the task list, even suspended or interrupted tasks, can be analyzed during a debug session.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="divider-global">
+    <div class="container">
+      <h2>Version 2.00e [07. Jul 2007]</h2>
+      <div>
+        <h3>New Features</h3>
+        <ol>
+          <li>Initial version for new IAR Embedded Workbench V5, based on IAR plug-in version 1.00e</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ****************************************************************** -->
+  <!-- Modifiable information ends here                                   -->
+  <!-- Don't forget to edit the "Copyright" year if necessary and         -->
+  <!-- >>>>>if a SUPPORT E-MAIL is required change the info@segger.com<<<<<<  -->
+  <!-- ****************************************************************** -->
+
+</main>
+<div class="footer">
+  <div class="container">
+    <div>
+      <p>Copyright 2001-2021 SEGGER Microcontroller GmbH. All rights reserved.<br>
+        For more information, please visit our website&nbsp;<a href="https://www.segger.com/" target="_blank">www.segger.com</a>&nbsp;or contact us at&nbsp;<a href="mailto:support_embos@segger.com">support_embos@segger.com</a>&nbsp;</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

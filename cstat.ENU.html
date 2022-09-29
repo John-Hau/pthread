@@ -1,0 +1,1813 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" 
+          content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+    
+    <title>IAR Information Center for Arm</title>
+  </head>
+  <body>
+    <div id="titlebanner">
+      <div>
+        <h1>IAR Information Center for Arm</h1>
+        <p class="subtitle">
+          Release notes for the IAR C-STAT Static Analysis tool,
+	  product package version 9.10.2
+        </p>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.ENU.html">IAR Information Center for Arm</a> | 
+      <a href="release_notes.ENU.html">Release notes</a> | 
+      <a href="components.ENU.html">Components</a> | 
+      Release notes for the IAR C-STAT Static Analysis tool
+    </div>
+    <div class="mainblock">
+      <ul>
+        <li><a href="#important">Important information</a> </li>
+        <li><a href="#features">New features</a> </li>
+        <li><a href="#problems">Known problems</a> </li>
+        <li><a href="#pcorr">Program corrections</a> </li>
+        <li><a href="#manuals">User guide corrections</a> </li>
+        <li><a href="#misc">Miscellaneous</a> </li>
+        <li><a href="#history">Release history</a> </li>
+      </ul>
+      <!--======================================================================-->
+      <!-- IMPORTANT INFORMATION                                                -->
+      <!--======================================================================-->
+      <h3>
+        <a name="important" id="important"></a>Important information
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- NEW FEATURES                                                         -->
+      <!--======================================================================-->
+      <h3>
+        <a name="features" id="features"></a>New features
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- Known problems-->
+      <!--======================================================================-->
+      <h3>
+        <a name="problems" id="problems"></a>Known problems
+      </h3>
+<ul>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5208'>EWARM-5208</a>, <a name='EW25597'>EW25597</a>]</b>
+        An implicit conversion from an unsigned variable to a smaller unsigned variable results in C-STAT
+        message regarding ATH-overflow.
+        If the unsigned variable had previously overflowed due to subtraction (rolled over to MAX) the
+        message will state that the range of the unsigned variable is negative. Workaround: Adding a cast to
+        create an explicit conversion resolves the message and therefore the bug is not induced.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5201'>EWARM-5201</a>, <a name='EW25582'>EW25582</a>]</b>
+        A while or for loop that does not terminate causes C-STAT to not check for an array index becoming
+        out-of-bounds properly.
+        </p>
+     </li>
+</ul>
+      <!--======================================================================-->
+      <!-- Program corrections                                                  -->
+      <!--======================================================================-->
+      <h3>
+        <a name="pcorr" id="pcorr"></a>Program corrections
+      </h3>
+<ul>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-590'>CSTAT-590</a>, <a name='EWARM-8768'>EWARM-8768</a>]</b>
+        <p>C-STAT does not generate a message for the check <tt>RED-unused-return-val</tt> on function
+        pointers. Example:</p>
+        <pre>typedef int (*funcp)(void);
+        int f(void) { return 0; }
+        int g(void) {
+        funcp p = f;
+        p(); // This line should yield a message regarding a discarded return value
+        return 0;
+        }
+        </pre>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-589'>CSTAT-589</a>, <a name='EWARM-8767'>EWARM-8767</a>]</b>
+        When performing the check LIB-memcpy-overrun-pos, if the <tt>memcpy()</tt> function is called with
+        an argument that is a field access of a <tt>struct</tt>, C-STAT calculates the size of that argument
+        to be the total size of the <tt>struct</tt> instead of just the size of the field.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8725'>EWARM-8725</a>, <a name='TPB-3514'>TPB-3514</a>]</b>
+        C-STAT can in some cases disregard qualifiers (such as <tt>const</tt> and <tt>volatile</tt>) for
+        function parameters when analyzing source files compiled for Standard C++. This can for example
+        cause the check CERT-EXP37-C_b to generate a message about a mismatch in parameter types for a
+        function declaration and its definition.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-586'>CSTAT-586</a>, <a name='EWARM-8609'>EWARM-8609</a>]</b>
+        C-STAT can erroneously generate messages from header files that contain the <tt>#pragma
+        system_include</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-585'>CSTAT-585</a>, <a name='EWARM-8605'>EWARM-8605</a>]</b>
+        For the check MISRAC2012-Rule-9.2, initializing a <tt>float</tt> array with <tt>0</tt> does not
+        count as a zero initialization. The code <tt>float arr[3] = {0};</tt> will, for example, generate a
+        message.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-583'>CSTAT-583</a>, <a name='EWARM-8590'>EWARM-8590</a>]</b>
+        Calls to <tt>memcpy</tt> can report messages regarding overlapping memory when both pointer
+        arguments point to the same object and they are accessed with an offset, such as <tt>memcpy(ptr+8,
+        ptr+16, 7);</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-580'>CSTAT-580</a>, <a name='EWARM-8522'>EWARM-8522</a>]</b>
+        Decrementing (<tt>--</tt>) a variable of unsigned type inside the body of a <tt>for</tt> loop can
+        make C-STAT incorrectly assume that the variable can wrap around, causing the variable to have an
+        over-approximated interval.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-578'>CSTAT-578</a>, <a name='EWARM-8440'>EWARM-8440</a>]</b>
+        <p>The C-STAT check MEM-stack-param, and other identical checks, can in some cases incorrectly
+        interpret taking the address of a local pointer that aliases a global, as a stack address.</p>
+        <pre>char g[10];
+        void f(char ** const pp)
+        {
+        char *p = g;
+        *pp = &amp;p[0]; // MEM-stack-param message
+        }
+        </pre>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='CSTAT-575'>CSTAT-575</a>, <a name='EWARM-8311'>EWARM-8311</a>]</b>
+        C-STAT does not detect that <tt>if(a &lt; b)</tt> is always true when <tt>b</tt> is larger than the
+        maximum value for <tt>a</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-571'>CSTAT-571</a>, <a name='EWARM-8270'>EWARM-8270</a>]</b>
+        The HTML report generated by C-STAT does not show the suppressed messages (if any) that should be
+        shown on the HTML pages for each individual source file.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-569'>CSTAT-569</a>, <a name='EWARM-8234'>EWARM-8234</a>, <a name='TPB-3467'>TPB-3467</a>]</b>
+        The parser does not provide C-STAT with sufficient information for suppressing link analysis
+        messages. This is the cause of issue <a href="http://jira.iar.se/browse/EWARM-8234" title="U201208J
+        EWARM CSTAT in-file suppressions ignored when placed in header file [Case: 00235450]"
+        data-issue-key="EWARM-8234"><del>EWARM-8234</del></a>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8034'>EWARM-8034</a>, <a name='TPB-3431'>TPB-3431</a>]</b>
+        When producing input for the C-STAT static analyzer, the compiler can terminate with an internal
+        error if the <tt>__noreturn</tt> keyword is used on both the declaration and the definition of a
+        static member function.
+        </p>
+     </li>
+</ul>
+      <!--======================================================================-->
+      <!-- USER GUIDE CORRECTIONS                                               -->
+      <!--======================================================================-->
+      <h3>
+        <a name="manuals" id="manuals"></a>User guide corrections
+      </h3>
+<ul>
+    <li>None.</li>
+</ul>
+      <!--======================================================================-->
+      <!-- MISCELLANEOUS                                                        -->
+      <!--======================================================================-->
+      <h3>
+        <a name="misc" id="misc"></a>Miscellaneous
+      </h3>
+<ul>
+    <li>None.</li>
+</ul>
+      <!--======================================================================-->
+      <!-- RELEASE HISTORY                                                      -->
+      <!--======================================================================-->
+      <h3>
+        <a name="history" id="history"></a>Release history
+      </h3>
+  <h4>V8.50 2020-02-17</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='EWARM-8129'>EWARM-8129</a>, <a name='TPB-3454'>TPB-3454</a>]</b>
+        C-STAT can terminate with an internal error ("<tt>XML node id=</tt><em>nnn</em> <tt>not found</tt>")
+        when analyzing code that uses C++ lambda functions.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-552'>CSTAT-552</a>, <a name='EWARM-8044'>EWARM-8044</a>]</b>
+        The checks MEM-stack-param, MISRAC2012-Rule-1.3_s, MISRAC2012-Rule-18.6_d, and CERT-DCL30-C_e
+        erroneously consider the address of a pointer parameter that is accessed with the subscript operator
+        to be a stack address.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-551'>CSTAT-551</a>, <a name='EWARM-8046'>EWARM-8046</a>]</b>
+        Initializing an aggregate or union with a struct or union field can incorrectly generate a
+        MISRA2012-Rule-9.2 message, even if the initializer is properly enclosed in braces.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-550'>CSTAT-550</a>, <a name='EWARM-8048'>EWARM-8048</a>]</b>
+        The check CERT-EXP43-C_b can in some circumstances generate a message for a <tt>memcpy(p+n,p,n)</tt>
+        call, incorrectly reporting that the pointer arguments overlap.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-549'>CSTAT-549</a>, <a name='EWARM-8032'>EWARM-8032</a>]</b>
+        The check MISRAC++2008-6-4-3 incorrectly requires switch statements to have a default clause.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-543'>CSTAT-543</a>, <a name='EWARM-7915'>EWARM-7915</a>]</b>
+        Using the <tt>offsetof</tt> macro generates a message for MISRAC2012-Rule-7.2.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-544'>CSTAT-544</a>, <a name='EWARM-7914'>EWARM-7914</a>]</b>
+        MISRAC++2008-6-5-5 interprets a loop counter to be only variables assigned in the <tt>init</tt>
+        statement of a <tt>for</tt> loop. It should also include any variable assigned prior to the loop.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-545'>CSTAT-545</a>, <a name='EWARM-7913'>EWARM-7913</a>]</b>
+        The check MISRAC++2008-6-5-4 incorrectly requires that the loop counter is incremented or
+        decremented by a constant value rather than by a value that is constant for the duration of the
+        loop.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-541'>CSTAT-541</a>, <a name='EWARM-7901'>EWARM-7901</a>]</b>
+        <p>This code generate a message for MISRAC2012-Rule-18.8 regarding the usage of variable length
+        arrays.</p>
+        <div><div>
+        <pre>
+        extern struct {
+        <span>int</span> m;
+        } a[];
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.7<br/>
+        <b>[<a name='EWARM-7888'>EWARM-7888</a>, <a name='TPB-3411'>TPB-3411</a>]</b>
+        C-Stat can terminate with an internal error (<tt>unknown dyinit: 8</tt>) in some cases that involve
+        C++ lambda functions.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-539'>CSTAT-539</a>, <a name='EWARM-7884'>EWARM-7884</a>]</b>
+        Taking the address of a variable declared as a reference does not count as a potential modification
+        of that variable. This can lead to false positives for the check MISRAC++2008-7-1-1, stating that
+        the variable should be declared as <tt>const</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-538'>CSTAT-538</a>, <a name='EWARM-7864'>EWARM-7864</a>]</b>
+        <p>In cases like the example, the size of the underlying array of the <tt>*p</tt> statement can be
+        calculated incorrectly by C-STAT.</p>
+        <div><div>
+        <pre>
+        <span>int</span> (*p)[3];
+        *p;
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-537'>CSTAT-537</a>, <a name='EWARM-7841'>EWARM-7841</a>]</b>
+        The checks MEM-stack-global, MISRAC++2008-7-5-2_a, MISRAC2004-17.6_b, MISRAC2012-Rule-18.6_b, and
+        CERT-DCL30-C_c consider saving the address of a <tt>static</tt> variable as if it were a local
+        variable that was saved.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.7<br/>
+        <b>[<a name='EWARM-7811'>EWARM-7811</a>, <a name='TPB-3412'>TPB-3412</a>]</b>
+        C-STAT can terminate with an internal error when analyzing code that uses C++ generic lambdas.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-534'>CSTAT-534</a>, <a name='EWARM-7808'>EWARM-7808</a>]</b>
+        When running C-STAT from within the Embedded Workbench IDE or by using the <tt>commands</tt> command
+        from the command line, the first object file sent to the link analysis is not included in the
+        analysis.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-531'>CSTAT-531</a>, <a name='EWARM-7807'>EWARM-7807</a>]</b>
+        The check CERT-EXP40-C_a erroneously reports modifications on non-const structure fields as const
+        modifications.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-533'>CSTAT-533</a>, <a name='EWARM-7804'>EWARM-7804</a>]</b>
+        The MISRAC2012-Rule-21.16 check can cause C-STAT to terminate with an internal error when the
+        <tt>memcmp</tt> function is called with arguments of type <tt>const void *</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-532'>CSTAT-532</a>, <a name='EWARM-7796'>EWARM-7796</a>]</b>
+        Using the C-STAT comment directive <tt>//cstat +&lt;tag&gt;</tt> reenables all currently disabled
+        checks instead of only the matching <tt>tag</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.9<br/>
+        <b>[<a name='CSTAT-530'>CSTAT-530</a>, <a name='EWARM-7788'>EWARM-7788</a>]</b>
+        Calling standard library functions that take a pointer and a size argument (for example
+        <tt>memset</tt> and <tt>strncat</tt>), when the size argument is a number larger than 31 bits, can
+        cause C-STAT to terminate with an internal error.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-525'>CSTAT-525</a>, <a name='EWARM-7734'>EWARM-7734</a>]</b>
+        If a source file generated 0 messages In the C-STAT analysis report, it is listed twice in the
+        <b>Messages</b> table.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-516'>CSTAT-516</a>, <a name='EWARM-7634'>EWARM-7634</a>]</b>
+        C-STAT exits with an ambiguous error if the compiler command line for a source file is longer than
+        32,768 characters.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-515'>CSTAT-515</a>, <a name='EWARM-7628'>EWARM-7628</a>]</b>
+        The check MISRAC2012-Rule-14.4_c does not consider <tt>array</tt> members of a <tt>struct</tt> to be
+        able to have essentially Boolean type.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-512'>CSTAT-512</a>, <a name='EWARM-7603'>EWARM-7603</a>]</b>
+        The check MISRAC2012-Rule-9.2 generates a message when an aggregate initialization has a designated
+        initializer of type <tt>struct</tt> or <tt>union</tt>, and the initializer expression has a
+        compatible type.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-511'>CSTAT-511</a>, <a name='EWARM-7595'>EWARM-7595</a>]</b>
+        <p>Using the <tt>!tag</tt> comment directive does not suppress messages if there are multiline
+        comments following the directive. For example:</p>
+        <div><div>
+        <pre>
+        <span>/*cstat !MISRAC2012-Dir-4.6_a */</span>
+        /* This is
+        * a multiline comment */
+        <span>int</span> a; <span>/* Suppression not enabled */</span>
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-510'>CSTAT-510</a>, <a name='EWARM-7594'>EWARM-7594</a>]</b>
+        The argument given to the <tt>--exclude</tt> option is treated as being appended with the wildcard
+        (*) character, which can make it match more source files than intended.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-509'>CSTAT-509</a>, <a name='EWARM-7579'>EWARM-7579</a>]</b>
+        The checks MISRAC2004-15.0, MISRAC2012-Rule-16.1, and MISRAC++2008-6-4-3 consider switch statements
+        with nested blocks inside a case clause to be ill-formed switches.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-507'>CSTAT-507</a>, <a name='EWARM-7577'>EWARM-7577</a>]</b>
+        If a file has generated messages from one analysis pass and is being analyzed again (without
+        clearing the analysis results first), the <tt>--exclude</tt> option has no effect.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-503'>CSTAT-503</a>, <a name='EWARM-7568'>EWARM-7568</a>]</b>
+        <p>The checks ARR-inv-index-ptr-pos, MISRAC++2008-5-0-16_f, MISRAC2012-Rule-18.1_d, and
+        CERT-ARR30-C_d: Dereferencing the address of a field access of a struct pointer can lead to an
+        Internal error if the field access is considered to be out of bounds. An example:</p>
+        <div><div>
+        <pre>
+        typedef struct { <span>int</span> arr[2] } S;
+        S *s;
+        *(&amp;s-&gt;arr[3]) = 10;
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-501'>CSTAT-501</a>, <a name='EWARM-7558'>EWARM-7558</a>]</b>
+        <p>The check MISRAC2012-Dir-4.6_a can report false positives when there are implicit or explicit
+        casts on basic types in array definitions. For example:</p>
+        <div><div>
+        <pre>
+        #include &lt;stdint.h&gt;
+        uint8_t arr[ (uint8_t) 8u ];
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-499'>CSTAT-499</a>, <a name='EWARM-7556'>EWARM-7556</a>]</b>
+        The checks LIB-sprintf-overrun and SEC-BUFFER-sprintf-overrun use the length of the unformatted
+        second argument to the function <tt>sprintf</tt> for comparison with the first argument, instead of
+        using the length after it has been formatted.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-500'>CSTAT-500</a>, <a name='EWARM-7555'>EWARM-7555</a>]</b>
+        In the <em>C-STAT Static Analysis Guide</em>, some checks that are identical do not have the same
+        set of matching coding standards listed.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='EWARM-7547'>EWARM-7547</a>, <a name='TPB-3328'>TPB-3328</a>]</b>
+        When performing static analysis for C-STAT, the compiler can terminate with the very misleading
+        message: "Lambdas nested too deeply; maximum depth is 10" if there are more than 10 lambda functions
+        in the same function, regardless of the depth of nesting.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-496'>CSTAT-496</a>, <a name='EWARM-7538'>EWARM-7538</a>]</b>
+        Analyzing a module with several thousand globally defined variables can cause C-STAT to run out of
+        memory.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-489'>CSTAT-489</a>, <a name='EWARM-7525'>EWARM-7525</a>]</b>
+        C-STAT check CERT-ARR38-C_d looks for C library functions that manipulate arrays or objects. These
+        functions take the number of elements to manipulate as one of their arguments. If C-STAT cannot
+        determine this value, it can cause an internal error.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-488'>CSTAT-488</a>, <a name='EWARM-7506'>EWARM-7506</a>]</b>
+        The checks MEM-stack-param, MISRAC++2008-7-5-2_c, MISRAC2004-17.6_d, MISRAC2012-Rule-1.3_s,
+        MISRAC2012-Rule-18.6_d and CERT-DCL30-C_e identify stack addresses assigned to pointer parameters.
+        In some cases where the local variable is declared as <tt>static</tt>, this is wrongly considered as
+        a violation. Moreover, the checks incorrectly do not consider taking the address of a non-static
+        local array to be a violation.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.50.4<br/>
+        <b>[<a name='CSTAT-483'>CSTAT-483</a>, <a name='EWARM-7431'>EWARM-7431</a>]</b>
+        The check MISRAC++2008-5-0-8 incorrectly interprets explicit casts of a single variable in a return
+        expression as a <em>cvalue</em>, for example, <tt>return static_cast&lt;<em>type</em>&gt;(var);</tt>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-482'>CSTAT-482</a>, <a name='EWARM-7420'>EWARM-7420</a>]</b>
+        The check MISRAC2012-Rule-1.3_u calculates the underlying type's size of an array of pointers
+        incorrectly.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-465'>CSTAT-465</a>, <a name='EWARM-7388'>EWARM-7388</a>]</b>
+        The check MISRAC++2008-2-10-6 incorrectly reports conflicting names for the same template if it is
+        instantiated more than once.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-454'>CSTAT-454</a>, <a name='EWARM-7339'>EWARM-7339</a>]</b>
+        <p>The checks MISRAC++2008-0-2-1, MISRAC2004-18.2, MISRAC2012-Rule-19.1, and UNION-overlap-assign
+        can produce a false positive regarding overlapping assignments if a union access is inside a
+        subscript operator.</p>
+        <p>For example:</p>
+        <div><div>
+        <pre>
+        void fn()
+        {
+        union {
+        <span>int</span> a;
+        <span>int</span> b;
+        } U;
+        <span>int</span> arr[5];
+        arr[U.a] = U.b; <span>/* False positive here */</span>
+        }
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-453'>CSTAT-453</a>, <a name='EWARM-7327'>EWARM-7327</a>]</b>
+        The check MISRAC++2008-0-1-7 incorrectly gives a warning when the return value of an overloaded
+        operator is discarded.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-451'>CSTAT-451</a>, <a name='EWARM-7294'>EWARM-7294</a>]</b>
+        The check SEC-BUFFER-tainted-index can fail to identify a possible violation when a tainted value is
+        sent as a function parameter and the function uses the tainted value as an array index.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-450'>CSTAT-450</a>, <a name='EWARM-7288'>EWARM-7288</a>]</b>
+        The checks MISRAC++2008-5-0-15_a and MISRAC2004-17.4_a incorrectly allow pointer arithmetic to be
+        used on structure members declared as pointers.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-449'>CSTAT-449</a>, <a name='EWARM-7286'>EWARM-7286</a>]</b>
+        For the checks MISRAC++2008-5-0-13_c, MISRAC2004-13.2_c, and MISRAC2012-Rule-14.4_c, using a
+        function pointer as a controlling expression generates a message even if the return type of the
+        function is essentially Boolean.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-440'>CSTAT-440</a>, <a name='EWARM-7201'>EWARM-7201</a>]</b>
+        Re-analyzing an unchanged source file in C-STAT can result in a lower number of messages reported
+        compared to the previous analysis.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-439'>CSTAT-439</a>, <a name='EWARM-7196'>EWARM-7196</a>]</b>
+        The checks <tt>CONST-member-ret</tt> and <tt>MISRAC++2008-9-3-1</tt> generate a message when a const
+        member function returns a pointer-to-const to class-data, even if the member variable is declared as
+        a pointer-to-const.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-434'>CSTAT-434</a>, <a name='EWARM-7166'>EWARM-7166</a>]</b>
+        C-STAT can calculate the size for function parameters of type <tt>void *</tt> incorrectly, which
+        leads to misleading results of the analysis.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-433'>CSTAT-433</a>, <a name='EWARM-7165'>EWARM-7165</a>]</b>
+        The check MISRAC2012-Dir-4.6_a triggers erroneously if <em>expr</em> in <tt>int8_t
+        arr[<em>expr</em>];</tt> is a <em>composite expression</em> and consists of implicit or explicit
+        casts.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-432'>CSTAT-432</a>, <a name='EWARM-7164'>EWARM-7164</a>]</b>
+        The check MISRAC2012-Rule-18.8 erroneously reports a problem with the declaration of a variable
+        length array if <em>expr</em> in <tt>int arr[<em>expr</em>]</tt> is something other than a constant
+        integer.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-430'>CSTAT-430</a>, <a name='EWARM-7129'>EWARM-7129</a>]</b>
+        In the report of the analysis results, the table "Project wide enabled checks" incorrectly lists the
+        enabled checks and all of their identical equivalents from other packages. Only the enabled checks
+        should be listed.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    In EWARM 8.50.4<br/>
+    <p><b>MISRA C:2012 Amendment 1</b><br />
+    The Static analysis tool C-STAT has extended its coverage of the MISRA C:2012 Coding Standard
+    and now fully supports MISRA C:2012 Amendment 1.
+    This Amendment adds 14 additional rules to MISRA C:2012 with a focus on security concerns
+    highlighted by the ISO C Secure Guidelines.
+    Several of these address specific issues pertaining to the use of untrustworthy data, a well-known security vulnerability.
+  </p></li>
+
+  <li>
+    <p><b>Extended coverage of CERT C</b><br>
+    The static analysis tool C-STAT has extended its coverage of the SEI CERT C Coding Standard. 
+    The SEI CERT C Coding Standard's goal is to provide rules for developing safe, reliable and 
+    secure systems in the C programming language, with support for C11 constructs. C-STAT covers 
+    all rules in the different CERT C sections listed at the CERT C wiki as of January 2020, with 
+    the exception of the API, CON, POS and WIN sections which are not applicable to our products, 
+    yielding a total of 90 covered rules.</p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p><b>Link analysis trace information</b><br>
+    The link analysis messages now display trace information when relevant. For checks looking for 
+    conflicting symbol names, all conflicting declarations are now listed in the trace information 
+    instead of each pair of conflicts being described in a separate message. This might lead to 
+    fewer reported messages for the same number of found issues.</p>
+  </li>
+</ul>
+
+
+ 
+ 
+  <h4>V8.42 2020-01-17</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7158'>EWARM-7158</a>, <a name='TPB-3254'>TPB-3254</a>]</b>
+        C-STAT can report an internal error about a missing size attribute, even though no error occurred.
+        This can happen when array declarations such as <tt>int arr[<em>expr</em>];</tt>
+        (where <em>expr</em> is not a constant integer) are used.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.40 2019-05-24</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-426'>CSTAT-426</a>, <a name='EWARM-7024'>EWARM-7024</a>]</b>
+        The check <tt>PTR-null-cmp-bef</tt> will only give one warning, regardless of how many violations
+        against the rule it finds.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-425'>CSTAT-425</a>, <a name='EWARM-7013'>EWARM-7013</a>]</b>
+        If C-STAT analyzes the same code a second time, and the only change in the code is an added comment
+        directive, the directive does not have any effect.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-424'>CSTAT-424</a>, <a name='EWARM-7008'>EWARM-7008</a>]</b>
+        C-STAT estimates the size of an array of pointers incorrectly.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-7002'>EWARM-7002</a>, <a name='TPB-3202'>TPB-3202</a>]</b>
+        Checks for the rules MISRAC++2008-5-18-1, MISRAC2004-12.10, and MISRAC2012-Rule-12.3
+        incorrectly generate a message for compiler-generated code that uses the <tt>,</tt> (comma)
+        operator. (Such code patterns can be introduced by, for instance, range-based <tt>for</tt> loops.)
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-421'>CSTAT-421</a>, <a name='EWARM-6998'>EWARM-6998</a>]</b>
+        The check for MISRAC++2008-6-5-4 incorrectly produces a message if the loop counter in a function is
+        an iterator.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-420'>CSTAT-420</a>, <a name='EWARM-6997'>EWARM-6997</a>]</b>
+        Checks for the rules MISRAC++2008-6-2-1 and MISRAC2012-Rule-13.4_b incorrectly generate a message
+        for compiler-generated code with assignments in sub-expressions. (Such code patterns can be
+        introduced by, for instance, range-based <tt>for</tt> loops.)
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-419'>CSTAT-419</a>, <a name='EWARM-6953'>EWARM-6953</a>]</b>
+        The directive in a comment for disabling a check for the immediately following function (<tt>//cstat
+        #tag</tt>) can sometimes fail to disable the specified check.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-418'>CSTAT-418</a>, <a name='EWARM-6937'>EWARM-6937</a>]</b>
+        The <tt>--exclude</tt> option does not work when the path is absolute.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6921'>EWARM-6921</a>, <a name='TPB-3181'>TPB-3181</a>]</b>
+        The inline functions for the generic functions <tt>isunordered</tt> and <tt>islessgreater</tt> have
+        the wrong return types in C. This triggers MISRA-C:2004 rule 10.1 messages in the compiler and in
+        C-STAT.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-417'>CSTAT-417</a>, <a name='EWARM-6897'>EWARM-6897</a>]</b>
+        In some cases, C-STAT interprets the result of the addition operators + or += as to be of unsigned
+        type, even if none of the operands are of unsigned type.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-415'>CSTAT-415</a>, <a name='EWARM-6852'>EWARM-6852</a>]</b>
+        The check MISRAC2012-Dir-4.8 incorrectly warns when there is no pointer to a visible <tt>struct</tt>
+        or <tt>union</tt> that can be dereferenced.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='EWARM-6850'>EWARM-6850</a>, <a name='TPB-3173'>TPB-3173</a>]</b>
+        MISRAC2012-Rule-12.1, MISRAC++2008-5-0-2, MISRAC2004-12.1: These checks do not generate messages for
+        missing parentheses on expressions inside the square brackets of an array. Example: <tt>int
+        arr[1+2*3]</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-412'>CSTAT-412</a>, <a name='EWARM-6847'>EWARM-6847</a>]</b>
+        Using the wildcard character (<tt>*</tt>) in C-STAT comment directives has no effect.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-413'>CSTAT-413</a>, <a name='EWARM-6846'>EWARM-6846</a>]</b>
+        MISRAC2012-Rule-1.3_t: The message incorrectly says "copying x bytes to..." instead of "copying x
+        bytes to/from..." while the size of both the source and the destination of the <tt>memcpy</tt>
+        function call are checked.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.40.2:<br>
+        <b>[<a name='CSTAT-411'>CSTAT-411</a>, <a name='EWARM-6845'>EWARM-6845</a>]</b>
+        When using comment characters and operators to disable or enable C-STAT messages for specific
+        checks, <tt>/*cstat op [op op...]*/,</tt> the last <tt>op</tt> and <tt>*/</tt> must be separated
+        with a whitespace.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-409'>CSTAT-409</a>, <a name='EWARM-6792'>EWARM-6792</a>]</b>
+        C-STAT can in some cases report an incorrect size for objects that are accessed via either the
+        <tt>.</tt> (dot) or <tt>-&gt;</tt> (arrow) operator.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-408'>CSTAT-408</a>, <a name='EWARM-6781'>EWARM-6781</a>]</b>
+        For MISRAC2012-Rule-8.7, a function definition is incorrectly not considered as a reference of a
+        function.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-407'>CSTAT-407</a>, <a name='EWARM-6780'>EWARM-6780</a>]</b>
+        MISRAC2012-Rule-14.1_a and MISRAC++2008-6-5-1_a incorrectly warn when any object in the controlling
+        expression is of type <tt>float</tt>. These checks should only warn if the loop counter is of type
+        <tt>float</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-406'>CSTAT-406</a>, <a name='EWARM-6772'>EWARM-6772</a>]</b>
+        C-STAT can generate messages that incorrectly refer to line '0' (MISRAC2004-1.1 is an exception to
+        this).
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-404'>CSTAT-404</a>, <a name='EWARM-6762'>EWARM-6762</a>]</b>
+        A <tt>typedef</tt> in a header file can incorrectly be seen as non-unique when the header file is
+        included from multiple source files. This can make MISRAC2012-Rule-5.6 report a false positive.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-403'>CSTAT-403</a>, <a name='EWARM-6761'>EWARM-6761</a>]</b>
+        Declarations in a header file can incorrectly be seen as multiple declarations, when the header file
+        is included from multiple source files, and make MISRAC2012-Rule-8.5_b generate a false positive.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-402'>CSTAT-402</a>, <a name='EWARM-6739'>EWARM-6739</a>]</b>
+        Certain declarations, <tt>break</tt> and <tt>continue</tt> statements inside <tt>if</tt>,
+        <tt>for</tt> and <tt>while</tt> statements, can make rule CERT-EXP19-C produce false positives.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-400'>CSTAT-400</a>, <a name='EWARM-6702'>EWARM-6702</a>]</b>
+        Using <tt>NULL</tt> in <tt>assert</tt> macros triggers false positives for MISRAC2012-Rule-11.9.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6354'>EWARM-6354</a>, <a name='TPB-3006'>TPB-3006</a>]</b>
+        Array boundaries can be incorrectly calculated, for C-STAT, when the array type consists of more
+        than one level of typedef specifiers and the array is placed inside a struct.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.32 2018-10-12</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-399'>CSTAT-399</a>, <a name='EWARM-6662'>EWARM-6662</a>]</b>
+        C-STAT considers accessing a volatile object through the -&gt; (arrow) or . (dot) operators as a
+        volatile write operation.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-398'>CSTAT-398</a>, <a name='EWARM-6658'>EWARM-6658</a>]</b>
+        It is not possible to suppress link analysis messages in C-STAT.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-396'>CSTAT-396</a>, <a name='EWARM-6595'>EWARM-6595</a>]</b>
+        Using a section operator, for example <tt>__segment_begin</tt>, as a function parameter causes an
+        internal error in C-STAT.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-393'>CSTAT-393</a>, <a name='EWARM-6575'>EWARM-6575</a>]</b>
+        Running an analysis on an unchanged file with the check MISRAC2012-Dir-4.6_a enabled can in rare
+        cases cause C-STAT to report an internal error.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-391'>CSTAT-391</a>, <a name='EWARM-6526'>EWARM-6526</a>]</b>
+        In some rare cases, C-STAT can misidentify how function parameters are used.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-389'>CSTAT-389</a>, <a name='EWARM-6514'>EWARM-6514</a>]</b>
+        Arrays with more than 100 elements can cause C-STAT to crash if the check MISRAC2012-Rule-10.3 is
+        enabled.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-387'>CSTAT-387</a>, <a name='EWARM-6507'>EWARM-6507</a>]</b>
+        C-STAT does incorrectly not consider returning a <tt>struct</tt> from a function to be a use of the
+        <tt>struct</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+		In EWARM 8.32.3
+        <b>[<a name='CSTAT-386'>CSTAT-386</a>, <a name='EWARM-6411'>EWARM-6411</a>]</b>
+        Source files larger than 16 MBytes can cause C-STAT to crash.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-377'>CSTAT-377</a>, <a name='EWARM-6373'>EWARM-6373</a>]</b>
+        Saving a function address is considered as a function call. This can lead to false positives for
+        checks which look for recursion, such as MISRAC2012-Rule-17.2_b.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.30 2018-06-15</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In 8.30.2<br>
+        <b>[<a name='CSTAT-375'>CSTAT-375</a>, <a name='EWARM-6345'>EWARM-6345</a>]</b>
+        If an analysis of a source file only consists of suppressed messages, IAR Embedded Workbench will
+        not output "Analyzing xxxx" in the <b>Build</b> window.
+        </p>
+     </li>
+     <li>
+        <p>
+        In 8.30.2<br>
+        <b>[<a name='CSTAT-372'>CSTAT-372</a>, <a name='EWARM-6289'>EWARM-6289</a>]</b>
+        Array indices are calculated incorrectly when the array is a field (but not the first field) of a
+        struct.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-368'>CSTAT-368</a>, <a name='EWARM-6189'>EWARM-6189</a>]</b>
+        MISRAC2012-Rule-17.5 might report false positives if the parameter is a global array.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-364'>CSTAT-364</a>, <a name='EWARM-6161'>EWARM-6161</a>]</b>
+        The severity level for the checks MISRAC2012-Rule-8.9_a and MISRAC2012-Rule-8.9_b is incorrect. 
+        It should be Low, not Medium.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-363'>CSTAT-363</a>, <a name='EWARM-6151'>EWARM-6151</a>]</b>
+        <tt>if (++foo != 0)</tt> or <tt>if (--foo != 0)</tt> does not count as a comparison of <tt>foo</tt>
+        against 0.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-360'>CSTAT-360</a>, <a name='EWARM-6142'>EWARM-6142</a>]</b>
+        <tt>MISRAC2012-Rule-8.3_b</tt> generates a message for inconsistent types between global variables
+        with the same name even if the variables are declared as <tt>static</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-359'>CSTAT-359</a>, <a name='EWARM-6141'>EWARM-6141</a>]</b>
+        There are no link analysis messages when the paths to the source files contain white spaces. This
+        occurs both when running <tt>icstat</tt> with the <tt>commands</tt> command and when performing an
+        analysis in IAR Embedded Workbench.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-357'>CSTAT-357</a>, <a name='EWARM-6137'>EWARM-6137</a>]</b>
+        Access ranges of arrays inside <tt>structs</tt> are not calculated correctly. This can for example
+        generate false positives for the check <tt>ARR-inv-index-ptr-pos</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-353'>CSTAT-353</a>, <a name='EWARM-6081'>EWARM-6081</a>]</b>
+        Function parameters for non-static functions are given an estimated value range based on an analysis
+        of all function calls inside the module where the function is defined. This might introduce false
+        positives when the function is called from another module.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.22 2018-01-22</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-362'>CSTAT-362</a>, <a name='EWARM-6138'>EWARM-6138</a>]</b>
+        The range of the right-hand side argument of shift operations can in some cases get calculated
+        incorrectly, which in turn might generate false positives for <tt>ATH-shift-bounds</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-350'>CSTAT-350</a>, <a name='EWARM-6090'>EWARM-6090</a>]</b>
+        MISRAC2012-Rule-13.8 does not issue a message when a non-const pointer is assigned or copied to
+        another non-const pointer that in turn is never modified or copied. In this case, both pointers can
+        be declared with the <tt>const</tt> attribute.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-343'>CSTAT-343</a>, <a name='EWARM-6074'>EWARM-6074</a>]</b>
+        ARR-inv-index does not check for buffer overflows when the operator <tt>&amp;</tt> is used, e.g.,
+        <tt>&amp;arr[i]</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-346'>CSTAT-346</a>, <a name='EWARM-6071'>EWARM-6071</a>]</b>
+        MISRAC2012-Rule-16.1: A case clause is not allowed to have multiple break, goto, or return
+        statements.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-345'>CSTAT-345</a>, <a name='EWARM-6070'>EWARM-6070</a>]</b>
+        Exception 1 of MISRA C 2012 Rule 10.3 is not applied to array types.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='CSTAT-334'>CSTAT-334</a>, <a name='EWARM-5920'>EWARM-5920</a>]</b>
+        Calculating <tt>&amp;</tt> on large numbers can cause C-STAT to produce an internal error.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>None</p></li>
+</ul>
+ 
+ 
+  <h4>V8.20 2017-10-16</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5989'>EWARM-5989</a>, <a name='CSTAT-340'>CSTAT-340</a>]</b>
+        Returning an object that is neither signed nor unsigned can produce an internal error.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5976'>EWARM-5976</a>, <a name='CSTAT-339'>CSTAT-339</a>]</b>
+        MISRAC++2008-7-1-2: Calling a non-const member function of a function parameter is not considered as a potential write operation of that parameter.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5950'>EWARM-5950</a>, <a name='CSTAT-337'>CSTAT-337</a>]</b>
+        Link messages from different checks referring to the same symbol can erroneously get filtered.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5920'>EWARM-5920</a>, <a name='CSTAT-334'>CSTAT-334</a>]</b>
+        Calculating <tt>&amp;</tt> on large numbers can cause C-STAT to produce an internal error.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5908'>EWARM-5908</a>, <a name='CSTAT-333'>CSTAT-333</a>]</b>
+        MISRAC2012-Rule-8.4 requires the function <tt>main</tt> to have a separate declaration.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 8.20.2<br>
+        <b>[<a name='EWARM-5867'>EWARM-5867</a>, <a name='CSTAT-331'>CSTAT-331</a>]</b>
+        The underlying type of expressions containing an enum or boolean type is evaluated erroneously.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5848'>EWARM-5848</a>, <a name='CSTAT-329'>CSTAT-329</a>]</b>
+        In some rare cases C-STAT might fail to display messages caused by problems in a header file, because of issues with case-sensitivity.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5844'>EWARM-5844</a>, <a name='CSTAT-328'>CSTAT-328</a>]</b>
+        It is not possible to use the option --exclude with a path that contains directory separators.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5843'>EWARM-5843</a>, <a name='CSTAT-327'>CSTAT-327</a>]</b>
+        If the option --exclude is used more than once, only the last option has any effect.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5808'>EWARM-5808</a>, <a name='CSTAT-324'>CSTAT-324</a>, <a name='EW26733'>EW26733</a>]</b>
+        MISRAC2012-Rule-10.1_R3 triggers on array access' when the array has elements of type boolean.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5807'>EWARM-5807</a>, <a name='CSTAT-323'>CSTAT-323</a>, <a name='EW26731'>EW26731</a>]</b>
+        The check MISRAC2012-Rule-10.3 disregards array and pointer assignments.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5793'>EWARM-5793</a>, <a name='CSTAT-322'>CSTAT-322</a>, <a name='EW26708'>EW26708</a>]</b>
+        The size of return values are not taken into consideration when calculating their lower and upper bounds.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5792'>EWARM-5792</a>, <a name='CSTAT-321'>CSTAT-321</a>, <a name='EW26706'>EW26706</a>]</b>
+        C-STAT does not identify overflows on <tt>memset</tt> and related functions when the destination is something other than just an identifier.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5781'>EWARM-5781</a>, <a name='CSTAT-318'>CSTAT-318</a>, <a name='EW26688'>EW26688</a>]</b>
+        These checks might produce false positives when the switch statement is inside a loop: MISRAC2012-Rule-16.3, MISRAC++2008-6-4-5, and MISRAC2004-15.2.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5779'>EWARM-5779</a>, <a name='EW26681'>EW26681</a>]</b>
+        ATH-overflow may falsely trigger when the left operand of the bit-wise AND operation is of the same size as the result.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5746'>EWARM-5746</a>, <a name='EW26636'>EW26636</a>]</b>
+        C-STAT considers accessing a volatile object through the -&gt; (arrow) or . (dot) operators as a volatile write operation.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5743'>EWARM-5743</a>, <a name='EW26630'>EW26630</a>]</b>
+        Link messages are not part of the output of icstat when executing the 'load' command via the command line.
+        </p>
+     </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li><p>None</p></li>
+</ul>
+ 
+ 
+  <h4>V8.11 2017-04-11</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li><p>
+    C-STAT cannot handle comments with non-ASCII characters if the compiled source
+    file uses the Raw encoding format.<br>
+    [EW26477]
+  </p></li>
+
+  <li><p>
+    In EWARM 8.11.2:<br>
+    Global arrays declared with the keyword <code>static</code> are incorrectly 
+    assumed to have constant values.<br>
+    [EW26461]
+  </p></li>
+
+  <li><p>
+    In EWARM 8.11.2:<br>
+    MISRAC2012-Rule-8.13: C-STAT does not consider sending a variable as a function 
+    parameter via operators such as <code>&amp;</code> (address-of) and <code>[]</code> 
+    (subscript) as a potential use of the variable.<br>
+    [EW26560]
+  </p></li>
+
+  <li><p>
+    In EWARM 8.11.2:<br>
+    MISRAC2012-Rule-2.2_b: C-STAT does not consider sending a struct object through an 
+    aliased pointer as a potential write operation on the struct's fields.<br>
+    [EW26562]
+  </p></li>
+
+</ul>
+
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+ 
+ 
+  <h4>V8.10 2017-03-10</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li><p>
+    Assignment operations in a separate function on a variable which is passed by reference 
+    can lead to false positives produced by MISRAC++2008-0-1-6 and similar C-STAT checks.<br>
+    [EW26117]
+  </p></li>
+
+  <li><p>
+    It's possible to try to generate a C-STAT report on a project that has not yet been analyzed.<br>
+    [EW26173]
+  </p></li>
+
+  <li><p>
+    ATH-overflow is unable to detect overflows for shorthand assignment operators.<br>
+    [EW26194]
+  </p></li>
+
+  <li><p>
+    Projects where the combined absolute paths of all source files exceeds 32,768 characters 
+    cause the link analysis to crash.<br>
+    [EW26217]
+  </p></li>
+
+  <li><p>
+    MISRAC++2008-7-1-1 does not consider 1) calling a non-const member function and 
+    2) taking the address of a struct variable and writing to one of its fields as 
+    modifications.<br>
+    [EW26219]
+  </p></li>
+
+  <li><p>
+    The type of a ternary expression is falsely decided by the type of its first operand.<br>
+    [EW26243]
+  </p></li>
+
+  <li><p>
+    C-STAT might report that the left-hand side argument of a right-shift operation 
+    has a negative interval even though the expression is unsigned.<br>
+    [EW26258]
+  </p></li>
+
+  <li><p>
+    A non-const pointer using a parameter for an impure function is considered a 
+    violation to MISRAC2012-Rule-8.13.<br>
+    [EW26260]
+  </p></li>
+
+  <li><p>
+    Non-system external functions with return type <code>void</code> are not considered 
+    as having side effects.<br>
+    [EW26262]
+  </p></li>
+
+  <li><p>
+    C-STAT erroneously considers accessing a struct field inside a subscript operation 
+    on the left hand side of an assignment as writing to that struct field.<br>
+    [EW26264]
+  </p></li>
+
+  <li><p>
+    C-STAT might report that the right-hand side argument of a left-shift operation 
+    has a negative interval even though the expression is unsigned.<br>
+    [EW26271]
+  </p></li>
+
+  <li><p>
+    Boolean pointers are not considered to have <code>boolean</code> type.<br>
+    [EW26273]
+  </p></li>
+
+  <li><p>
+    Use of global objects are not registered if the use involves implicit casts. 
+    This could lead to triggering of false positives for MISRAC2012-Rule-8.9_b.<br>
+    [EW26275]
+  </p></li>
+
+  <li><p>
+    Literal <code>0</code> is interpreted as <code>NULL</code> by SEC-NULL-literal-pos 
+    and PTR-null-literal-pos.<br>
+    [EW26283]
+  </p></li>
+
+  <li><p>
+    EXP-main-ret-int signals a false positive when the return type of 
+    <code>main()</code> is a <code>typedef</code> of type <code>int</code>.<br>
+    [EW26285]
+  </p></li>
+
+  <li><p>
+    Taking the address of a volatile object is not considered as a non-volatile operation.<br>
+    [EW26302]
+  </p></li>
+
+  <li><p>
+    Using a static global on the right-hand side of a global assignment is not 
+    considered a use and can thus trigger false positives for MISRAC2012-Rule-8.9_a.<br>
+    [EW26304]
+  </p></li>
+
+  <li><p>
+    Comparing values accessed through the <code>subscript</code> operator on different 
+    arrays is considered as comparisons between different pointers, thus falsely 
+    trigger MISRAC2012-Rule-18.3.<br>
+    [EW26307]
+  </p></li>
+
+  <li><p>
+    A struct field which is a <code>typedef</code> with the character 
+    sequence <code>bool</code>, <code>Bool</code> or <code>BOOL</code> in its 
+    name is not considered to be of boolean type.<br>
+    [EW26316]
+  </p></li>
+
+  <li><p>
+    Using a struct field which is a typedef consisting of the character sequence 
+    <code>bool</code>, <code>Bool</code> or <code>BOOL</code> as a conditional 
+    causes MISRAC2012-Rule-14.4 to generate false positives.<br>
+    [EW26318]
+  </p></li>
+
+  <li><p>
+    Implicit casts could in some cases cause C-STAT to believe an unsigned variable 
+    could have a negative value interval.<br>
+    [EW26365]
+  </p></li>
+
+  <li><p>
+    C-STAT fails with an Internal error when analyzing code which contains a 
+    <code>char</code> with a value larger than 31 bits.<br>
+    [EW26392]
+  </p></li>
+
+  <li><p>
+    When using multiple <code>--exclude</code> options, only the last option has any effect.<br>
+    [EW26438]
+  </p></li>
+</ul>
+ 
+  <b>New features</b>
+ 
+<ul>
+    <li>None.</li>
+</ul>
+ 
+ 
+  <h4>V7.80 2016-10-17</h4>
+  <b>Program corrections</b>
+
+<ul>
+  <li><p>
+    MISRA-C:2004 rule 11.4 does not give a message for casting an array into a pointer.<br>
+    [EW26207]
+  </p></li>
+</ul>
+
+
+  <h4>V7.70 2016-06-17</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li><p>
+      C-STAT: MISRAC2004-17.4_b now handles multi-dimensional arrays.<br>
+      [EW26056]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    C-STAT produces false positives for MISRAC2012-Rule-10.1_R2 when a boolean 
+    expression contains a nested ternary operator which is essentially boolean.<br>
+    [EW26082]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    The rule MISRAC2012-Rule-12.1 / MISRAC++2008-5-0-2 / MISRAC2004-12.1 generates false 
+    positives regarding suggestions to enclose <code>sizeof()</code> expressions with parentheses 
+    for increased clarity.<br>
+    [EW26083]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    Suppressing C-STAT checks over an interval with the use of wildcards does not 
+    work as intended.<br>
+    [EW26092]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    The 'underlying type' is sometimes incorrectly determined for the check MISRAC++2008-5-0-6.<br>
+    [EW26118]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    MISRAC2012-Rule-11.9 does not generate messages for implicit <code>(void *)0</code> casts, 
+    e.g., <code>void *p = 0</code><br>
+    [EW26120]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    MISRAC2012-Rule-8.13: Pointers that are copied by assignment are no longer required 
+    to be const-qualified.<br>
+    [EW26196]
+  </p></li>
+
+  <li><p>
+    In EWARM 7.70.2:<br>
+    CERT-EXP19-C generates too many false positives for missing braces for else-if statements.<br>
+    [EW26198]
+  </p></li>
+</ul>
+ 
+  <b>New features</b>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+
+ 
+  
+  <h4>V7.60 2016-03-31</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li>
+    <p>
+      C-STAT: The C-STAT check CONST-param doesn't handle <tt>&amp;</tt> parameters.<br>
+      [EW25294]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      C-STAT: The C-STAT checks doesn't check array initialization inside objects.<br>
+      [EW25398]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      C-STAT: Code accessing fields of an anonymous union triggers an Internal error.<br>
+      [EW25776]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      C-STAT: LIB-memcpy-overrun and MISRAC2012-Rule-1.3t may incorrectly calculate the size of the 
+      destination memory.<br>
+      [EW25908]
+    </p>
+  </li>
+</ul>
+
+  <b>New features</b>
+  
+<ul>
+  <li><p><b>Extended functionality in C-STAT</b><br />
+      The static analysis tool C-STAT has been extended with approximately 150 new checks including 
+      90 new MISRA C:2012 checks and two new packages of checks. There are also new options to 
+      enable or disable the false-positives elimination phase of the analysis and to exclude files 
+      from the analysis. C-STAT message suppression can now be controlled by directives placed in 
+      comments in the source files. For more information see the <a href="iccarm.ENU.html#features">release 
+      notes for the compiler</a>.
+  </p></li>
+
+</ul>
+
+
+  <h4>V7.50 2015-11-10</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+  <li>
+    <p>
+      C-STAT might encounter a fatal error if the path to the object file, in the compiler command line, contains certain multibyte characters.<br>
+      [EW25766]
+    </p>
+  </li>
+</ul>
+
+  <b>New features</b>
+ 
+<ul>
+  <li>
+    <p><b>Analysis report generation in C-STAT</b><br />
+      It is now possible to generate analysis reports from C-STAT in html format. See
+      <a href="../EW_CSTATGuide.ENU.pdf">C-STAT Static Analysis Guide</a> for more information.
+    </p>
+  </li>
+</ul>
+ 
+ 
+  <h4>V7.40 2015-02-19</h4>
+  <b>Program corrections</b>
+ 
+<ul>
+
+  <li>
+    <p>
+      In EWARM 7.40.2:<br>
+      C-STAT: When <code>icstat</code> has timed out it does not mention this in any way or form.<br>
+      [EW25262]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.2:<br>
+      C-STAT: The check <code>ATH-div-0-cmp-aft</code> now uses the analyzed interval ranges, if applicable.<br>
+      [EW25300]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.2:<br>
+      C-STAT: MISRAC2012-Rule-15.6_c does not accept that an <code>else</code> immediatley followed by <code>if</code> should not get a message<br>
+      [EW25330]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: The ananlysis does not consider <code>va_start</code> as an initialization of a variable.<br>
+      [EW25319]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: When checking MISRAC2012-Dir-4.10 (include guards), any system header included using <code>"..."</code>
+      instead of <code>&lt;...&gt;</code> is considered in violation of the rule.<br>
+      [EW25321]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: MISRAC2012-Dir-4.6_a can erroneously be diagnosed as violated in some cases. In particular,
+      using a <code>volatile</code> or <code>const</code> modifier in an array type declaration
+      can cause this behavior.<br>
+      [EW25323]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: The interval solver in C-STAT erroneously uses the initialized value of a global or
+      static <code>volatile</code> variable.<br>
+      [EW25332, EW25389]
+  </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: <code>signed integer</code> constant expression zero gives an erroneous message for
+      MISRAC2012-Rule-10.1_R7 (the right operand of a shift should be essentially unsigned).<br>
+      [EW25343]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: MISRAC2012-Rule-10.3/4 sometimes gives a message erroneously (return of a bool and a
+      compare of a <code>bool</code> with <code>integer</code> constants 0 and 1).<br>
+      [EW25355]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: Volatile accesses inside <code>sizeof()</code> expressions are considered as a side effect.<br>
+      [EW25381]
+    </p>
+  </li>
+    
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: MISRAC++2008-2-13-3 incorrectly flags enumeration constants.<br>
+      [EW25412]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.3:<br>
+      C-STAT: MISRAC++2008-8-5-2 fails for arrays with more than 100 elements even though it uses an initializer
+      with the correct amount of elements.<br>
+      [EW25422]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.5:<br>
+      C-STAT: MISRAC2012-Rule-10.3/4 does not treat the <code>enum</code> constants 0 and 1 as <code>boolean</code>.<br>
+      [EW25370]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.5:<br>
+      C-STAT: The checks CONST-param, MISRA-C:2004-16.7, and MISRA C++:2008-7-1-2 do
+      not detect array assignments for parameters.<br>
+      [EW25547]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.5:<br>
+      C-STAT: The check MISRA-C:2004 19.15 can, spuriously, generate messages for source
+      files in directories that are not subdirectories of the project directory (<code>$PROJ_DIR$</code>).<br>
+      [EW25549]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.5:<br>
+      C-STAT: The detection of whether a macro is coming from a system header or not is faulty.
+      In this case it incorrectly generates a message for the use of <code>offsetof</code>.<br>
+      [EW25603]
+    </p>
+  </li>
+
+  <li>
+    <p>
+      In EWARM 7.40.5:<br>
+      C-STAT now reports fewer false positives for the check SPC-volatile-reads.<br>
+      [EW25607]
+    </p>
+  </li>
+  
+  <li>
+    <p>
+      In EWARM 7.40.5:<br>
+      C-STAT, MEM-stack-global-alias: Assigning a value from an array to a global
+      variable is no longer interpreted as assigning a stack address to it.<br>
+      [EW25609]
+    </p>
+  </li>
+</ul>
+ 
+ 
+  <b>New features</b>
+ 
+<ul>
+   <li><p><b>C-STAT</b><br />
+         The add-on product C-STAT for static analysis is now supported. C-STAT 
+         features innovative static analysis that can detect defects, bugs, and 
+         security vulnerabilities as defined by CERT and the Common Weakness 
+         Enumeration, as well as help keeping code compliant to coding standards 
+         like MISRA C:2012/2004 or MISRA C++:2008. For more information, see 
+         <A href="../EW_CSTATGuide.ENU.pdf" >C-STAT Static Analysis Guide</A>.
+  </p></li>
+</ul>
+ 
+    </div>
+  </body>
+</html>

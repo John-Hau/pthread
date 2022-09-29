@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <!-- MOTW-DISABLED saved from url=(0014)about:internet -->
+    <title>Creating and using libraries</title>
+    <link rel="StyleSheet" href="css/CreatingAndUsingLibs.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="css/webworks.css" type="text/css" media="all" />
+  </head>
+  <body style="background-color: White; background-image: url(&quot;images/BlackGrayStrip.png&quot;); background-position: center top; background-repeat: repeat-x">
+    <table align="left">
+      <tr>
+        <td class="WebWorks_Company_Logo_Top">
+          <img src="images/IARSystems.png" />
+        </td>
+      </tr>
+    </table>
+    <br clear="all" />
+    <hr align="left" />
+    <blockquote>
+      <div class="Heading1"><a name="1080508">Creating and using libraries</a></div>
+      <div class="WebWorks_MiniTOC">
+        <div class="WebWorks_MiniTOC_Level1">
+          <a class="WebWorks_MiniTOC_Link" href="#1087518">Tutorial overview</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4189249">Tutorial description</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4191171">Files used in this tutorial</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4189329">Opening the tutorial project</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level1">
+          <a class="WebWorks_MiniTOC_Link" href="#4198337">Using libraries</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4198981">Creating a library project</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4200459">Using the library in your application project</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4201672">Overriding a library module—retargeting</a>
+        </div>
+      </div>
+      <div class="Ingress"><a name="4220050">This tutorial demonstrates how to create a library project and how to combine it with an application project.</a></div>
+      <div class="Ingress"><a name="4189180">Note that the screenshots in this tutorial do not always correspond exactly to the counterparts in your product.</a></div>
+      <div class="Ingress"><a name="4203698">This tutorial assumes that you are familiar with basic use of IAR Embedded Workbench®; see the tutorial </a><span class="Reference">Getting Started using IAR Embedded Workbench</span>.</div>
+      <div class="Heading2"><a name="1087518">Tutorial overview</a></div>
+      <div class="Heading3"><a name="4189249">Tutorial description</a></div>
+      <div class="Body"><a name="4191242">If you are working on a large project, you will soon accumulate a collection of useful modules that contain one or more functions to be used by several of your applications. To avoid having to assemble or compile a module each time it is needed, you can store such modules as </a><span class="Emphasis">object files</span>, in other words, assembled or compiled but not linked.</div>
+      <div class="Body"><a name="4191246">You can collect multiple modules in a single object file which then is referred to as a </a><span class="Emphasis">library</span>, for example to create collections of related functions.</div>
+      <div class="Body"><a name="4194407">This tutorial demonstrates how you can set up a library project and based on that, build a library using the </a><span class="Emphasis">library builder</span>. You will then add your library project to an application project.</div>
+      <div class="Body"><a name="4196120">The tutorial also demonstrates how you can override C/C++ standard library routines with your own variants.</a></div>
+      <div class="Heading3"><a name="4191171">Files used in this tutorial</a></div>
+      <div class="Body"><a name="4189809">The project in this tutorial uses these files:</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4196211">Fibonacci.c</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4196214">Contains a simple application that uses only standard features of the C language. It initializes an array with the ten first Fibonacci numbers and prints the result to </a><span class="Computer">stdout</span>.</div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4196228">Fibonacci.h</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4196233">Contains required definitions and declarations.</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4196242">Utilities.c</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4196250">Contains functions required by </a><span class="Computer">Fibonacci.c</span> for the Fibonacci calculations. The routines will be compiled to a separate library.</div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4196316">Utilities.h</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4196321">Contains required definitions and declarations.</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4196358">Write.c</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4196364">Contains a modified version of the low-level function </a><span class="Computer">__write</span> which is available in the runtime library. In addition to printing to <span class="Computer">stdout</span>, the modified version also adds an <span class="Computer">*</span> (asterisk) character in front of each printed Fibonacci number. Note that this file is a modified copy of the corresponding runtime library function.</div>
+      <div class="Heading3"><a name="4189329">Opening the tutorial project</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4189341">In the IDE, if Information Center is not open, choose </a><span class="Menu_Command">Help&gt;Information Center</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4189350">Click the </a><span class="Menu_Command">Product explorer</span> symbol.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4189375"><img class="Default" src="images/TutorialsInInfoCenter_02.png" width="300" height="400" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4198299">Under the </a><span class="Menu_Command">Linker and libraries</span> heading, click <span class="Menu_Command">Open tutorial workspace</span>. Choose a destination for your project in the browse dialog box that appears. We recommend that you create a specific directory (with a subdirectory) where you store all your tutorial files, if you have not done that already. In this tutorial we call the directory <span class="Computer">MyTutorials</span> and the subdirectory <span class="Computer">LinkerAndLibraries</span>. The <span class="Computer">LinkerAndLibraries</span> workspace is opened in the IDE, and contains the project <span class="Computer">ApplicationProject</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading2"><a name="4198337">Using libraries</a></div>
+      <div class="Body"><a name="4198592">In this example procedure, you will work through these steps: </a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4198981" title="Creating and using libraries" name="4198602">Creating a library project</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4200459" title="Creating and using libraries" name="4198612">Using the library in your application project</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4201672" title="Creating and using libraries" name="4198643">Overriding a library module—retargeting</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading3NoBrk"><a name="4198981">Creating a library project</a></div>
+      <div class="Body"><a name="4199020">In this example procedure you will create a library project and compile your library.</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4200862">Choose </a><span class="Menu_Command">Project&gt;Create New Project</span>. In the dialog box, specify your tool chain and an empty project. Click <span class="Menu_Command">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4200891">In the </a><span class="Menu_Command">Save As</span> dialog box, save your project with the name <span class="Computer">LibraryProject</span> in your <span class="Computer">LinkerAndLibraries</span> directory.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4204876">Add the file </a><span class="Computer">Utilities.c</span> to the project.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4206205"><img class="Default" src="images/LibraryProject_02.png" width="307" height="202" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4212183">The </a><span class="Computer">LinkerAndLibraries</span> workspace now contains two separate projects, <span class="Computer">ApplicationProject</span> and <span class="Computer">LibraryProject</span>.</div>
+      <div class="Body"><a name="4205236">At the bottom of the </a><span class="Menu_Command">Workspace</span> window, there are tabs where you can select to display the single projects or get an overview of the whole workspace. Make sure to click the <span class="Menu_Command">Overview</span> tab.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">4	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4204879">In the </a><span class="Menu_Command">Workspace</span> window, right-click <span class="Computer">LibraryProject – Debug</span> and choose <span class="Menu_Command">Options</span> from the context menu.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4205382"><img class="Default" src="images/OpenContextMenu_02.png" width="444" height="271" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4205538">In the </a><span class="Menu_Command">General Options</span> category, verify these settings:</div>
+      <div class="TableAnchor"><a name="4205541">&nbsp;</a></div>
+      <table class="Standard" style="text-align: left; width: 471.965782677166pt" cellspacing="0" summary="">
+        <caption></caption>
+        <tr>
+          <td style="border-bottom-color: #7f7f7f; border-bottom-style: solid; border-bottom-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: middle; width: 163.47257007874pt">
+            <div class="CellHeading"><a name="4214839">Page</a></div>
+          </td>
+          <td style="border-bottom-color: #7f7f7f; border-bottom-style: solid; border-bottom-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: middle; width: 142.435615748032pt">
+            <div class="CellHeading"><a name="4214846">Option</a></div>
+          </td>
+          <td style="border-bottom-color: #7f7f7f; border-bottom-style: solid; border-bottom-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: middle; width: 166.057596850394pt">
+            <div class="CellHeading"><a name="4214849">Setting</a></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top-color: #7f7f7f; border-top-style: solid; border-top-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: top">
+            <div class="CellBody"><a name="4214857">Output</a></div>
+          </td>
+          <td style="border-top-color: #7f7f7f; border-top-style: solid; border-top-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: top">
+            <div class="CellBody"><a name="4214864">Output file</a></div>
+          </td>
+          <td style="border-top-color: #7f7f7f; border-top-style: solid; border-top-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: top">
+            <div class="CellBody"><a name="4214871">Library</a></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-bottom-color: #7f7f7f; border-bottom-style: solid; border-bottom-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: top">
+            <div class="CellBody"><a name="4214879">Library Configuration</a></div>
+          </td>
+          <td style="border-bottom-color: #7f7f7f; border-bottom-style: solid; border-bottom-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: top">
+            <div class="CellBody"><a name="4214886">Library</a></div>
+          </td>
+          <td style="border-bottom-color: #7f7f7f; border-bottom-style: solid; border-bottom-width: 1.2pt; padding-bottom: 3pt; padding-left: 0pt; padding-right: 4pt; padding-top: 3pt; vertical-align: top">
+            <div class="CellBody"><a name="4214893">Normal/Normal DLIB</a></div>
+          </td>
+        </tr>
+      </table>
+      <div class="Body"><a name="4214295">A runtime library that suits your project settings is automatically chosen. Each runtime library has a specific </a><span class="Emphasis">library configuration</span>; for this tutorial, the Normal configuration is suitable, which implies C locale, but no locale interface, no file descriptor support, and no multibyte characters in <span class="Computer">printf</span> and <span class="Computer">scanf</span>. The less functionality you need in the runtime environment, the smaller the environment becomes. For more information about the runtime environment and how it can be configured, see the compiler documentation.</div>
+      <div class="Body"><a name="4200970">Note that </a><span class="Menu_Command">Library Builder</span> appears in the list of categories, which means that a library builder is added to the build toolchain. However, for this tutorial you do not have to set any specific options for the library builder.</div>
+      <div class="Body"><a name="4200996">Click </a><span class="Menu_Command">OK. </span></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">5	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4201005">Choose </a><span class="Menu_Command">Project&gt;Make</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4208489">The library output file </a><span class="Computer">LibraryProject.a</span> (or <span class="Computer">LibraryProject.r</span><span style="color: #000000; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 8.0pt; font-style: normal">xx</span> depending on your product, and where <span style="color: #000000; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 8.0pt; font-style: normal">xx</span> is a numeric part that reflects the product you are using) has now been created in the <span class="Computer">MyTutorial\LinkerAndLibraries\Debug\Exe</span> directory.</div>
+      <div class="Heading3NoBrk"><a name="4200459">Using the library in your application project</a></div>
+      <div class="Body"><a name="4200472">In this example procedure you will add your library object file to the project </a><span class="Computer">ApplicationProject</span>.</div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4200488">In the </a><span class="Menu_Command">Workspace</span> window, right-click <span class="Computer">ApplicationProject — Debug</span> and choose <span class="Menu_Command">Set as Active</span> from the context menu.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4208431">Choose </a><span class="Menu_Command">Project&gt;Add Files</span>. By default, library object files are not visible, which means that you must use the file filter drop down list at the right bottom corner in the dialog box and choose <span class="Menu_Command">Library/Object Files</span>:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4215319"><img class="Default" src="images/UsingFileFilter_1.png" width="381" height="195" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4215279">Add the file </a><span class="Computer">LibraryProject.a</span> (or <span class="Computer">LibraryProject.r</span><span style="color: #000000; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 8.0pt; font-style: normal">xx</span>) located in the <span class="Computer">MyTutorials\LinkerAndLibraries\Debug\Exe</span> directory. Click <span class="Menu_Command">Open</span>.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4219808">Click the </a><span class="Menu_Command">Make</span> button (<img class="Default" src="images/CreatingAndUsingLibs.1.1.5.png" width="20" height="20" style="display: inline; left: 0.0; top: 0.0" alt="" />) to build your project.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">4	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4200535">You have now added a library to an application project, and the application is ready to be executed. For information about how to manipulate the library using the library builder, see its documentation (which you can find on the </a><span class="Menu_Command">Help</span> menu).</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading3NoBrk"><a name="4201672">Overriding a library module—retargeting</a></div>
+      <div class="Body"><a name="4213546">If required, you can override a library module with one that you have created yourself. This example procedure demonstrates how to do this.</a></div>
+      <div class="Body"><a name="4201680">Before you can run your application on a stand-alone target system, you must typically adapt some parts of the runtime environment, for example the system initialization or if your application uses the </a><span class="Emphasis">DLIB low-level I/O interface</span>.</div>
+      <div class="Body"><span class="Computer"><a name="4209435">Utilities.c</a></span> uses the <span class="Emphasis">standard I/O interface</span> because it calls the library function <span class="Computer">putchar</span>. The standard I/O interface is large and complex, and for this reason, the DLIB runtime environment is designed so that it performs all I/O operations through a small set of simple functions, which are referred to as the <span class="Emphasis">DLIB low-level I/O interface</span>. In other words, the library function <span class="Computer">putchar</span> calls the low-level function <span class="Computer">_ _write</span>, which means that you do not have to modify <span class="Computer">putchar</span>. </div>
+      <div class="Body"><a name="4213969">By default, the functions in the low-level interface have no usable implementations. To make the standard I/O interface work, you can:</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4210420">Let the C-SPY debugger emulate I/O operations on the host computer, a mechanism referred to as </a><span class="Emphasis">C-SPY emulated I/O</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Emphasis"><a name="4210573">Retarget</a></span> the standard I/O interface to your target system by providing a suitable implementation of the interface.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4210260"><img class="Default" src="images/RetargetingPutchar_1.png" width="267" height="431" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4202159">In this example procedure you will work through the process of retargeting by overriding the low-level function </a><span class="Computer">__write</span> with a modified version.</div>
+      <div class="Note_Generic">Note:&nbsp;<a name="4212464">&nbsp;</a></div>
+      <div class="Body"><a name="4212452">The actual changes you must normally do to make the function work on your stand-alone target system are not covered in this tutorial.</a></div>
+      <div class="Body"><a name="4210955">Before you start this procedure, if needed copy the file </a><span class="Computer">write.c</span> from the <span class="Computer">tutorials</span> directory in your product installation to your <span class="Computer">MyTutorials\LinkerAndLibraries</span> directory. This file contains a modified version of the <span class="Computer">__write</span> function.</div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4210963">Add </a><span class="Computer">write.c</span> to the project <span class="Computer">ApplicationProject</span> like any other source file.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4219825">Click the </a><span class="Menu_Command">Make</span> button (<img class="Default" src="images/MakeButton_Mym80_02.png" width="25" height="25" style="display: inline; left: 0.0; top: 0.0" alt="" />) to build your project.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4213119">Note that your version of </a><span class="Computer">__write</span> is now used instead of the counterpart in the runtime library because your version is a <span class="Emphasis">program module</span> and not a <span class="Emphasis">library module</span> (program modules have precedence over library modules). For more information, see the linker documentation which you can find on the <span class="Menu_Command">Help</span> menu.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4201785">Start C-SPY and open the </a><span class="Menu_Command">Terminal I/O</span> window.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">4	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4219842">Click </a><span class="Menu_Command">Go</span> (<img class="Default" src="images/GoButton_Mym80_02.png" width="25" height="25" style="display: inline; left: 0.0; top: 0.0" alt="" />) to start the execution.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">5	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4211959">In the </a><span class="Menu_Command">Terminal I/O</span> window you can now see that your modified version of <span class="Computer">write.c</span> is used. There is an asterisk printed before each digit.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4211995">See the compiler documentation for more information about the DLIB low-level I/O interface.</a></div>
+    </blockquote>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type"
+	  content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+
+    <title>IAR Information Center for Arm</title>
+  </head>
+  <body>
+    <div id="titlebanner">
+      <div>
+	<h1>IAR Information Center for Arm</h1>
+	<p class="subtitle">
+	  Release notes for the IAR C-SPY XDS driver version 9.10.2</p>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.ENU.html">IAR Information Center for Arm</a> | 
+      <a href="release_notes.ENU.html">Release notes</a> | 
+      <a href="components.ENU.html">Components</a> |
+      Release notes for the IAR C-SPY XDS driver
+    </div>
+    <div class="mainblock">
+      <ul>
+        <li><a href="#important">Important information</a> </li>
+        <li><a href="#features">New features</a> </li>
+        <li><a href="#problems">Known problems</a> </li>
+        <li><a href="#pcorr">Program corrections</a> </li>
+        <li><a href="#manuals">User guide corrections</a> </li>
+        <li><a href="#misc">Miscellaneous</a> </li>
+        <li><a href="#history">Release history</a> </li>
+      </ul>
+      <!--======================================================================-->
+      <!-- IMPORTANT INFORMATION                                                -->
+      <!--======================================================================-->
+      <h3>
+        <a name="important" id="important"></a>Important information
+      </h3>
+<ul>
+
+  <li><p><b>Firmware update XDS200 probe needed</b><br>
+   When you are installing the TI emupack enclosed with EWARM 7.60.2
+   make sure that your XDS200 probe has the latest firmware (v1.0.0.8).<br>
+   The firmware update tool is found in your TI emupack installation <code>C:\ti\ccs_base\common\uscif\xds2xx</code>
+  </li>
+
+  <li><p><b>Installation of USB drivers for TI XDS debugger probes</b><br>
+
+    During the installation of the Embedded Workbench for ARM (EWARM) you have the possibility
+    to install the TI USB drivers.<br><br>
+
+    But in case you need to install any driver manually following steps are done:<br>
+
+    <ol>
+
+      <li>
+        If you are using TI XDS100/110/200 emulator, you must have the version of
+        the TI emupack provided with this release of EWARM installed in the suggested directory <code>C:\ti</code>.<br><br>
+
+        The TI emupack installer is located in the <code>arm\drivers\ti-xds</code> directory of the EWARM installation.<br>
+        <b>Note:</b> To install the TI emupack you must have full administrative rights on your computer.
+        To achive this you have to do <b>Run as administrator</b> when starting the installer.<br><br>
+
+        The following USB drivers are included in the TI emupack installation, and will
+        be installed in your system as part of the installation procedure:<br><br>
+        <ul>
+          <li>
+            For TI XDS110, USB drivers are found in the <code>C:\ti\ccs_base\emulation\windows\xds110_drivers</code>
+            directory.
+          </li>
+
+          <li>
+            For TI XDS100, USB drivers are found in the <code>C:\ti\ccs_base\emulation\windows\xds100_drivers</code>
+            directory.
+          </li>
+
+          <li>
+            For TI XDS200, USB drivers are found in the <code>C:\ti\ccs_base\emulation\windows\xds2xx_drivers</code>
+            directory.
+          </li>
+        </ul>
+        <br>
+     </li>
+
+     <li>
+       For some TI XDS110 boards, you need to explicitly install the USB driver in the
+       <code>arm\drivers\StellarisICDI</code> directory of the EWARM installation. This USB driver is also
+       possible to install during the installation of the EWARM.
+     </li>
+
+  </ol>
+
+  </p></li>
+
+  <li><p>The C-SPY driver for the TI XDS emulators currently supports the following TI device 
+         families: AM1xx, AM3xx, AM43xx CC13xx, CC2538, CC26xx, CC32xx, F28M3x, LM3S, LM4F, MSP432, OMAPL138, RM48L, TMS470M, 
+         TMS570.
+  </p></li>
+
+</ul>
+      <!--======================================================================-->
+      <!-- NEW FEATURES                                                         -->
+      <!--======================================================================-->
+      <h3>
+        <a name="features" id="features"></a>New features
+      </h3>
+      See <a href="./csarm.ENU.html#features">New features for the IAR C-SPY Debugger</a>.
+	  
+      <!--======================================================================-->
+      <!-- Known Problems-->
+      <!--======================================================================-->
+      <h3>
+        <a name="problems" id="problems"></a>Known problems
+      </h3>
+      See <a href="./csarm.ENU.html#problems">Known problems for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- Program Corrections                                                  -->
+      <!--======================================================================-->
+      <h3>
+        <a name="pcorr" id="pcorr"></a>Program corrections
+      </h3>
+      See <a href="./csarm.ENU.html#pcorr">Program corrections for the IAR C-SPY Debugger</a>.
+	  
+      <!--======================================================================-->
+      <!-- USER GUIDE CORRECTIONS                                               -->
+      <!--======================================================================-->
+      <h3>
+        <a name="manuals" id="manuals"></a>User guide corrections
+      </h3>
+      See <a href="./csarm.ENU.html#manuals">User guide corrections for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- MISCELLANEOUS                                                        -->
+      <!--======================================================================-->
+      <h3>
+        <a name="misc" id="misc"></a>Miscellaneous
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- RELEASE HISTORY                                                      -->
+      <!--======================================================================-->
+      <h3>
+        <a name="history" id="history"></a>Release history
+      </h3>
+      See <a href="./csarm.ENU.html#history">IAR C-SPY Debugger Release history</a>.
+    </div>
+  </body>
+</html>

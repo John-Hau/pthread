@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type"
+	  content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+
+    <title>IAR Information Center for Arm</title>
+  </head>
+  <body>
+    <div id="titlebanner">
+      <div>
+	<h1>IAR Information Center for Arm</h1>
+	<p class="subtitle">
+	  Release notes for the IAR C-SPY J-Link driver version 9.10.2</p>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.ENU.html">IAR Information Center for Arm</a> | 
+      <a href="release_notes.ENU.html">Release notes</a> | 
+      <a href="components.ENU.html">Components</a> |
+      Release notes for the IAR C-SPY J-Link driver
+    </div>
+    <div class="mainblock">
+      <ul>
+        <li><a href="#important">Important information</a> </li>
+        <li><a href="#features">New features</a> </li>
+        <li><a href="#problems">Known problems</a> </li>
+        <li><a href="#pcorr">Program corrections</a> </li>
+        <li><a href="#manuals">User guide corrections</a> </li>
+        <li><a href="#misc">Miscellaneous</a> </li>
+        <li><a href="#history">Release history</a> </li>
+      </ul>
+      <!--======================================================================-->
+      <!-- IMPORTANT INFORMATION                                                -->
+      <!--======================================================================-->
+      <h3>
+        <a name="important" id="important"></a>Important information
+      </h3>
+<ul>
+  <li><p>
+    J-Link Ultra can be calibrated to ensure accurate power measurements. To calibrate J-Link Ultra follow these steps:
+    <ol>
+      <li>Make sure the J-Link Ultra JTAG connector is disconnected from the target board</li>
+      <li>Connect J-Link Ultra to the PC</li>
+      <li>Start J-Link Commander (<code>Program Files\IAR Systems\Embedded Workbench 5.4\arm\bin\jlink.exe</code>)</li>
+      <li>Type "calibrate"</li>
+    </ol>
+  </p></li>
+  <li><p>
+    The J-Link/J-Trace probe has a built-in flash programming capability for some devices.
+    This capability might in some cases conflict with the flash loader mechanism provided by the debugger.
+    For example when disabling the debugger flash loader with the intent of debugging directly in RAM,
+    the J-Link/J-Trace built-in flash loader might still be active causing unexpected results.
+    The J-Link/J-Trace built-in flash loader can be enabled/disabled using the J-Link control panel accessible
+    from the Windows task bar when the Embedded Workbench is in debug mode.
+   </p></li>
+  <li><p>
+    To J-Link DCC file names have changed in version 5.20.
+    Use <code>JLINKDCC_Process.c, JLINKDCC.h, JLINKDCC_HandleDataAbort.s</code>
+    instead of <code>DCC_Process.c, DCC_Process.h, and DCC_HandleDataAbort.s</code>.
+  </p></li>
+  <li><p>
+    To debug with J-Link, the USB driver has to be installed. The driver is
+    found in the <code>drivers\JLink</code> directory on the installation
+    CD-ROM. In addition, it is available in the
+    <code>...\arm\drivers\JLink</code> directory in the installation.
+  </p></li>
+  <li><p>
+    For more information on installing J-Link, refer to the 
+    <a href="../EWARM_DebuggingGuide.ENU.pdf">IAR Embedded Workbench Debugging Guide</a>
+    and the
+    <a href="../jlinkarm.pdf">J-Link / J-Trace User Guide</a>.
+  </li></p>
+</ul>
+      <!--======================================================================-->
+      <!-- NEW FEATURES                                                         -->
+      <!--======================================================================-->
+      <h3>
+        <a name="features" id="features"></a>New features
+      </h3>
+      See <a href="./csarm.ENU.html#features">New features for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- Known Problems-->
+      <!--======================================================================-->
+      <h3>
+        <a name="problems" id="problems"></a>Known problems
+      </h3>
+      See <a href="./csarm.ENU.html#problems">Known problems for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- Program Corrections                                                  -->
+      <!--======================================================================-->
+      <h3>
+        <a name="pcorr" id="pcorr"></a>Program corrections
+      </h3>
+      See <a href="./csarm.ENU.html#pcorr">Program corrections for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- USER GUIDE CORRECTIONS                                               -->
+      <!--======================================================================-->
+      <h3>
+        <a name="manuals" id="manuals"></a>User guide corrections
+      </h3>
+      See <a href="./csarm.ENU.html#manuals">User guide corrections for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- MISCELLANEOUS                                                        -->
+      <!--======================================================================-->
+      <h3>
+        <a name="misc" id="misc"></a>Miscellaneous
+      </h3>
+<ul>
+  <li>
+    J-Link is shipped with a 20-pin JTAG connector. 14-pin JTAG targets can
+    be connected with a cable as shown below:
+  <p>
+    <img src="images/arm_20-2-14connector.gif" width="415" height="183"
+    border="0"></p>
+  </li>
+
+  <li><p>
+    Debugging multiple ARM cores
+  </p></li>
+  <ul>
+    <li><p>
+      J-Link can handle multicore debugging. 
+      In this case multiple ARM devices are connected to the same JTAG
+      connector as shown below:
+    <p>
+    <p>
+      <img src="images/arm_2device_connect.gif" width="599" height="318"
+      border="0"></p>
+    </li>
+  </ul>
+</ul>
+      <!--======================================================================-->
+      <!-- RELEASE HISTORY                                                      -->
+      <!--======================================================================-->
+      <h3>
+        <a name="history" id="history"></a>Release history
+      </h3>
+      See <a href="./csarm.ENU.html#history">IAR C-SPY Debugger Release history</a>.
+    </div>
+  </body>
+</html>

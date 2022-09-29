@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--  $Id: jet-fw.ENU.html 6133 2020-11-24 17:57:34Z RobertCh $-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd" xml:lang="en">
+<head>
+    <title>I-jet, JTAGjet-Trace and JTAGjet Firmware Versions</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="./style/ewic.css" />
+</head>
+<body>
+    <div id="topbanner">
+    </div>
+    <div id="titlebanner_small">
+        <h2>
+           I-jet, JTAGjet-Trace and JTAGjet Firmware Versions
+        </h2>
+    </div>
+    <div class="breadcrumb">
+              <a href="./index.ENU.html">IAR Information Center for ARM</a>
+            | <a href="./release_notes.ENU.html">Release notes</a>
+            | <a href="./components.ENU.html">Components</a>
+            | <a href="./csjtagjet.ENU.html">Release notes for the IAR C-SPY I-jet and JTAGjet driver</a>
+            | I-jet, JTAGjet-Trace and JTAGjet Firmware Versions
+    </div>
+    <div class="mainblock">
+        <ul>
+            <li><a href="#notes">Notes</a> </li>
+            <li><a href="#ijettracearmversions">I-jet Trace ARM firmware versions</a> </li>
+            <li><a href="#ijettracecmversions">I-jet Trace CM firmware versions</a> </li>
+            <li><a href="#ijetversions">I-jet firmware versions</a> </li>
+            <li><a href="#jtagjettraceversions">JTAGjet-Trace firmware versions</a> </li>
+            <li><a href="#jtagjetversions">JTAGjet firmware versions</a> </li>
+            <li><a href="#howtoidentifyversion">How to identify the firmware version</a> </li>
+        </ul>
+
+<h3><a name="notes" id="notes"></a>Notes</h3>
+
+<ul>
+<code>EmuDiag.exe</code> (available via I-jet/JTAGjet menu) should be used to update the firmware.<br>
+The newer firmware version for a particular probe is on the top.<br>
+Firmware updates are not related to any particular CPU or board support.<br>
+Release date is the date of the firmware release build, not the date of availability.<br>
+</ul>
+
+<h3><a name="ijettracearmversions" id="A2"></a>I-jet Trace ARM firmware versions</h3>
+
+<ul><pre>
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-arm\v2.5</code>
+Date: 2016/08/25 USB: 2016/01/25
+  Fixed (very rare) possibility of incorrect 1/2/4-bit capture (only over Mictor connector).
+
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-arm\v1.5</code>
+Date: 2016/06/06 USB: 2016/01/25
+  First official I-jet Trace ARM firmware.
+</pre></ul>
+
+<h3><a name="ijettracecmversions" id="A1"></a>I-jet Trace CM firmware versions</h3>
+
+<ul><pre>
+
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v7.5</code>
+Date: 2016/06/10 USB: 2015/09/02
+  Support for cJTAG added (requires IAR Embedded Workbench for ARM 7.60.1 or newer).
+  It is compatible with all I-jet Trace CM versions.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v6.5</code>
+Date: 2015/09/02
+  Improved USB connection/enumeration reliability especially in multi-probe and USB 2.0 environments.
+  Several internal enhancements (to be fully utilized in upcoming IAR Embedded Workbench for ARM releases).
+  It is compatible with all I-jet Trace CM versions.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v5.4</code>
+Date: 2015/05/28 USB: 2015/05/07
+  Added support for 1-bit and 2-bit ETM (requires IAR Embedded Workbench for ARM 7.40.3 or newer).
+  It is compatible with all I-jet Trace CM versions.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v4.4</code>
+Date: 2015/02/10 USB: 2015/05/07
+  Prevents programming older firmware into I-jet Trace Ver C.
+  It is compatible with all I-jet Trace CM versions.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v4.3</code>
+Date: 2015/02/10 USB: 2015/02/27
+  Full support for I-jet Trace Ver C.
+  It is compatible with all I-jet Trace CM versions, but obsolete.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v3.3</code>
+Date: 2014/12/12 USB: 2015/02/27
+  Preliminary support for I-jet Trace Ver C.
+  It is compatible with all I-jet Trace CM versions, but obsolete.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v3.2</code>
+Date: 2014/12/12 USB: 2014/10/23
+  Faster JTAG operations (requires IAR Embedded Workbench for ARM 7.30.4 or newer).
+  Improved ETM timestamp and synchronization.
+  It is <b>not</b> compatible with I-jet Trace CM Ver C. Use version 4.4 or newer.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v2.2</code>
+Date: 2014/10/16 USB: 2014/10/23
+  First official I-jet Trace firmware.
+  It is <b>not</b> compatible with I-jet Trace CM Ver C. Use version 4.4 or newer.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet-trace-cm\v1</code>
+Date: 2014/06/19
+  Initial I-jet Trace firmware (pre-relese).
+  It is <b>not</b> compatible with I-jet Trace CM Ver C. Use version 4.4 or newer.
+</pre></ul>
+
+<h3><a name="ijetversions" id="ijetversions"></a>I-jet firmware versions</h3>
+
+<ul><pre>
+Directory: <code>arm\bin\jet\firmware\i-jet\v8.2</code>
+Date: 2020/11/04
+  1. Added generic UART send and receive capability over choice of pins on MIPI20/MIPI10 connectors.
+  2. Currently, the UART is used mainly for SFI (Secure Flash Interface) protocol available 
+	 on some newer STM32H7 MCUs.
+  3. Future versions of Embedded Workbench may provide integrated UART terminal capability.
+    
+Directory: <code>arm\bin\jet\firmware\i-jet\v7.2</code>
+Date: 2017/04/05
+  1. Supports extra 256KB buffer (for more robust high-speed SWO) added in I-jet vB probes.
+  2. Extra SWO buffer will be utilized by any IAR Embedded Workbench for ARM version.
+  3. This firmware version is fully compatible with I-jet vA, but will bring no benefits.
+    
+Directory: <code>arm\bin\jet\firmware\i-jet\v6.2</code>
+Date: 2016/04/29
+  1. Support for cJTAG added (requires IAR Embedded Workbench for ARM 7.60.1 or newer).
+  2. Enlarged SWO buffer to improve SWO with slow USB ports or USB power saving modes.
+  3. Hold-in-reset capability added (for future use).
+  
+Directory: <code>arm\bin\jet\firmware\i-jet\v5.2</code>
+Date: 2016/03/24
+  -- this firmware is no longer supported and was replaced by v6.2 --
+  
+Directory: <code>arm\bin\jet\firmware\i-jet\v4.2</code>
+Date: 2013/07/23
+  1. Fixing too high CPU load caused by 0-length USB packets.
+  
+Directory: <code>arm\bin\jet\firmware\i-jet\v4</code>
+Date: 2013/05/31
+  1. Added multi-channel measurements for I-scope probe.
+  <b>NOTE: IAR Embedded Workbench for ARM older than 6.60 will not enable multi-channel measurements.</b>
+
+Directory: <code>arm\bin\jet\firmware\i-jet\v3</code>
+Date: 2013/02/28
+  1. Better SWO on higher speeds in Manchester mode.
+  2. Better SWO data errors and USB overflow detection.
+  3. Improved time correlation of A2D and SWO data streams.
+  4. Added support for I-scope probe.
+  <b>NOTE: Only IAR Embedded Workbench for ARM 6.50.3 or newer will use changes 3. and 4.
+  Older versions of IAR Embedded Workbench for ARM will benefit from changes 1. and 2.</b>
+
+Directory: <code>arm\bin\jet\firmware\i-jet\v2</code>
+Date: 2012/10/04
+  1. Fixed handling of certain SWO dividers in Manchester mode.
+  2. Fixed handling of nTRST line in multi-debugger configurations.
+
+Directory: <code>arm\bin\jet\firmware\i-jet\v1</code>
+Date: 2012/05/09
+  Initial I-jet firmware.
+</pre></ul>
+
+<h3><a name="jtagjettraceversions" id="jtagjettraceversions"></a>JTAGjet-Trace firmware versions</h3>
+
+<ul><pre>
+Directory: <code>arm\bin\jet\firmware\jtagjet-trace\v1.10</code>
+Date: 2015/1/30
+  1. Improved support for ETM v3.
+  2. Improved ETM calibration capabilities.
+
+Directory: <code>arm\bin\jet\firmware\jtagjet-trace\v1.09</code>
+Date: 2011/10/27
+  1. Added support for Cortex-M4 ETM (skipping half-sync ETM frames).
+
+Directory: <code>arm\bin\jet\firmware\jtagjet-trace\v1.08</code>
+Date: 2009/12/21
+  1. Added support for SWD mode.
+
+Directory: <code>arm\bin\jet\firmware\jtagjet-trace\v1.06</code>
+Date: 2009/01/22
+  Fully functional, legacy JTAGjet-Trace firmware.
+  
+NOTES:
+  Any JTAGjet-Trace firwmare older than version 1.06 will be rejected by current software.
+  JTAGjet-Trace firwmare updates include updates of main JTAGjet firwmare.
+</pre></ul>
+
+<h3><a name="jtagjetversions" id="jtagjetversions"></a>JTAGjet firmware versions</h3>
+
+<ul><pre>
+Directory: <code>arm\bin\jet\firmware\jtagjet\v16</code>
+Date: 2009/08/06
+  1. Added support for SWD mode (via ADA-SWD adapter).
+
+Directory: <code>arm\bin\jet\firmware\jtagjet\v12</code>
+Date: 2006/06/08
+  1. Faster adaptive clock (RTCK) handling.
+  2. Allow licenses to be embedded in the hardware.
+
+Directory: <code>arm\bin\jet\firmware\jtagjet\v9</code>
+Date: 2005/03/24
+  Fully functional, legacy JTAGjet firmware.
+
+NOTES:
+  Any JTAGjet firwmare older than V9 will be rejected by current software.
+  JTAGjet firmware V12 or V16 cannot be down-graded into V9.
+  Special procedure is needed to upgrade JTAGjet firmware V9 into V12, V16.
+  JTAGjet-C2000 models will have firmware V10 (it is compatible with V9).
+</pre></ul>
+
+<h3><a name="howtoidentifyversion" id="howtoidentifyversion"></a>How to identify the firmware version</h3>
+
+<ul><pre>
+Newest <code>EmuDiag.exe</code> (found in <code>arm\bin\jet</code>) will display all release versions properly.
+These are version details corresponding to recent firmware releases:
+
+<code>I-jet-Trace-ARM:
+  Probe: I-jet-Trace-ARM detected.
+  Probe: I-jet-Trace, FW ver 2.5 (2016/08/25, USB 2016/01/25), HW Ver:B
+
+I-jet-Trace-CM:
+  Probe: I-jet-Trace, FW ver 7.5 (2016/06/10 USB: 2015/09/02), HW Ver:C
+
+I-jet:
+  Current FLASH:    
+    Model:          I-jet (11/04/2020 11:49)
+    Version:            8
+ Current EEPROM:
+   Model:           I-jet
+   Version:            2 (07/23/2013 17:29)
+   
+JTAGjet-Trace:
+  Current FLASH:
+    Model:    JTAGjet-USB (08/06/2009 10:39)
+    Version:           16
+  ETM:
+    JTAGjet-Trace, Ver:1.10, Capacity:18.0MB (4M samples)
+
+JTAGjet:
+  Current FLASH:
+    Model:    JTAGjet-USB (08/06/2009 10:39)
+    Version:           16
+</code>
+</pre></ul>
+
+
+    </div>
+</body>
+</html>

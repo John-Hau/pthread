@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type"
+	  content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+
+    <title>IAR Information Center for Arm</title>
+  </head>
+  <body>
+    <div id="titlebanner">
+      <div>
+	<h1>IAR Information Center for Arm</h1>
+	<p class="subtitle">
+	  Release notes for the IAR C-SPY I-jet driver version 9.10.2</p>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.ENU.html">IAR Information Center for Arm</a> | 
+      <a href="release_notes.ENU.html">Release notes</a> | 
+      <a href="components.ENU.html">Components</a> |
+      Release notes for the IAR C-SPY I-jet driver
+    </div>
+    <div class="mainblock">
+      <ul>
+        <li><a href="#important">Important information</a> </li>
+        <li><a href="#features">New features</a> </li>
+        <li><a href="#problems">Known problems</a> </li>
+        <li><a href="#pcorr">Program corrections</a> </li>
+        <li><a href="#manuals">User guide corrections</a> </li>
+        <li><a href="#misc">Miscellaneous</a> </li>
+        <li><a href="#history">Release history</a> </li>
+      </ul>
+      <!--======================================================================-->
+      <!-- IMPORTANT INFORMATION                                                -->
+      <!--======================================================================-->
+      <h3>
+        <a name="important" id="important"></a>Important information
+      </h3>
+<ul>
+  <li><p>
+    The JTAGjet-Trace support is deprecated starting with EWARM 8.40 and will be removed in a future release.<br>
+  </p></li>
+  <li>
+    <p>
+      To enable PTM Trace select <b>On-Chip (ETB/MTB)</b> 
+      in <b>Project&gt;Options&gt;Debugger&gt;I-jet/JTAGjet&gt;Trace</b><br>
+      <br>
+      
+      If PTM could not be automatically detected, add the option 
+      <code>--jet_sigprobe_opt=trace(ETB,baseptm=&lt;base PTM address + access port number&gt;,
+      baseetb=&lt;base ETB address + access port number&gt;)</code> 
+      in <b>Project&gt;Options&gt;Debugger&gt;Extra Options</b><br><br>
+      
+      Example where port number is <code>1</code>, Base PTM address is <code>0x8009D000</code> 
+      and base ETB address is <code>0x80001000</code><br> 
+      <code>--jet_sigprobe_opt=trace(ETB,baseptm=0x8009D001,baseetb=0x80001001)</code>
+    </p>
+  </li>
+  <li>
+    <p>
+      <a href="./jet-fw.ENU.html">Information about I-jet, JTAGjet-Trace, and JTAGjet firmware versions</a>.
+    </p>
+  </li>
+
+<li>
+  <p>
+    Unlock utilities for STM32 devices are provided as C-SPY macros found in the Macro Quicklaunch window.
+  </p>
+</li>
+
+<li>
+  <p>
+      To trace a core with ETM Trace other than core 0 in a multicore SMP system, add the option <br>
+      <code>--trace_from_core=&lt;core number&gt;</code> in <b>Project&gt;Options&gt;Debugger&gt;Extra Options</b>.<br>
+      <br>
+      For Xilinx Zynq 7000 devices also add the option <code>--macro_param trace_core=&lt;core number&gt;</code> in <b>Project&gt;Options&gt;Debugger&gt;Extra Options</b>.
+  </p>
+</li>
+</ul>
+      <!--======================================================================-->
+      <!-- NEW FEATURES                                                         -->
+      <!--======================================================================-->
+      <h3>
+        <a name="features" id="features"></a>New features
+      </h3>
+      See <a href="./csarm.ENU.html#features">New features for the IAR C-SPY Debugger</a>.
+	  
+      <!--======================================================================-->
+      <!-- Known Problems-->
+      <!--======================================================================-->
+      <h3>
+        <a name="problems" id="problems"></a>Known problems
+      </h3>
+      See <a href="./csarm.ENU.html#problems">Known problems for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- Program Corrections                                                  -->
+      <!--======================================================================-->
+      <h3>
+        <a name="pcorr" id="pcorr"></a>Program corrections
+      </h3>
+      See <a href="./csarm.ENU.html#pcorr">Program corrections for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- USER GUIDE CORRECTIONS                                               -->
+      <!--======================================================================-->
+      <h3>
+        <a name="manuals" id="manuals"></a>User guide corrections
+      </h3>
+      See <a href="./csarm.ENU.html#manuals">User guide corrections for the IAR C-SPY Debugger</a>.
+      <!--======================================================================-->
+      <!-- MISCELLANEOUS                                                        -->
+      <!--======================================================================-->
+      <h3>
+        <a name="misc" id="misc"></a>Miscellaneous
+      </h3>
+<ul>
+  <li>
+    <b>Arm Embedded Trace Router (ETR) trace setup</b>
+
+    <br><br>For devices that support the ETR trace feature (for example Renesas RZ/N1),
+    the trace buffer memory layout can be specified on the Extra Options page in the Debugger category of the Project>Options dialog box.
+    
+    <br><br>The available parameters are:
+
+    <ul>
+    <li><p><code>--macro_param etrram=0x040A0000</code>: The start of the RAM area to use for trace storage (for example 0x040A0000).
+      If not specified, ETB trace will be used instead of ETR.</p></li>
+    <li><p><code>--macro_param etrsize=0x60000</code>: The size of the RAM area to use for trace storage (for example 0x60000).</p></li>
+    <li><p><code>--macro_param etrport=1</code>: The access port that will be used to access the ETR RAM.
+      If not specified and if ETR is enabled, the port that is used to access the core will be used.</p></li>
+    </ul>
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- RELEASE HISTORY                                                      -->
+      <!--======================================================================-->
+      <h3>
+        <a name="history" id="history"></a>Release history
+      </h3>
+      See <a href="./csarm.ENU.html#history">IAR C-SPY Debugger Release history</a>.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+          "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd" 
+      xml:lang="en">
+  
+  <head>
+    <meta http-equiv="Content-Type" 
+          content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" href="style/ewic.css" />
+
+    <title>HelpDLIB5</title>
+  </head>
+
+<body>
+<h1>Alternate version of the C++ Standard Template Library (STL)</h1>
+
+<p>In the product installation subfolder <tt>/inc/cpp/dlib5</tt>,
+there is an alternate version of STL that was used in earlier
+versions of IAR Embedded Workbench. This version of STL is
+simpler and can under favorable circumstances produce smaller
+code than the current version. In particular, this goes for the <tt>vector</tt>,
+<tt>map</tt>, <tt>multimap</tt>, <tt>set</tt>, and <tt>multiset</tt>
+implementations, which are better at sharing code between
+different instantiations than the current version. The old non-templated
+versions of <tt>string</tt> and <tt>complex</tt> are also
+included. Note that there is no support for I/O, and that you
+cannot instantiate any of the collection classes on a type from
+the <tt>std</tt> namespace.</p>
+
+<p>You use this version of STL by specifying <tt>dlib5/</tt> in
+your <tt>#include</tt> directive (for example: <tt>#include &lt;dlib5/vector&gt;</tt>).
+All names in the dlib5 header files are in the <tt>dlib5</tt>
+namespace, so you need to either use <tt>using namespace dlib5;</tt>
+or, specify the <tt>dlib5</tt> prefix for each feature name.
+Example: <tt>dlib5::vector&lt;int&gt;</tt> </p>
+
+<p>The following headers are included:</p>
+
+<pre>#include &lt;dlib5/complex&gt;
+#include &lt;dlib5/deque&gt;
+#include &lt;dlib5/hash_map&gt;
+#include &lt;dlib5/hash_set&gt;
+#include &lt;dlib5/list&gt;
+#include &lt;dlib5/map&gt;
+#include &lt;dlib5/queue&gt;
+#include &lt;dlib5/set&gt;
+#include &lt;dlib5/slist&gt;
+#include &lt;dlib5/stack&gt;
+#include &lt;dlib5/string&gt;
+#include &lt;dlib5/vector&gt;
+</pre>
+</body>
+</html>

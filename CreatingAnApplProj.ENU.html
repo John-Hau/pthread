@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <!-- MOTW-DISABLED saved from url=(0014)about:internet -->
+    <title>Creating an application project</title>
+    <link rel="StyleSheet" href="css/CreatingAnApplProj.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="css/webworks.css" type="text/css" media="all" />
+  </head>
+  <body style="background-color: White; background-image: url(&quot;images/BlackGrayStrip.png&quot;); background-position: center top; background-repeat: repeat-x">
+    <table align="left">
+      <tr>
+        <td class="WebWorks_Company_Logo_Top">
+          <img src="images/IARSystems.png" />
+        </td>
+      </tr>
+    </table>
+    <br clear="all" />
+    <hr align="left" />
+    <blockquote>
+      <div class="Heading1"><a name="4181552">Creating an application project</a></div>
+      <div class="WebWorks_MiniTOC">
+        <div class="WebWorks_MiniTOC_Level1">
+          <a class="WebWorks_MiniTOC_Link" href="#2276782">Files used in this tutorial</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level1">
+          <a class="WebWorks_MiniTOC_Link" href="#4026137">Setting up a new project</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4465047">Creating a workspace</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4640824">Creating the new project</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4465289">Adding files to the project</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4465383">Setting project options</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level1">
+          <a class="WebWorks_MiniTOC_Link" href="#4114591">Compiling and linking the application</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4465596">Compiling the source files</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4465764">Fine-tuning the optimization levels</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4465995">Linking the application</a>
+        </div>
+        <div class="WebWorks_MiniTOC_Level2">
+          <a class="WebWorks_MiniTOC_Link" href="#4641141">Viewing the linker listings</a>
+        </div>
+      </div>
+      <div class="Ingress"><a name="4640742">This tutorial introduces you to the </a><span style="color: #000000">IAR Embedded Workbench® IDE</span>. The tutorial demonstrates the initial steps in a typical development cycle where you create a project in the IDE, add source files, and use the compiler and the linker to create a small application.</div>
+      <div class="Ingress"><a name="4085246">Note that the screenshots in this tutorial do not always correspond exactly to the counterparts in your product.</a></div>
+      <div class="Heading2"><a name="2276782">Files used in this tutorial</a></div>
+      <div class="Body"><a name="4127330">The project in this tutorial uses these files:</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4123209">Fibonacci.c</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4025789">Contains a simple application that uses only standard features of the C language. It initializes an array with the ten first Fibonacci numbers and prints the result to </a><span class="Computer">stdout</span>.</div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4025809">Fibonacci.h</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4025817">Contains required definitions and declarations.</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4025826">Utilities.c</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4124728">Contains utility routines required by </a><span class="Computer">Fibonacci.c</span> for the Fibonacci calculations.</div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><span class="Computer"><a name="4025840">Utilities.h</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4025843">Contains required definitions and declarations.</a></div>
+      <div class="Body"><a name="4464962">We recommend that you create a specific directory (with a subdirectory) where you can store all your tutorial files. In this tutorial we call the directory </a><span class="Computer">MyTutorials</span> and the subdirectory <span class="Computer">GettingStarted</span>. You can find all the files needed for the tutorials in the <span style="color: #000000; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 8.0pt; font-style: normal">cpuname</span><span class="Computer">\tutorials</span> directory (where <span style="color: #000000; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 8.0pt; font-style: normal">cpuname</span> reflects the microcontroller you are using) in your IAR Embedded Workbench installation. Copy the files listed above from the <span class="Computer">tutorials\GettingStarted</span> directory to your <span class="Computer">MyTutorials\GettingStarted</span> directory.</div>
+      <div class="Heading2"><a name="4026137">Setting up a new project</a></div>
+      <div class="Body"><a name="4027497">In this example procedure, you will work through these tasks: </a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4465047" title="Creating an application project" name="4464985">Creating a workspace</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4640824" title="Creating an application project" name="4640762">Creating the new project</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4465289" title="Creating an application project" name="4465010">Adding files to the project</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4465383" title="Creating an application project" name="4465013">Setting project options</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465031">For more information about the concepts related to project management, see the </a><span style="color: #000000; font-style: italic">IDE Project Management and Building Guide</span>.</div>
+      <div class="Heading3"><a name="4465047">Creating a workspace</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4465057">Before you can start creating your project, you must first create a </a><span class="Emphasis">workspace</span> (a workspace is where you collect your <span class="Emphasis">projects</span>).</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465074">Choose </a><span class="Menu_Command">File&gt;New Workspace</span>. An empty <span class="Menu_Command">Workspace</span> window appears in the IDE.</div>
+      <div class="Heading3"><a name="4640824">Creating the new project</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4465126">To create a new project, choose </a><span class="Menu_Command">Project&gt;Create New Project</span>. </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465140">The </a><span class="Menu_Command">Create New Project</span> dialog box appears.<img class="Default" src="images/CreatingAnewProject-1.png" width="398" height="337" style="display: block; left: 0.0; top: 0.0" alt="" /></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465150">From the </a><span class="Menu_Command">Tool chain</span> drop-down list, choose the toolchain you are using.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465158">There are several ready-made </a><span class="Emphasis">project templates</span> to choose from, both for application and library projects. For this tutorial, select the project template <span class="Menu_Command">Empty project</span>, which simply creates an empty project that uses default project settings.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465170">Click </a><span class="Menu_Command">OK</span>.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">4	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465178">In the standard </a><span class="Menu_Command">Save As</span> dialog box that appears, specify where you want to place your project file, which typically would be in your newly created <span class="Computer">MyTutorials\GettingStarted</span> directory. Specify <span class="Computer">MyFirstProject</span> in the <span class="Menu_Command">File name</span> box, and click <span class="Menu_Command">Save</span> to create the new project.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465200">A project file—with the filename extension </a><span class="Computer">ewp</span>—will be created in the <span class="Computer">MyTutorials\GettingStarted</span> directory, not immediately, but later on when you save the workspace. This file contains information about your project-specific settings, such as build options.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">5	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465211">The project appears in the </a><span class="Menu_Command">Workspace</span> window:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465221"><img class="Default" src="images/CreatingMyFirstProject_02.png" width="451" height="219" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4465230">By default, two build configurations are created—</a><span class="Menu_Command">Debug</span> and <span class="Menu_Command">Release</span>—which you view from the drop-down list at the top of the window. In this tutorial, <span class="Menu_Command">Debug</span> is used.</div>
+      <div class="Body"><a name="4465239">The asterisk next to the project name indicates that there are changes that have not been saved yet.</a></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">6	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465244">Before you add any files to your project, you should save the workspace. Choose </a><span class="Menu_Command">File&gt;Save Workspace</span> and specify where you want to place your workspace file. For this tutorial, place the file in your newly created <span class="Computer">MyTutorials\GettingStarted</span> directory.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465264">Type </a><span class="Computer">MyFirstWorkspace</span> in the <span class="Menu_Command">File name</span> box, and click <span class="Menu_Command">Save</span> to create the new workspace.</div>
+      <div class="Body"><a name="4465273">A workspace file—with the filename extension </a><span class="Computer">eww</span>—has now been created in the <span class="Computer">MyTutorials\GettingStarted</span> directory. Information about all projects will be stored in this file. Information related to the current session, such as the placement of windows and breakpoints, is located in the files created in the <span class="Computer">MyTutorials\GettingStarted\settings</span> directory.</div>
+      <div class="Heading3"><a name="4465289">Adding files to the project</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4465302">In the </a><span class="Menu_Command">Workspace</span> window, select the <span class="Computer">MyFirstProject</span> project (this is where you will add your files).</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465313">Choose </a><span class="Menu_Command">Project&gt;Add files</span> to open a standard browse dialog box.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465325">Locate the files </a><span class="Computer">Fibonacci.c</span> and <span class="Computer">Utilities.c</span> and select them in the file selection list; click <span class="Menu_Command">Open</span> to add them to the <span class="Computer">MyFirstProject</span> project.</div>
+      <div class="Body"><a name="4465339"><img class="Default" src="images/AddingFilesToMyFirstProject_02.png" width="333" height="218" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4465342">This tutorial only contains two source files. However, a real-life project probably contains many source files, maybe hundreds of files. To organize your files logically according to your project needs, you can organize them in hierarchies of </a><span class="Emphasis">groups</span>. Organizing files in hierarchies of groups is useful for many reasons, you can:</div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4465355">View the logical structure at a glance</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4465360">Set different project options on different groups, which is very useful for managing different levels of optimizations on different groups of source files.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465372">For more information about how to create advanced project structures, see the </a><span style="color: #000000; font-style: italic">IDE Project Management and Building Guide</span>.</div>
+      <div class="Heading3"><a name="4465383">Setting project options</a></div>
+      <div class="Body"><a name="4465443">For application projects, options can be set on all levels—projects, groups, and on individual files. </a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4047154">First you will set the general options to suit the processor configuration in this tutorial. Because these options must be the same for the whole build configuration, they must be set on the project level.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4640850">In the </a><span class="Menu_Command">Workspace</span> window, select <span class="Computer">MyFirstProject – Debug</span>, right-click and choose <span class="Menu_Command">Options</span> from the context menu. The <span class="Menu_Command">Target</span> options page in the <span class="Menu_Command">General Options</span> category is displayed.</div>
+      <div class="Body"><a name="4084203">For this tutorial you can use the default settings.</a></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4640866">In the </a><span class="Menu_Command">Category</span> list, select <span class="Menu_Command">C/C++ Compiler</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4640877">This displays the compiler options:<img class="Default" src="images/SettingCompOptsForForMyFirstProj_1.png" width="540" height="503" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4640910">For this tutorial you can use the default settings. In addition to the default settings, click the </a><span class="Menu_Command">List</span> tab, and select the options <span class="Menu_Command">Output list file</span> and <span class="Menu_Command">Assembler mnemonics</span>. Click <span class="Menu_Command">OK</span>.</div>
+      <div class="Heading2"><a name="4114591">Compiling and linking the application</a></div>
+      <div class="Body"><a name="4114597">In this example procedure, you will work through these steps: </a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4465596" title="Creating an application project" name="4465562">Compiling the source files</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4465764" title="Creating an application project" name="4465572">Fine-tuning the optimization levels</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4465995" title="Creating an application project" name="4465582">Linking the application</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a href="#4641141" title="Creating an application project" name="4640927">Viewing the linker listings</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading3"><a name="4465596">Compiling the source files</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4465609">To compile the file </a><span class="Computer">Fibonacci.c</span>, select it in the <span class="Menu_Command">Workspace</span> window, right-click and choose <span class="Menu_Command">Compile</span> from the context menu.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465627">The progress is displayed in the </a><span class="Menu_Command">Build</span> messages window.<img class="Default" src="images/CompilingFibonacci.png" width="301" height="157" style="display: block; left: 0.0; top: 0.0" alt="" /></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465636">Compile the file </a><span class="Computer">Utilities.c</span> in the same manner. </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465642">The IDE has now created new directories in your project directory. Because you are using the build configuration </a><span class="Menu_Command">Debug</span>, a <span class="Computer">Debug</span> directory has been created that contains these subdirectories:</div>
+      <div class="TableAnchor"><a name="4640939">&nbsp;</a></div>
+      <table class="C_Definitions" style="text-align: left; width: 470.5484598425202pt" cellspacing="0" summary="">
+        <tr>
+          <td style="padding-bottom: 4pt; padding-left: 0pt; padding-right: 4pt; padding-top: 4pt; vertical-align: top; width: 80.7046015748032pt">
+            <div class="Prog"><a name="4465657">List</a></div>
+          </td>
+          <td style="padding-bottom: 4pt; padding-left: 0pt; padding-right: 4pt; padding-top: 4pt; vertical-align: top; width: 389.843858267717pt">
+            <div class="Body"><a name="4465662">The destination directory for various list files.</a></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom: 4pt; padding-left: 0pt; padding-right: 4pt; padding-top: 4pt; vertical-align: top">
+            <div class="Prog"><a name="4465670">Obj</a></div>
+          </td>
+          <td style="padding-bottom: 4pt; padding-left: 0pt; padding-right: 4pt; padding-top: 4pt; vertical-align: top">
+            <div class="Body"><a name="4641323">The destination directory for the object files from the compiler and assembler. The object files have the extension </a><span class="Computer">o</span> and are used as input to the linker.</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-bottom: 4pt; padding-left: 0pt; padding-right: 4pt; padding-top: 4pt; vertical-align: top">
+            <div class="Prog"><a name="4465698">Exe</a></div>
+          </td>
+          <td style="padding-bottom: 4pt; padding-left: 0pt; padding-right: 4pt; padding-top: 4pt; vertical-align: top">
+            <div class="Body"><a name="4641332">The destination directory for the executable file. It has the extension </a><span class="Computer">out</span> and is used as input to the IAR C-SPY® Debugger. Note that this directory is empty until you have linked the object files.</div>
+          </td>
+        </tr>
+      </table>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465736">Click on the plus signs in the </a><span class="Menu_Command">Workspace</span> window to expand the view. As you can see, the IDE has also created an <span class="Computer">Output</span> group that contains any generated output files. All included header files are displayed as well, showing the dependencies between the files:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4640949"><img class="Default" src="images/WorkspaceAfterCompilingFibonacci_ILINK_02.png" width="333" height="450" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Heading3"><a name="4465764">Fine-tuning the optimization levels</a></div>
+      <div class="Body"><a name="4465767">Now you will investigate how different optimization levels affect the generated code size. You will do this by changing the optimization level for just one of the files, </a><span class="Computer">Utilities.c</span>, which means that you will override the project settings for that file. </div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4465785">In the </a><span class="Menu_Command">Workspace</span> window, double-click <span class="Computer">Utilities.lst</span> to open the list file. Examine the list file, which contains this information:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4465793">The header shows the product version, information about when the file was created, and the command line version of the compiler options that were used.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4465800">The body of the list file shows the assembler code and binary code generated for each statement. It also shows how the variables are assigned to </a><span style="color: #000000">segment</span>s.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4465813">The end of the list file shows the amount of stack, code, and data memory required, and contains information about error and warning messages that might have been generated.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465821">Notice the amount of generated code at the end of the file and keep the file open.</a></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465832">Choose </a><span class="Menu_Command">Tools&gt;Options</span> to open the <span class="Menu_Command">IDE Options</span> dialog box and click <span class="Menu_Command">Editor</span> in the left-side pane. Make sure the option <span class="Menu_Command">Scan for changed files</span> is selected.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465849">This option enables the automatic update of any file open in an editor window, such as a list file:<img class="Default" src="images/ScannedForChangedFiles.png" width="648" height="305" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4465857">Click </a><span class="Menu_Command">OK</span>.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465868">In the </a><span class="Menu_Command">Workspace</span> window, select <span class="Computer">Utilities.c</span>, right-click and choose <span class="Menu_Command">Options</span> from the context menu. The compiler options are displayed in the <span class="Menu_Command">Options</span> dialog box. Select the <span class="Menu_Command">C/C++ Compiler</span> category.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">4	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465890">Select the </a><span class="Menu_Command">Override inherited settings</span> option, click the <span class="Menu_Command">Optimizations</span> tab and choose <span class="Menu_Command">High</span> level of optimization.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465904"><img class="Default" src="images/FineTuningOptimization.png" width="492" height="360" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4465911">Click </a><span class="Menu_Command">OK</span>.</div>
+      <div class="Body"><a name="4465917">This new setting will only affect </a><span class="Computer">Utilities.c</span>. Notice how overriding the project options on file level is indicated with a black checkmark (<span class="Symbols">✓</span>) in the <span class="Menu_Command">Workspace</span> window.</div>
+      <div class="Body"><a name="4465934"><img class="Default" src="images/OptionOverrides_02.png" width="536" height="221" style="display: block; left: 0.0; top: 0.0" alt="" /></a></div>
+      <div class="Body"><a name="4465939">Note that you can override options on individual files as well as on groups of files.</a></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">5	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465947">Compile the file </a><span class="Computer">Utilities.c</span> a second time. Now you will notice two things. First, note the automatic updating of the open list file due to the selected option <span class="Menu_Command">Scan for changed files</span>. Second, look at the end of the list file and notice the effect on the code size due to the increased optimization and how it differs from the first compilation.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465954">By investigating the generated code size in this manner you can use this method to fine-tune the optimization levels for the various files and groups of files.</a></div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">6	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4465961">For this tutorial, a low optimization level should be used to obtain the best debug support. So before linking the application, make sure to restore the default optimization level.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4465974">Select </a><span class="Computer">Utilities.c</span> in the <span class="Menu_Command">Workspace</span> window, right-click, and choose <span class="Menu_Command">Options</span> from the context menu. Deselect <span class="Menu_Command">Override inherited settings</span> and click <span class="Menu_Command">OK</span>. Recompile the file <span class="Computer">Utilities.c</span>.</div>
+      <div class="Heading3"><a name="4465995">Linking the application</a></div>
+      <div class="Body"><a name="4466000">In this procedure, you will set linker options and link the application.</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4466013">In the </a><span class="Menu_Command">Workspace</span> window, select <span class="Computer">MyFirstProject – Debug</span>, right-click and choose <span class="Menu_Command">Options</span> from the context menu.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">2	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4466029">In the </a><span class="Menu_Command">Options</span> dialog box, select the <span class="Menu_Command">Linker</span> category and inspect the settings. For this tutorial, pay attention to:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4466038">Output format</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4640958">The linker produces an output file in the ELF format, including DWARF for debug information.</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4466053">Linker listings</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4640976">Linker listings are created by default, but click the </a><span class="Menu_Command">List</span> tab, and make sure that the options <span class="Menu_Command">Generate linker map file</span> and <span class="Menu_Command">Generate log file</span> (and some log output suboptions) are selected.</div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4466091">Linker configuration file</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body_in_list"><a name="4609116">Program code and data are placed in memory according to the configuration specified in the linker configuration file (filename extension </a><span class="Computer">icf</span>). It is important to be familiar with its syntax for how sections are placed in memory. </div>
+      <div class="Body_in_list"><a name="4640996">In this tutorial you will use the default linker configuration file. (To override the default configuration file, click the </a><span class="Menu_Command">Config</span> tab.)</div>
+      <div class="Body_in_list"><a name="4641008">Read more about the linker configuration file in the </a><span class="Reference">IAR C/C++ Development Guide</span>.</div>
+      <div class="Body"><a name="4466151">Click </a><span class="Menu_Command">OK</span>.</div>
+      <div class="List_step_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">3	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_inner"><a name="4641029">Choose </a><span class="Menu_Command">Project&gt;Make</span>. The progress is as usual displayed in the <span class="Menu_Command">Build</span> messages window. The result of the linking is the code file <span class="Computer">MyFirstProject.out</span> with debug information located in the <span class="Computer">Debug\Exe</span> directory and a map file <span class="Computer">MyFirstProject.map</span> located in the <span class="Computer">Debug\List</span> directory.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading3"><a name="4641141">Viewing the linker listings</a></div>
+      <div class="List_step_first_outer" style="margin-left: 0.5062999999999767cm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_step_first_inner" style="width: 13.994645669291998pt; white-space: nowrap">
+                <span class="N_Step">1	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="List_step_first_inner"><a name="4136220">Open the </a><span class="Computer">MyFirstProject.map</span> file which you can find in the project’s <span class="Menu_Command">Output</span> group in the <span class="Menu_Command">Workspace</span> window. The map file typically contains:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609277">A placement summary.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609284">Information about used runtime attributes.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609289">Stack usage information, provided that stack usage analysis has been enabled and that it is supported by the product you are using.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4641244">The linker can also generate a log file, which logs decisions made by the linker regarding:</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609302">Decisions made by the linker regarding initializations, module selections, section selection, and segment fragment selection</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4641287">Call graph with stack usage (if enabled and supported by your product)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609316">Inlining of small functions</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609323">Automatic library selection</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609330">Merged duplicate sections</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609337">Redirected symbols</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4609347">Veneer statistics (if veneers are supported)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4137896">Typically, this information can be useful if you want to examine:</a></div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4641296">How the section and code were placed in memory</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4115496">Which source files actually contributed to the final image</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4115503">Which symbols that were actually included and their values</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="List_bullet_outer" style="margin-left: 9.999999999999984mm">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="List_bullet_inner" style="width: 11.3385826771654pt; white-space: nowrap">
+                <img src="images/bullet.png" alt="*" border="0" width="10" height="9" /> </div>
+            </td>
+            <td width="100%">
+              <div class="List_bullet_inner"><a name="4115511">Where individual functions were placed in memory.</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="Body"><a name="4641311">The </a><span class="Computer">MyFirstProject.out</span> application is now ready to be executed in C-SPY.</div>
+    </blockquote>
+  </body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" 
+	  content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link type="text/css" rel="stylesheet" media="all" 
+	  href="style/ewic.css" />
+    <title>IAR Information Center for Arm</title>
+  </head>
+  <body>
+    <div id="titlebanner">
+      <div>
+	<h1>IAR Information Center for Arm</h1>
+	<p class="subtitle">Release notes for the IAR 
+	  C/C++ Compiler for Arm version 9.10.2</p>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.ENU.html">IAR Information Center for Arm</a> | 
+      <a href="release_notes.ENU.html">Release notes</a> | 
+      <a href="components.ENU.html">Components</a> | 
+      Release notes for the IAR C/C++ Compiler for Arm
+    </div>
+    <div class="mainblock">
+      <ul>
+        <li><a href="#important">Important information</a> </li>
+        <li><a href="#features">New features</a> </li>
+        <li><a href="#problems">Known problems</a> </li>
+        <li><a href="#pcorr">Program corrections</a> </li>
+        <li><a href="#manuals">User guide corrections</a> </li>
+        <li><a href="#misc">Miscellaneous</a> </li>
+        <li><a href="#history">Release history</a> </li>
+      </ul>
+      <!--======================================================================-->
+      <!-- IMPORTANT INFORMATION                                                -->
+      <!--======================================================================-->
+      <h3>
+        <a name="important" id="important"></a>Important information
+      </h3>
+  <ul>
+    <li><b>Characteristics for the toolset in AARCH64 mode:</b>
+      <p><ul>
+        <li>
+          The toolset, by default, supports generating code and data that is situated 
+          in one space that has a maximum size of 4 Gbytes. This is because static data 
+          will be accessed with an addressing mode that reaches +/- 4 Gbytes. 
+          Mechanisms exist to jump/call between such spaces.
+        </li>
+        <li>
+          The produced code, by default, runs in execution state EL1.
+        </li>
+      </ul></p>
+	    <p>
+      Limitations:
+      <ul>
+        <li>
+          Big-endian code is not supported.
+        </li>
+        <li>
+          Position-independent code is not supported.
+        </li>
+        <li>
+          V8-A AARCH32 is not fully implemented. The 32-bit implementation is currently based on v7-A.
+        </li>
+      </ul></p>
+	  </li>
+
+    <li><b>Compiler MISRA C C:1998/C:2004 support is removed in version 9.10</b>
+      <p>The Compiler MISRA C is still available through the compiler command line 
+	  but will be removed in a future release.<br>
+      Refer to IAR C-STAT for full MISRA C support.</p>
+    </li>
+      
+    <li><b>Changes in implementation of CMSIS intrinsics in version 8.20</b>
+     
+      <p>The implementation of the CMSIS intrinsic interface is no longer based on IAR's intrinsics.h.
+      As a consequence of that some intrinsics that was previously declared when the CMSIS header
+      was included are no longer declared.</p>
+      
+      <p>Examples of these intrinsics include __LDREX(), __STREX() and __enable_interrupt().</p>
+    </li>
+ 
+    <li><b>Changed size of wchar_t in version 8.10 and later</b>
+    
+      <p>Object files following the ARM ABI has a runtime attribute indicating 
+      the size of <code>wchar_t</code>.</p>
+
+      <p>In EWARM version 7.80 and earlier, the size of <code>wchar_t</code> was 2 bytes wide 
+      and the runtime attribute was set accordingly.</p>
+
+      <p>In EWARM version 8.10 and later, <code>wchar_t</code> is 4 bytes wide.</p>
+
+    </li>
+
+    <li>
+        <p>
+          If you have implemented the <code>time()</code> function, you must rename it into <code>__time32()</code>.
+          For more information see the <A href="../EWARM_DevelopmentGuide.ENU.pdf">Development guide</A>.
+        </p>
+    </li>
+
+    <li>
+        <b>A special note on CMSIS integration:</b><br>
+        <p>
+          If your application source code includes CMSIS header files explicitly, then you should not select
+          <b>Project&gt;Options...&gt;General Options&gt;Library Configuration&gt;Use CMSIS</b>. Some of the
+          Cortex-M application examples include CMSIS source files explicitly. Do not select the option 
+          <b>Use CMSIS</b> in these projects.
+    </li>
+
+    <!-- DEPRECATED FEATURES -->
+
+    <li><h4><a name="deprecated" id="deprecated"></a>Deprecated features</h4>
+
+      <p><ul>
+        <li>
+          <b><code>--interwork</code></b>
+          <p>
+             Future versions of the IAR C/C++ Compiler for ARM will assume <code>--interwork</code> when generating
+             code for the ARMv4T architecture. There will be no option to generate non-interworking code for ARMv4T.
+          </p>
+        </li>
+      </ul></p>
+	  
+	</li>
+  </ul>
+      <!--======================================================================-->
+      <!-- NEW FEATURES                                                         -->
+      <!--======================================================================-->
+      <h3>
+        <a name="features" id="features"></a>New features
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- Known Problems-->
+      <!--======================================================================-->
+      <h3>
+        <a name="problems" id="problems"></a>Known problems
+      </h3>
+<ul>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8839'>EWARM-8839</a>, <a name='TPB-3525'>TPB-3525</a>]</b>
+        <p>Using <tt>alignas</tt> to set the alignment of a static data member with an in-class initializer
+        results in a spurious error Pe1887 ("alignment attribute must also appear on definition").<br>
+        Example:</p>
+        <div><div>
+        <pre>
+        struct X
+        {
+          alignas(8) <span>static</span> constexpr <span>short</span> sh[2]{42, 17};
+        };
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8754'>EWARM-8754</a>, <a name='TPB-3516'>TPB-3516</a>]</b>
+        <p>The warning Go029 can trigger erroneously for the first assignment to a field in a bitfield
+        struct.</p>
+        <pre>struct A
+        {
+          int x : 8;
+          int y : 8;
+        };
+        struct A f(int x, int y)
+        {
+          struct A id;
+          id.x = x; // Triggers Go029 erroneously
+          id.y = y;
+          return id;
+        }
+        </pre>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8304'>EWARM-8304</a>, <a name='TPB-3475'>TPB-3475</a>]</b>
+        <p>In C++, the compiler can emit a spurious warning Pe940 ("<tt>missing return statement at end of
+        non-void function</tt>") in a template context, if the immediately preceding statement is an <tt>if
+        constexpr</tt> where the condition is <tt>false</tt> (that is, the <tt>else</tt> part is active),
+        and the end of the <tt>else</tt> part is unreachable (for example, if the <tt>else</tt> part ends
+        with a <tt>return</tt> statement).</p>
+        <p>Example:</p>
+        <div><div>
+        <pre>
+        template&lt;<span>int</span> n&gt;
+        <span>class </span><span>Class</span> {
+        <span>public</span>:
+        <span>static</span> <span>long</span> test(<span>long</span> x) {
+          <span>if</span> constexpr(n &lt; 0) {
+            <span>return</span> 0;
+          } 
+          <span>else</span> {
+            <span>return</span> 1;
+          }
+        } <span>// Warning[Pe940]: missing <span>return</span> statement at end of non-void function
+        </span>};
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-6667'>EWARM-6667</a>, <a name='TPB-3086'>TPB-3086</a>]</b>
+        The compiler can cluster variables that are initialized by copy and zero-initialized variables with
+        static storage duration. When the total size of the variables initialized by copy is small compared
+        to the total size of the zero-initialized variables, and if compressed initializers are not used,
+        this can create a significant size overhead.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-5239'>EWARM-5239</a>, <a name='EW25660'>EW25660</a>]</b>
+        Passing a parameter of type <tt>va_list</tt> to a C++ function, where the caller is defined in one
+        object file and the callee in another, will result in a linker error if one of the two objects is
+        built with EWARM 7.20 (or newer) and the other is built with EWARM 7.10 (or older).
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-4824'>EWARM-4824</a>, <a name='EW24720'>EW24720</a>]</b>
+        MISRA-C:2004 rule 9.1 will not find all used uninitialized local variables.
+        </p>
+     </li>
+</ul>
+      <!--======================================================================-->
+      <!-- Program Corrections                                                  -->
+      <!--======================================================================-->
+      <h3>
+        <a name="pcorr" id="pcorr"></a>Program corrections
+      </h3>
+<ul>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8687'>EWARM-8687</a>, <a name='TPB-3510'>TPB-3510</a>]</b>
+        <p>On optimization level Medium and higher, the compiler can generate incorrect code when the value
+        of a de-referenced pointer is used in the condition part of an <tt>if</tt> statement, the same value
+        is changed in the <tt>if</tt> statement, and both branches of the <tt>if</tt> contain a return
+        statement.</p>
+        <p>The observable effect is that the erroneous code chooses the return value based on the updated
+        value of the de-referenced pointer instead of the original value. The error can trigger for both
+        examples below, as the compiler sees <tt>return 0</tt> in the first example as part of the
+        <tt>else</tt> branch of the <tt>if</tt> statement.</p>
+        <div><div>        
+        <pre>
+        int test_and_clearA(uint16_t mask, uint16_t *flags)
+        {
+          if ((*flags &amp; mask) != 0)
+          {
+            *flags &amp;= ~mask;
+            return 1;
+          }
+          return 0;
+        }
+        int test_and_clearB(uint16_t mask, uint16_t *flags)
+        {
+          if ((*flags &amp; mask) != 0)
+          {
+            *flags &amp;= ~mask;
+            return 1;
+          }
+          else
+          {
+            return 0;
+          }
+        }
+        </pre>
+        </div></div>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8670'>EWARM-8670</a>]</b>
+        <p>When compiling for Armv4 (ARM7TDMI, ARM9TDMI) an interrupt service routine (ISR) with the
+        <tt>__irq</tt> keyword will return from interrupt to an address four bytes before the interrupted
+        instruction, if:</p>
+        <ul>
+        <li>the ISR contains a function call that is not inlined, or</li>
+        <li>for some other reason the link register <tt>LR</tt> is saved to the stack.</li>
+        </ul>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8654'>EWARM-8654</a>]</b>
+        <p>Range checking for the <tt>opcode</tt> parameter is incorrect for these intrinsic functions:</p>
+        <ul>
+        <li>
+        <tt>_<em>MCR</em></tt>, <tt><em>MCR2</em></tt>, <tt><em>MRC</em></tt>, <tt>_MRC2</tt>: 0 to 8 is
+        accepted, 0 to 7 is valid. Specifying 8 will result in an internal compiler error.</li>
+        <li>
+        <tt>_<em>MCRR</em></tt>, <tt><em>MCRR2</em></tt>, <tt><em>MRRC</em></tt>, <tt>_MRRC2</tt>: 0 to 8 is
+        accepted, 0 to 15 is valid. Specifying 9 to 15 will result in a range error.</li>
+        <li>
+        <tt>_<em>arm_rsr64</em></tt> and <tt>_arm_wsr64</tt>: 0 to 7 is accepted, 0 to 15 is valid.
+        Specifying 8 to 15 will result in a range error.</li>
+        </ul>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8639'>EWARM-8639</a>, <a name='TPB-3507'>TPB-3507</a>]</b>
+        On optimization level High, the compiler can generate incorrect code when a function that contains
+        calls to functions declared as <tt>noreturn</tt> or C++ functions not declared as <tt>noexcept</tt>
+        is inlined, and both the inlined function and the function it is inlined in modify the same
+        variable.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8595'>EWARM-8595</a>]</b>
+        When the common subexpression optimization is explicitly disabled, the compiler can exit with an
+        internal error for code containing shifts where the shift count is a constant expression containing
+        calls to intrinsic functions. Note that the Embedded Workbench IDE explicitly disables common
+        subexpression elimination on optimization levels None and Low.
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8557'>EWARM-8557</a>, <a name='TPB-3490'>TPB-3490</a>]</b>
+        The compiler can appear to hang when processing code that contains an initializer for a flexible
+        array member (a language extension).
+        <p>Example:</p>
+        <div><div>
+        <pre>
+        struct X
+        {
+          <span>int</span> i;
+          <span>int</span> arr[];
+        } x = { 1, 2 };
+        </pre>
+        </div></div>
+        <p>In this case, the variable <tt>x</tt> will be allocated space for two <tt>int</tt> values, even
+        though its type (<tt>struct X</tt>) is only as large as a single <tt>int</tt>.</p>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8549'>EWARM-8549</a>, <a name='TPB-3488'>TPB-3488</a>]</b>
+        Using the GCC <tt>packed</tt> attribute in such a way that at least one bit field is allocated into
+        more bytes than its type would occupy, causes the compiler to terminate with an internal error
+        (<tt>assertion failed at: "layout.c"</tt> ...).<br>
+        Example:
+        <div><div>
+        <pre>
+        struct __attribute__ ((packed)) S {
+          <span>short</span> a : 2;
+          <span>char</span> b : 8;
+          <span>short</span> c : 6;
+        };
+        </pre>
+        </div></div>
+        <p>Note that the <tt>b</tt> bit field will be located partly in the first byte and partly in the
+        second, but the type of the bit field (<tt>char</tt>) is only one byte. Changing the type of the bit
+        field to something that is two bytes will make this work as intended, but this is not possible in
+        all cases.</p>
+        </p>
+     </li>
+     <li>
+        <p>
+        In EWARM 9.10.2<br/>
+        <b>[<a name='EWARM-8441'>EWARM-8441</a>, <a name='TPB-3484'>TPB-3484</a>]</b>
+        The compiler can terminate with an internal error when using the option <tt>--header_context</tt> in
+        some cases involving the use of the <tt>#line</tt> directive.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8300'>EWARM-8300</a>, <a name='TPB-3471'>TPB-3471</a>]</b>
+        In C++, a constant expression consisting of an address cast to an enumeration type can in some
+        circumstances cause the compiler to terminate with an internal error ("<tt>[PaInitializerEDG -
+        Traverse]: funny address type</tt>"). One such circumstance is when such a constant expression is
+        used as the initializer for a variable.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8273'>EWARM-8273</a>, <a name='TPB-3465'>TPB-3465</a>]</b>
+        In some cases involving zero-width bit fields, the compiler can terminate with an internal error
+        ("<tt>[Front end]: assertion failed at: "layout.c", line</tt> <em>NNNN</em> <tt>in
+        set_field_size_and_offset</tt>").
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8271'>EWARM-8271</a>]</b>
+        When compiling for a core based on FPU architecture VFPv3 or later, sign-conversions can go wrong if
+        either:
+        <ul>
+        <li>the conversion is from a signed integer type to an unsigned integer type, and the value
+        converted was previously converted from <tt>float</tt>, and the <tt>float</tt> value is a
+        multiplication with a power of two, or</li>
+        <li>the conversion is from an unsigned integer type to a signed integer type, and the value
+        converted was previously converted from <tt>float</tt>, and the <tt>float</tt> value is a
+        multiplication with a power of two.</li>
+        </ul>
+        <p>Example:</p>
+        <pre>
+        unsigned short f(float *a, int i) {
+          return (int)(a[i] * 8.0f) + 0x8000ul;
+        }
+        </pre>
+        <p>For this example, the return value is saturated to <tt>unsigned short</tt>, so any negative value
+        becomes zero, and any value larger than 65535 becomes 65535.</p>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8202'>EWARM-8202</a>, <a name='TPB-3457'>TPB-3457</a>]</b>
+        <p>The compiler can generate incorrect code if <tt>strcpy</tt>, <tt>memcpy</tt>, <tt>memmove</tt>,
+        or any other C library function that returns its first parameter is used for changing the value of a
+        local variable at least twice in the same function. As an example, the function <tt>f</tt> below
+        will return 1 if <tt>b-&gt;a1</tt> is 10, regardless of the value of <tt>b-&gt;a2,</tt> because the
+        analysis misses that <tt>memcpy(&amp;a, &amp;(b-&gt;a2))</tt> changes the value of <tt>a</tt>.<br>
+        The problem only occurs when the same local variable (<tt>a</tt> in the example) is changed multiple
+        times by a C library function that uses the <tt>returns 1</tt> function effect pragma.</p>
+        <pre>
+        int f(struct B const *b)
+        {
+          int a;
+          memcpy(&amp;a, &amp;(b-&gt;a1));
+          if (a == 10) {
+            memcpy(&amp;a, &amp;(b-&gt;a2));
+          }
+          if (a != 20) {
+            return 1;
+          }
+          return 0;
+        }
+        </pre>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8145'>EWARM-8145</a>]</b>
+        The file <tt>cmain.s</tt> incorrectly contains the labels <tt>_main</tt> and
+        <tt>_call_main</tt>.They have no documented use and they are not reserved, so they should be
+        available for other use.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-8009'>EWARM-8009</a>, <a name='TPB-3428'>TPB-3428</a>]</b>
+        If the construction part of a new expression throws, the compiler should arrange for the storage
+        allocated by <tt>operator new</tt> to be deleted. However, in most cases the compiler incorrectly
+        emits this deletion also for exceptions thrown by other parts of the expression of which the new
+        expression is part.<br>
+        Example:
+        <div><div>
+        <pre>
+        <span>throw</span> <span>new</span> MyError(x);</pre>
+        </div></div>
+        <p>In this case, the compiler will emit code to always call <tt>operator delete</tt> for the memory
+        allocated by <tt>operator new</tt>, leading to possible accesses to already deleted memory and/or
+        double delete.</p>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7997'>EWARM-7997</a>, <a name='TPB-3427'>TPB-3427</a>]</b>
+        Using the <tt>--enum_is_int</tt> option when compiling a C++ source file that includes the C++
+        system headers giving input/output facilities might generate faulty code.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7949'>EWARM-7949</a>, <a name='TPB-3426'>TPB-3426</a>]</b>
+        Using GNU statement expressions (an experimental feature enabled by extended language support) in
+        C++ causes the compiler to terminate with an internal error <tt>assertion failed:
+        push_or_repush_object_lifetime</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7813'>EWARM-7813</a>, <a name='TPB-3391'>TPB-3391</a>]</b>
+        Forgetting to put parentheses in a function call should result in warning Pa131, but for some
+        intrinsic functions, like __disable_interrupt, the compiler fails to emit this warning.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7810'>EWARM-7810</a>, <a name='TPB-3394'>TPB-3394</a>]</b>
+        The gnu format attribute (<tt>_<em>attribute</em>_((format))</tt>) is incorrectly marked as not
+        supported. Using it generates spurious warnings.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7786'>EWARM-7786</a>, <a name='TPB-3374'>TPB-3374</a>]</b>
+        Under some circumstances, such as when the fields of a structure type are only ever accessed via a
+        global pointer variable that is defined in a separate file from the accesses, debug information
+        about the fields is not emitted.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7747'>EWARM-7747</a>, <a name='TPB-3369'>TPB-3369</a>]</b>
+        With an optimization level of medium and higher, the compiler can generate incorrect initialization
+        values for C++ objects with static storage duration that have constructors defined in the same
+        modules. A triggering condition is when the constructor contains an <tt>if</tt> or <tt>switch</tt>
+        statement. The bug does not trigger if the constructor is declared as <tt>constexpr</tt>.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7528'>EWARM-7528</a>, <a name='TPB-3323'>TPB-3323</a>]</b>
+        C++ in-class definitions of friend functions in template classes can sometimes be instantiated
+        unnecessarily. This can lead to a variety of errors, including infinite template instantiation
+        recursion and incomplete types being used.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7470'>EWARM-7470</a>, <a name='TPB-3316'>TPB-3316</a>]</b>
+        The compiler can terminate with an internal error for some C++ code when checking of MISRA-C: 2004
+        rule 11.4 is enabled.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7442'>EWARM-7442</a>, <a name='TPB-3308'>TPB-3308</a>]</b>
+        The compiler can terminate with an internal error when checking of MISRA-C: rule 5.3 (typedef reuse)
+        is enabled, in the context of multi-file compilation (<tt>--mfc</tt>).
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7430'>EWARM-7430</a>, <a name='TPB-3304'>TPB-3304</a>]</b>
+        The clang preprocessor macro <tt>__has_attribute(</tt><em>attr</em><tt>)</tt> incorrectly expands to
+        <tt>1</tt> for gnu/clang attributes that are not actually supported.
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7313'>EWARM-7313</a>, <a name='TPB-3272'>TPB-3272</a>]</b>
+        The compiler does not support the <em><tt>_attribute</tt></em>_((packed)) attribute correctly. For
+        cases where this results in a bitfield that spans more bytes than would normally be required for its
+        type, the compiler can terminate with an internal error, or, possibly, generate incorrect code.<br>
+        Example:
+        <div><div>
+        <pre>
+        struct __attribute__((packed)) {
+          <span>short</span> a : 5;
+          <span>short</span> b : 13;
+          <span>short</span> c : 14;
+        };
+        </pre>
+        </div></div>
+        <p>The bitfield <tt>b</tt> is of a type that normally only requires two bytes, but in this case
+        parts of it will reside in three different bytes (3 bits in the first byte, 8 bits in the second,
+        and 2 bits in the third byte). This type of bitfield is not handled correctly.</p>
+        </p>
+     </li>
+     <li>
+        <p>
+        <b>[<a name='EWARM-7305'>EWARM-7305</a>, <a name='TPB-3270'>TPB-3270</a>]</b>
+        The C++17 structured binding feature (<tt>auto [x, y] =</tt> ...) does not work for any type where
+        <tt>std::tuple_size</tt> is needed. Compilation fails with an error that states that no matching
+        instantiation of <tt>std::tuple_size</tt> is found. Affected types include instantiations of
+        <tt>std::pair</tt>, <tt>std::tuple</tt>, and <tt>std::array</tt>.
+        </p>
+     </li>
+</ul>
+      <!--======================================================================-->
+      <!-- USER GUIDE CORRECTIONS                                               -->
+      <!--======================================================================-->
+      <h3>
+        <a name="manuals" id="manuals"></a>User guide corrections
+      </h3>
+<ul>
+  <li>
+    None.
+  </li>
+</ul>
+      <!--======================================================================-->
+      <!-- MISCELLANEOUS                                                        -->
+      <!--======================================================================-->
+      <h3>
+        <a name="misc" id="misc"></a>Miscellaneous
+      </h3>
+    <ul>
+      <li>
+        <b>Available workarounds for device erratas:</b>
+        <ul>
+          <li>
+            <p>
+            ARM Cortex-M3 errata 463764<br>
+            Core might freeze for <code>SLEEPONEXIT</code> single instruction <code>ISR</code>.
+            More information is available on <a href="http://infocenter.arm.com" target="_blank">infocenter.arm.com</a>.<br>
+            Workaround generated for functions with attribute <code>__irq </code>with<code> iccarm --enable_hardware_workaround=arm463764</code>.
+			Supported from EWARM 5.41.
+            </p>
+          </li>
+
+          <li>
+            <p>
+            ARM Cortex-M3 errata 602117<br>
+            <code>LDRD</code> with base in list might result in incorrect base register when interrupted or faulted.
+            From EWARM 5.20.3 the compiler/library avoids the <code>LDRD</code> instruction with the base register in list.
+            </p>
+          </li>
+
+          <li>
+            <p>
+            ARM Cortex-M3 errata 752419<br>
+            ARM Cortex-M4 errata 752770<br>
+            Interrupted loads to<code> SP</code> can cause erroneous behaviour.
+            From EWARM 6.21 the compiler/library does not generate <code>LDR SP</code> instructions with writeback 
+            to <code>Rn</code>. Otherwise we allow the extra reads because the stack resides in RAM where multiple 
+            reads are acceptable.
+            </p>
+          </li>
+
+          <li>
+            <p>
+            ARM Cortex-M4 errata 776924<br>
+            VDIV or VSQRT instructions might not complete correctly when very short ISRs are used.
+            IAR recommends the second workaround proposed by Arm:
+            "Ensure that every interrupt service routine contains more than 2 instructions in addition to the exception return instruction."
+            The background is that the compiler is unaware of interrupts since the Cortex-M architecture
+            does not distinguish between ordinary functions and interrupt functions.
+            </p>
+          </li>
+
+          <li>
+            <p>
+            ARM Cortex-M7 errata 833872<br>
+            Flag setting instructions inside an IT block might cause incorrect execution of subsequent instructions.
+            From EWARM 7.40, the compiler will the skip the IT transformation on this particular code pattern.
+            </p>
+          </li>
+
+          <li>
+            <p>
+            ARM Cortex-M3 errata 838469<br>
+            ARM Cortex-M4 errata 838869<br>
+            Store immediate overlapping exception return operation might vector to incorrect interrupt.
+            Follow the guidelines in the errata and implement the workaround proposed by ARM
+            by using <code>__DSB(void)</code> in applicable cases.
+            </p>
+          </li>
+
+          <li>
+            <p>
+            Functional problem Core.1 in NXP device LPC2478: Incorrect update of the Abort Link register in Thumb state.<br>
+            Workaround generated with<code> iccarm --enable_hardware_workaround=NXP_Core.1</code>
+            </p>
+          </li>
+
+          <li>
+            <p>
+            Functional problem in Stellaris devices: Non-word-aligned write to SRAM can cause an incorrect value to be loaded.
+            More information is available on the Stellaris web site at <a href="http://www.ti.com/stellaris" target="_blank">www.ti.com/stellaris</a>.<br>
+            Workaround generated with<code> iccarm --enable_hardware_workaround=LM3S_NWA_SRAM_Write</code>
+            </p>
+          </li>
+
+          <li>
+            <p>
+            Functional problem in Freescale Semiconductors MC9328MX1 (i.MX1), masks 0L44N, 1L44N, and 2L44N:<br>
+            The <code>LDM</code> instruction will in some cases not load the second register correctly.
+            Workaround generated with<code> iccarm --enable_hardware_workaround=920t-ldm2</code><br>
+            <b>NOTE</b>: The libraries in the current EWARM version are not built with this workaround.
+            Use EWARM 6.50.6 and linker option<code> --enable_hardware_workaround=920t-ldm2 </code>to use libraries
+            built with this hardware workaround.
+            </p>
+          </li>
+
+        </ul>
+      </li>
+
+      <li>
+<b>RTOS Threads and TLS</b>
+<p>
+The inc\c\DLib_Threads.h header file contains support for locks and thread-local storage
+(TLS) variables. This is useful for implementing thread support. For more information,
+see the header file.
+      </li>
+
+      <li>
+        <b>va_args</b>
+        <p>
+        The implementation of <code>va_args</code> functions has changed in IAR Embedded Workbench for ARM 7.20.1.
+        It is no longer possible to compile the output of the preprocessor from an earlier version of the compiler.
+        The original source code must be preprocessed again, using IAR Embedded Workbench for ARM 7.20.1.
+      </li>
+    </ul>
+      <!--======================================================================-->
+      <!-- RELEASE HISTORY                                                      -->
+      <!--======================================================================-->
+      <h3>
+        <a name="history" id="history"></a>Release history
+      </h3>
+    <ul>
+      See <a href="iccarm_history.ENU.html">release history</a>.
+    </ul>
+    </div>
+  </body>
+</html>
