@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1648226408 source:c:\embedded\projects\codeblocks\elfsplitter\elfparser.c
+	"elfparser.h"
+
+1648226226 c:\embedded\projects\codeblocks\elfsplitter\elfparser.h
+	<stdio.h>
+	<assert.h>
+	<fcntl.h>
+	<stdlib.h>
+	<stdint.h>
+	<unistd.h>
+	<string.h>
+	<errno.h>
+	<stdbool.h>
+
+1648226383 source:c:\embedded\projects\codeblocks\elfsplitter\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<string.h>
+	"elfparser.h"
+
+1648226408 source:c:\users\h231423\desktop\elfsplitter\elfsplitter\elfparser.c
+	"elfparser.h"
+
+1648226226 c:\users\h231423\desktop\elfsplitter\elfsplitter\elfparser.h
+	<stdio.h>
+	<assert.h>
+	<fcntl.h>
+	<stdlib.h>
+	<stdint.h>
+	<unistd.h>
+	<string.h>
+	<errno.h>
+	<stdbool.h>
+
+1648545702 source:c:\users\h231423\desktop\elfsplitter\elfsplitter\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<string.h>
+	"elfparser.h"
+
+1666866495 source:c:\prj-vav2a\elf2bin\elfsplitter\elfparser.c
+	"elfparser.h"
+
+1666866495 c:\prj-vav2a\elf2bin\elfsplitter\elfparser.h
+	<stdio.h>
+	<assert.h>
+	<fcntl.h>
+	<stdlib.h>
+	<stdint.h>
+	<unistd.h>
+	<string.h>
+	<errno.h>
+	<stdbool.h>
+
